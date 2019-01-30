@@ -37,17 +37,22 @@ namespace DisukuBot.DisukuData
                 CreateFile(path);
             await File.WriteAllTextAsync(path, json);
         }
-        
-        public void CreateFile(string path)
+
+        /// <summary>
+        /// Checks if the specified path exists.
+        /// </summary>
+        /// <param name="path">The path to check.</param>
+        /// <returns></returns>
+        public bool Exists(string path)
+            => File.Exists(path);
+
+        private void CreateFile(string path)
         {
             if (!Directory.Exists(Global.ResourcesFolder))
                 Directory.CreateDirectory(Global.ResourcesFolder);
             if (Exists(path))
                 File.Create(path);
         }
-
-        public bool Exists(string path)
-            => File.Exists(path);
 
         private string GetRawData(string path)
             => File.ReadAllText(path);
