@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DisukuBot.DisukuDiscord;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -39,8 +40,8 @@ namespace DisukuBot.DisukuData
         
         public void CreateFile(string path)
         {
-            if (!Directory.Exists("Resources"))
-                Directory.CreateDirectory("Resources");
+            if (!Directory.Exists(Global.ResourcesFolder))
+                Directory.CreateDirectory(Global.ResourcesFolder);
             if (Exists(path))
                 File.Create(path);
         }
