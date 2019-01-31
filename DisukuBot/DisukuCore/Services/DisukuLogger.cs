@@ -7,19 +7,33 @@ namespace DisukuBot.DisukuCore.Services
 {
     public class DisukuLogger : IDisukuLogger
     {
-        public async Task LogAsync(DisukuLogMessage logMessage)
+        public async Task LogAsync(DisukuLog logMessage)
         {
             await Append($"{ConvertSource(logMessage.Source)} ", ConsoleColor.DarkGray);
             await Append($"[{logMessage.Severity}] ", await SeverityColor(logMessage.Severity));
             await Append($"{logMessage.Message}\n", ConsoleColor.White);
         }
 
-        public async Task LogCriticalAsync(DisukuLogMessage logMessage, Exception exception)
+        public async Task LogCriticalAsync(DisukuLog logMessage, Exception exception)
         {
             await Append($"{ConvertSource(logMessage.Source)} ", ConsoleColor.DarkGray);
             await Append($"[{logMessage.Severity}] ", await SeverityColor(logMessage.Severity));
             await Append($"{logMessage.Message}\n", ConsoleColor.White);
             await Append($"{exception.Message}", ConsoleColor.DarkGray);
+        }
+
+        public async Task LogCommandAsync(DisukuCommandLog log)
+        {
+            await Append("DISC ", ConsoleColor.DarkGray);
+            await Append("[CMND] ", ConsoleColor.Magenta);
+            await Append($"Command {log.CommandName} Exicuted For {log.User} in {log.Guild}/#{log.Channel}\n", ConsoleColor.White);
+        }
+
+        public async Task LogCommandAsync(DisukuCommandLog log, string error)
+        {
+            await Append("DISC ", ConsoleColor.DarkGray);
+            await Append("[CMND] ", ConsoleColor.Magenta);
+            await Append($"Command ERROR: {error} For {log.User} in {log.Guild}/#{log.Channel}\n", ConsoleColor.White);
         }
 
         private async Task Append(string message, ConsoleColor color)
@@ -64,5 +78,6 @@ namespace DisukuBot.DisukuCore.Services
                     return Task.FromResult(ConsoleColor.DarkGray);
             }
         }
+
     }
 }

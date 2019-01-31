@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DisukuBot.DisukuCore.Entities.Logging
 {
-    public class DisukuLogMessage
+    public class DisukuLog
     {
         public string Source { get; set; }
         public string Message { get; set; }

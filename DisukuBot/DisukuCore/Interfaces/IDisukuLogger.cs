@@ -6,7 +6,9 @@ namespace DisukuBot.DisukuCore.Interfaces
 {
     public interface IDisukuLogger
     {
-        Task LogAsync(DisukuLogMessage logMessage);
-        Task LogCriticalAsync(DisukuLogMessage logMessage, Exception exception);
+        Task LogAsync(DisukuLog logMessage);
+        Task LogCriticalAsync(DisukuLog logMessage, Exception exception);
+        Task LogCommandAsync(DisukuCommandLog log);
+        Task LogCommandAsync(DisukuCommandLog log, string error);
     }
 }
