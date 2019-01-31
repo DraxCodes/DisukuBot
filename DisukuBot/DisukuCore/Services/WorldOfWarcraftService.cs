@@ -1,12 +1,13 @@
 ﻿using System.Threading.Tasks;
 using DisukuBot.DisukuCore.Entities.RaiderIO;
+using DisukuBot.DisukuCore.Interfaces;
 using DisukuBot.DisukuDiscord.Extensions;
 using RaiderIO;
 using RaiderIO.Entities.Enums;
 
 namespace DisukuBot.DisukuCore.Services
 {
-    public class WorldOfWarcraftService : IServiceExtention
+    public class WorldOfWarcraftService : IServiceExtention, IWorldOfWarcraftService
     {
         public Task InitializeAsync()
             => Task.CompletedTask;
