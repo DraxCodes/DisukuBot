@@ -2,3 +2,5 @@
 .vs/*
 DisukuBot/bin*
 DisukuBot/obj*
+DisukuConsoleApp/bin/*
+DisukuConsoleApp/obj*
