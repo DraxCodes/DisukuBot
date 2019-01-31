@@ -11,10 +11,11 @@ using System;
 using System.Threading.Tasks;
 using DisukuBot.DisukuDiscord.DiscordServices;
 using DisukuBot.DisukuDiscord.Extensions;
+using DisukuBot.DisukuCore;
 
 namespace DisukuBot.DisukuDiscord
 {
-    public class DisukuBotClient
+    public class DisukuBotClient : IDisukuBotClient
     {
         private DiscordSocketClient _client;
         private CommandService _commands;
@@ -45,6 +46,9 @@ namespace DisukuBot.DisukuDiscord
 
         public async Task InitializeAsync()
         {
+
+
+
             _config = await InitializeConfigAsync();
 
             _services = ConfigureServices();
