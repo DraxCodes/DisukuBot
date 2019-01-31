@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DisukuBot.DisukuData.Entities
+namespace DisukuData.Entities
 {
     public class BotConfig
     {

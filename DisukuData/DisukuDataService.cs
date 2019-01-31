@@ -1,9 +1,8 @@
-﻿using DisukuBot.DisukuDiscord;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace DisukuBot.DisukuData
+namespace DisukuData
 {
     public class DisukuJsonDataService 
     {

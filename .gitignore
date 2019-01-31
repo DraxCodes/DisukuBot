@@ -4,3 +4,5 @@ DisukuBot/bin*
 DisukuBot/obj*
 DisukuConsoleApp/bin/*
 DisukuConsoleApp/obj*
+DisukuData/obj*
+DisukuData/bin*

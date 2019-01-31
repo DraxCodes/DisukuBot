@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisukuBot", "DisukuBot\Disu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisukuConsoleApp", "DisukuConsoleApp\DisukuConsoleApp.csproj", "{D58CEFFC-569A-4141-A15C-140F793EE6E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisukuData", "DisukuData\DisukuData.csproj", "{A1E71A94-17F0-4267-B3A6-C45F97FC4727}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D58CEFFC-569A-4141-A15C-140F793EE6E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D58CEFFC-569A-4141-A15C-140F793EE6E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D58CEFFC-569A-4141-A15C-140F793EE6E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1E71A94-17F0-4267-B3A6-C45F97FC4727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1E71A94-17F0-4267-B3A6-C45F97FC4727}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1E71A94-17F0-4267-B3A6-C45F97FC4727}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1E71A94-17F0-4267-B3A6-C45F97FC4727}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

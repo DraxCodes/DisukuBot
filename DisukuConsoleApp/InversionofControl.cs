@@ -1,4 +1,6 @@
 ﻿using DisukuBot.DisukuCore;
+using DisukuBot.DisukuCore.Interfaces;
+using DisukuBot.DisukuCore.Services;
 using DisukuBot.DisukuDiscord;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -29,6 +31,7 @@ namespace DisukuConsoleApp
         private static void InitializeProvider()
             => provider = new ServiceCollection()
             .AddSingleton<IDisukuBotClient, DisukuBotClient>()
+            .AddSingleton<IWorldOfWarcraftService, WorldOfWarcraftService>()
             .BuildServiceProvider();
     }
 }

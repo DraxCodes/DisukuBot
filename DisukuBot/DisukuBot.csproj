@@ -13,4 +13,8 @@
     <PackageReference Include="RaiderIOSharp-V2" Version="2.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DisukuData\DisukuData.csproj" />
+  </ItemGroup>
+
 </Project>

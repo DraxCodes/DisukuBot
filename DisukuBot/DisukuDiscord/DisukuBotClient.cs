@@ -1,17 +1,17 @@
-﻿using Discord;
-using Discord.Commands;
-using Discord.WebSocket;
-using DisukuBot.DisukuCore.Services;
-using DisukuBot.DisukuCore.Interfaces;
-using DisukuBot.DisukuData;
-using DisukuBot.DisukuData.Entities;
-using DisukuBot.DisukuDiscord.Converters;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
+using Discord;
+using Discord.Commands;
+using Discord.WebSocket;
 using DisukuBot.DisukuDiscord.DiscordServices;
 using DisukuBot.DisukuDiscord.Extensions;
 using DisukuBot.DisukuCore;
+using DisukuData;
+using DisukuData.Entities;
+using DisukuBot.DisukuCore.Services;
+using DisukuBot.DisukuCore.Interfaces;
+using DisukuBot.DisukuDiscord.Converters;
 
 namespace DisukuBot.DisukuDiscord
 {
