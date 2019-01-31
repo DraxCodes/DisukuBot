@@ -1,4 +1,6 @@
 ﻿using Discord;
+using Discord.Commands;
+using Discord.WebSocket;
 using DisukuBot.DisukuCore.Entities.Logging;
 using System;
 using System.Collections.Generic;
@@ -8,8 +10,8 @@ namespace DisukuBot.DisukuDiscord.Converters
 {
     public static class DisukuEntityConverter
     {
-        public static DisukuLogMessage CovertLog(LogMessage logMessage)
-            => new DisukuLogMessage
+        public static DisukuLog CovertLog(LogMessage logMessage)
+            => new DisukuLog
             {
                 Message = logMessage.Message,
                 Source = logMessage.Source,
@@ -32,5 +34,15 @@ namespace DisukuBot.DisukuDiscord.Converters
                     return DisukuLogSeverity.Info;
             }
         }
+
+        public static DisukuCommandLog ConvertCommandLog(SocketGuild guild, SocketGuildChannel channel, SocketGuildUser user, CommandInfo command)
+            => new DisukuCommandLog
+            {
+                Channel = channel.Name,
+                User = $"{user.Username}#{user.Discriminator}",
+                Guild = guild.Name,
+                CommandName = command.Name
+            };
+
     }
 }
