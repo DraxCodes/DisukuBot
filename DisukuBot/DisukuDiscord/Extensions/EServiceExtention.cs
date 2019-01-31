@@ -10,7 +10,7 @@ namespace DisukuBot.DisukuDiscord.Extensions
     {
         public static IServiceCollection AutoAddServices(this IServiceCollection services)
         {
-            foreach (var type in Assembly.GetEntryAssembly().GetTypes()
+            foreach (var type in Assembly.GetCallingAssembly().GetTypes()
                 .Where(x => typeof(IServiceExtention).IsAssignableFrom(x) && !x.IsInterface))
             {
                 services.AddSingleton(type);
@@ -20,7 +20,7 @@ namespace DisukuBot.DisukuDiscord.Extensions
 
         public static async Task InitializeServicesAsync(this IServiceProvider services)
         {
-            foreach (var type in Assembly.GetEntryAssembly().GetTypes()
+            foreach (var type in Assembly.GetCallingAssembly().GetTypes()
                 .Where(x => typeof(IServiceExtention).IsAssignableFrom(x) && !x.IsInterface))
             {
                 await ((IServiceExtention)services.GetRequiredService(type)).InitializeAsync();

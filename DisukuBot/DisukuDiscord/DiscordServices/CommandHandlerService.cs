@@ -29,7 +29,7 @@ namespace DisukuBot.DisukuDiscord.DiscordServices
         public async Task InitializeAsync()
         {
             await _commands.AddModulesAsync(
-                Assembly.GetEntryAssembly(),
+                Assembly.GetExecutingAssembly(),
                 _services);
 
             HookEvents();
@@ -45,6 +45,7 @@ namespace DisukuBot.DisukuDiscord.DiscordServices
 
         private async Task HandlerMessageAsync(SocketMessage socketMessage)
         {
+            Console.WriteLine(socketMessage.Content);
             if (!(socketMessage is SocketUserMessage message)) return;
             int argPos = 0;
 
