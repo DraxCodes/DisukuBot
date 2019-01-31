@@ -9,6 +9,8 @@ using DisukuBot.DisukuDiscord.Converters;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
+using DisukuBot.DisukuDiscord.DiscordServices;
+using DisukuBot.DisukuDiscord.Extensions;
 
 namespace DisukuBot.DisukuDiscord
 {
@@ -23,7 +25,6 @@ namespace DisukuBot.DisukuDiscord
 
         public DisukuBotClient(CommandService commands = null, DiscordSocketClient client = null, DisukuJsonDataService dataService = null, IDisukuLogger logger = null)
         {
-            //Create our new DiscordClient (Setting LogServerity to Verbose)
             _client = client ?? new DiscordSocketClient(new DiscordSocketConfig
             {
                 LogLevel = LogSeverity.Verbose,
@@ -31,7 +32,6 @@ namespace DisukuBot.DisukuDiscord
                 MessageCacheSize = 100
             });
 
-            //Create our new CommandService (Setting RunMode to async by default on all commands)
             _commands = commands ?? new CommandService(new CommandServiceConfig
             {
                 DefaultRunMode = RunMode.Async,
@@ -47,22 +47,18 @@ namespace DisukuBot.DisukuDiscord
         {
             _config = await InitializeConfigAsync();
 
-            //Setup Our Services
             _services = ConfigureServices();
 
-            //Login with the client
+            await _services.InitializeServicesAsync();
+
             await _client.LoginAsync(TokenType.Bot, _config.Token);
 
-            //Starr the client
             await _client.StartAsync();
 
-            //Hook up our events
             HookEvents();
 
-            //Initialize Our CommandService Handler
-            //await _services.GetRequiredService<CommandHandlerService>().InitializeAsync();
+            await _services.GetRequiredService<CommandHandlerService>().InitializeAsync();
 
-            //This is used so the bot doesn't shut down instantly.
             await Task.Delay(-1);
         }
         
@@ -116,6 +112,8 @@ namespace DisukuBot.DisukuDiscord
             .AddSingleton(_commands)
             .AddSingleton(_dataServices)
             .AddSingleton(_logger)
+            .AddSingleton<CommandHandlerService>()
+            .AutoAddServices()
             .BuildServiceProvider();
     }
 }
