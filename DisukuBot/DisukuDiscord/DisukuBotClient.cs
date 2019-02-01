@@ -12,6 +12,7 @@ using DisukuData.Entities;
 using DisukuBot.DisukuCore.Services;
 using DisukuBot.DisukuCore.Interfaces;
 using DisukuBot.DisukuDiscord.Converters;
+using DisukuData.Interfaces;
 
 namespace DisukuBot.DisukuDiscord
 {
@@ -20,11 +21,11 @@ namespace DisukuBot.DisukuDiscord
         private DiscordSocketClient _client;
         private CommandService _commands;
         private IServiceProvider _services;
-        private DisukuJsonDataService _dataServices;
+        private IDisukuJsonDataService _dataServices;
         private IDisukuLogger _logger;
         private BotConfig _config;
 
-        public DisukuBotClient(CommandService commands = null, DiscordSocketClient client = null, DisukuJsonDataService dataService = null, IDisukuLogger logger = null)
+        public DisukuBotClient(CommandService commands = null, DiscordSocketClient client = null, IDisukuJsonDataService dataService = null, IDisukuLogger logger = null)
         {
             _client = client ?? new DiscordSocketClient(new DiscordSocketConfig
             {

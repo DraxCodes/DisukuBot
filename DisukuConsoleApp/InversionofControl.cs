@@ -31,7 +31,6 @@ namespace DisukuConsoleApp
         private static void InitializeProvider()
             => provider = new ServiceCollection()
             .AddSingleton<IDisukuBotClient, DisukuBotClient>()
-            .AddSingleton<IWorldOfWarcraftService, WorldOfWarcraftService>()
             .BuildServiceProvider();
     }
 }

@@ -1,10 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using DisukuData.Interfaces;
+using Newtonsoft.Json;
 using System.IO;
 using System.Threading.Tasks;
 
 namespace DisukuData
 {
-    public class DisukuJsonDataService 
+    public class DisukuJsonDataService : IDisukuJsonDataService
     {
         /// <summary>
         /// Retreives data from a json file.
