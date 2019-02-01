@@ -1,5 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
+using Discord.Rest;
+using Discord.WebSocket;
 using DisukuBot.DisukuCore.Services;
 using System;
 using System.Threading.Tasks;
@@ -11,11 +13,15 @@ namespace DisukuBot.DisukuDiscord.Modules
         [Command("Test")]
         public async Task Echo()
         {
-            string[] collection = {  };
-            var rand = new Random();
-            var index = rand.Next(collection.Length);
-
-            await ReplyAsync("");
+            var pins = await Context.Channel.GetPinnedMessagesAsync();
+            if (pins.Count > 49)
+            {
+                foreach (var pin in pins)
+                {
+                    await ((RestUserMessage)pin).UnpinAsync();
+                    
+                }
+            }
         }
     }
 }
