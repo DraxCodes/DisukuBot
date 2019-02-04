@@ -1,6 +1,5 @@
-﻿using DisukuBot.DisukuCore;
+﻿using DisukuBot.DisukuDiscord;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Threading.Tasks;
 
 namespace DisukuConsoleApp
@@ -9,7 +8,7 @@ namespace DisukuConsoleApp
     {        
         static async Task Main(string[] args)
         {
-            await ActivatorUtilities.CreateInstance<BotClient>(InversionOfControl.Provider).RunAsync();
+            await ActivatorUtilities.CreateInstance<DisukuBotClient>(InversionOfControl.Provider).InitializeAsync();
         }
     }
 }

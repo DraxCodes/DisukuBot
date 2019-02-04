@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace DisukuBot.DisukuCore
+namespace DisukuBot.DisukuDiscord
 {
     public interface IDisukuBotClient
     {

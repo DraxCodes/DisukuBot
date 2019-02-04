@@ -3,6 +3,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using DisukuBot.DisukuCore.Interfaces;
 using DisukuBot.DisukuDiscord.Converters;
+using DisukuBot.DisukuDiscord.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DisukuBot.DisukuDiscord.DiscordServices
 {
-    public class CommandHandlerService
+    public class CommandHandlerService : IServiceExtention
     {
         private readonly DiscordSocketClient _client;
         private readonly CommandService _commands;

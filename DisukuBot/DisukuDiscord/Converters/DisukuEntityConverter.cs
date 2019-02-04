@@ -2,9 +2,6 @@
 using Discord.Commands;
 using Discord.WebSocket;
 using DisukuBot.DisukuCore.Entities.Logging;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DisukuBot.DisukuDiscord.Converters
 {

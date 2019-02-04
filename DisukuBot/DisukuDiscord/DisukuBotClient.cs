@@ -62,8 +62,6 @@ namespace DisukuBot.DisukuDiscord
 
             HookEvents();
 
-            await _services.GetRequiredService<CommandHandlerService>().InitializeAsync();
-
             await Task.Delay(-1);
         }
         
