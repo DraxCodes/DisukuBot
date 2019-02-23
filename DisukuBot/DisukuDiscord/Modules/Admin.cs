@@ -41,8 +41,11 @@ namespace DisukuBot.DisukuDiscord.Modules
                 else
                 {
                     //TODO: Add check for if messages are greater than 2weeks old.
-                    var messages = await Context.Channel.GetMessagesAsync(num).FlattenAsync();
-                    await (Context.Channel as SocketTextChannel)
+                    var messages = await Context.Channel
+                        .GetMessagesAsync(num)
+                        .FlattenAsync();
+
+                    await (Context.Channel as SocketTextChannel)?
                         .DeleteMessagesAsync(messages);
                 }
             }
@@ -57,10 +60,16 @@ namespace DisukuBot.DisukuDiscord.Modules
                 }
                 else
                 {
-                    var messages = await Context.Channel.GetMessagesAsync(num).FlattenAsync();
-                    await (Context.Channel as SocketTextChannel)
-                        .DeleteMessagesAsync(messages
-                        .Where(m => m.Id == user.Id));
+                    var downloadedMessages = await Context.Channel
+                        .GetMessagesAsync(num)
+                        .FlattenAsync();
+
+                    var messages = downloadedMessages
+                        .ToList()
+                        .Where((m => m.Id == user.Id));
+
+                    await (Context.Channel as SocketTextChannel)?
+                        .DeleteMessagesAsync(messages);
                 }
             }
         }

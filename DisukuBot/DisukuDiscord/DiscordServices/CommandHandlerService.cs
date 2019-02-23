@@ -5,9 +5,7 @@ using DisukuBot.DisukuCore.Interfaces;
 using DisukuBot.DisukuDiscord.Converters;
 using DisukuBot.DisukuDiscord.Extensions;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DisukuBot.DisukuDiscord.DiscordServices
@@ -48,9 +46,8 @@ namespace DisukuBot.DisukuDiscord.DiscordServices
         {
             //TODO: Add Guild based prefixes.
 
-            Console.WriteLine(socketMessage.Content);
             if (!(socketMessage is SocketUserMessage message)) return;
-            int argPos = 0;
+            var argPos = 0;
 
             if (!(message.HasMentionPrefix(_client.CurrentUser, ref argPos)) ||
                 message.Author.IsBot)
