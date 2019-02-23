@@ -31,7 +31,7 @@ namespace DisukuBot.DisukuDiscord
             {
                 LogLevel = LogSeverity.Verbose,
                 AlwaysDownloadUsers = true,
-                MessageCacheSize = 100
+                MessageCacheSize = 50
             });
 
             _commands = commands ?? new CommandService(new CommandServiceConfig
@@ -47,21 +47,12 @@ namespace DisukuBot.DisukuDiscord
 
         public async Task InitializeAsync()
         {
-
-
-
             _config = await InitializeConfigAsync();
-
             _services = ConfigureServices();
-
             await _services.InitializeServicesAsync();
-
             await _client.LoginAsync(TokenType.Bot, _config.Token);
-
             await _client.StartAsync();
-
             HookEvents();
-
             await Task.Delay(-1);
         }
         

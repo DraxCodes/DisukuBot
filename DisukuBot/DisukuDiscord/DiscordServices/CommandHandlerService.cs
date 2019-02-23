@@ -15,21 +15,21 @@ namespace DisukuBot.DisukuDiscord.DiscordServices
     public class CommandHandlerService : IServiceExtention
     {
         private readonly DiscordSocketClient _client;
-        private readonly CommandService _commands;
+        private readonly CommandService _cmdService;
         private readonly IServiceProvider _services;
         private readonly IDisukuLogger _logger;
 
         public CommandHandlerService(IServiceProvider services, DiscordSocketClient client, CommandService cmdService, IDisukuLogger logger)
         {
             _client = client;
-            _commands = cmdService;
+            _cmdService = cmdService;
             _services = services;
             _logger = logger;
         }
 
         public async Task InitializeAsync()
         {
-            await _commands.AddModulesAsync(
+            await _cmdService.AddModulesAsync(
                 Assembly.GetExecutingAssembly(),
                 _services);
 
@@ -39,13 +39,15 @@ namespace DisukuBot.DisukuDiscord.DiscordServices
         private void HookEvents()
         {
             _client.MessageReceived += HandlerMessageAsync;
-            _commands.CommandExecuted += CommandExecutedAsync;
-            _commands.Log += LogAsync;
+            _cmdService.CommandExecuted += CommandExecutedAsync;
+            _cmdService.Log += LogAsync;
         }
 
 
         private async Task HandlerMessageAsync(SocketMessage socketMessage)
         {
+            //TODO: Add Guild based prefixes.
+
             Console.WriteLine(socketMessage.Content);
             if (!(socketMessage is SocketUserMessage message)) return;
             int argPos = 0;
@@ -56,7 +58,7 @@ namespace DisukuBot.DisukuDiscord.DiscordServices
 
             var context = new SocketCommandContext(_client, message);
 
-            var result = await _commands.ExecuteAsync(
+            var result = await _cmdService.ExecuteAsync(
                     context: context,
                     argPos: argPos,
                     services: _services);
