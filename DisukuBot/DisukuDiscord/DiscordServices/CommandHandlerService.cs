@@ -1,10 +1,12 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using DisukuBot.DisukuCore.Interfaces;
+using DisukuBot.DisukuCore.Services.Logger;
 using DisukuBot.DisukuDiscord.Converters;
 using DisukuBot.DisukuDiscord.Extensions;
+using DisukuBot.DisukuDiscord.TypeReaders;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -32,6 +34,11 @@ namespace DisukuBot.DisukuDiscord.DiscordServices
                 _services);
 
             HookEvents();
+        }
+
+        private void AddCustomTypeReaders()
+        {
+            _cmdService.AddTypeReader(typeof(List<SocketGuildUser>), new ListSocketGuildUserTR());
         }
 
         private void HookEvents()
@@ -75,8 +82,7 @@ namespace DisukuBot.DisukuDiscord.DiscordServices
             if (result.IsSuccess)
                 await _logger.LogCommandAsync(commandLog);
             else
-                await _logger.LogCommandAsync(commandLog, result.ErrorReason);
-                
+                await _logger.LogCommandAsync(commandLog, result.ErrorReason); 
         }
     }
 }
