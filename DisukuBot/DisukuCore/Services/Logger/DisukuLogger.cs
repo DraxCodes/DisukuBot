@@ -1,9 +1,8 @@
 ﻿using DisukuBot.DisukuCore.Entities.Logging;
-using DisukuBot.DisukuCore.Interfaces;
 using System;
 using System.Threading.Tasks;
 
-namespace DisukuBot.DisukuCore.Services
+namespace DisukuBot.DisukuCore.Services.Logger
 {
     public class DisukuLogger : IDisukuLogger
     {
@@ -26,7 +25,7 @@ namespace DisukuBot.DisukuCore.Services
         {
             await Append("DISC ", ConsoleColor.DarkGray);
             await Append("[CMND] ", ConsoleColor.Magenta);
-            await Append($"Command {log.CommandName} Exicuted For {log.User} in {log.Guild}/#{log.Channel}\n", ConsoleColor.White);
+            await Append($"Command {log.CommandName} Executed For {log.User} in {log.Guild}/#{log.Channel}\n", ConsoleColor.White);
         }
 
         public async Task LogCommandAsync(DisukuCommandLog log, string error)

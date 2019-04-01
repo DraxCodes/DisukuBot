@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace DisukuBot.DisukuCore.Interfaces
+namespace DisukuBot.DisukuCore.Services.Logger
 {
     public interface IDisukuLogger
     {
