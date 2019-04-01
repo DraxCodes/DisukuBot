@@ -6,11 +6,9 @@ using Discord.Commands;
 using Discord.WebSocket;
 using DisukuBot.DisukuDiscord.DiscordServices;
 using DisukuBot.DisukuDiscord.Extensions;
-using DisukuBot.DisukuCore;
 using DisukuData;
 using DisukuData.Entities;
-using DisukuBot.DisukuCore.Services;
-using DisukuBot.DisukuCore.Interfaces;
+using DisukuBot.DisukuCore.Services.Logger;
 using DisukuBot.DisukuDiscord.Converters;
 using DisukuData.Interfaces;
 
@@ -18,11 +16,11 @@ namespace DisukuBot.DisukuDiscord
 {
     public class DisukuBotClient : IDisukuBotClient
     {
-        private DiscordSocketClient _client;
-        private CommandService _commands;
+        private readonly DiscordSocketClient _client;
+        private readonly CommandService _commands;
         private IServiceProvider _services;
-        private IDisukuJsonDataService _dataServices;
-        private IDisukuLogger _logger;
+        private readonly IDisukuJsonDataService _dataServices;
+        private readonly IDisukuLogger _logger;
         private BotConfig _config;
 
         public DisukuBotClient(CommandService commands = null, DiscordSocketClient client = null, IDisukuJsonDataService dataService = null, IDisukuLogger logger = null)
@@ -59,7 +57,7 @@ namespace DisukuBot.DisukuDiscord
         private async Task<BotConfig> InitializeConfigAsync()
         {
             //Check if Config.Json exists (If not create one)
-            if (!_dataServices.Exists(Global.ConfigPath))
+            if (!_dataServices.FileExists(Global.ConfigPath))
                 await _dataServices.Save(new BotConfig
                 {
                     Token = "",
