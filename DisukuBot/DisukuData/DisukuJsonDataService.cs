@@ -15,10 +15,10 @@ namespace DisukuData
         /// <returns></returns>
         public Task<T> Retreive<T>(string path)
         {
-            if (!Exists(path))
+            if (!FileExists(path))
                 throw new FileNotFoundException("Json path not found (Did you forget to create it)", path);
             var rawData = GetRawData(path);
-            return Task.FromResult(JsonConvert.DeserializeObject<T>(rawData));
+            return Task.FromResult(JsonConvert.DeserializeObject<T>(rawData)); // eewww
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace DisukuData
         public async Task Save(object obj, string path)
         {
             var json = JsonConvert.SerializeObject(obj, Formatting.Indented);
-            if (!Exists(path))
+            if (!FileExists(path))
                 CreateFile(path);
             await File.WriteAllTextAsync(path, json);
         }
@@ -40,14 +40,14 @@ namespace DisukuData
         /// </summary>
         /// <param name="path">The path to check.</param>
         /// <returns></returns>
-        public bool Exists(string path)
+        public bool FileExists(string path)
             => File.Exists(path);
 
         private void CreateFile(string path)
         {
             if (!Directory.Exists(Global.ResourcesFolder))
                 Directory.CreateDirectory(Global.ResourcesFolder);
-            if (Exists(path))
+            if (FileExists(path))
                 File.Create(path);
         }
 

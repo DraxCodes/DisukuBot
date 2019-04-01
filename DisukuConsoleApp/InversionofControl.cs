@@ -1,7 +1,4 @@
-﻿using DisukuBot.DisukuCore;
-using DisukuBot.DisukuCore.Interfaces;
-using DisukuBot.DisukuCore.Services;
-using DisukuBot.DisukuDiscord;
+﻿using DisukuBot.DisukuDiscord;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DisukuConsoleApp

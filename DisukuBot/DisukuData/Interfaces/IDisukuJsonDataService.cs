@@ -9,6 +9,6 @@ namespace DisukuData.Interfaces
     {
         Task<T> Retreive<T>(string path);
         Task Save(object obj, string path);
-        bool Exists(string path);
+        bool FileExists(string path);
     }
 }
