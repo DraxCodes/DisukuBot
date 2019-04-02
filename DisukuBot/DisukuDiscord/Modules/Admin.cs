@@ -1,6 +1,8 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -37,13 +39,21 @@ namespace DisukuBot.DisukuDiscord.Modules
                 }
                 else
                 {
-                    //TODO: Add check for if messages are greater than 2weeks old.
                     var messages = await Context.Channel
-                        .GetMessagesAsync(num)
+                        .GetMessagesAsync(num + 1)
                         .FlattenAsync();
 
+                    var date = DateTime.Now.AddDays(-7);
+
+                    if (messages.Count(x => x.CreatedAt > date) == 1 && num > 1)
+                    {
+                        var reply = await ReplyAsync("Sorry I can only delete messages that are less than 2 weeks old.");
+                        await Task.Delay(5000);
+                        await reply.DeleteAsync();
+                    }
+
                     await (Context.Channel as SocketTextChannel)?
-                        .DeleteMessagesAsync(messages);
+                        .DeleteMessagesAsync(messages.Where(x => x.CreatedAt > date));
                 }
             }
 
@@ -65,8 +75,17 @@ namespace DisukuBot.DisukuDiscord.Modules
                         .ToList()
                         .Where((m => m.Id == user.Id));
 
+                    var date = DateTime.Now.AddDays(-7);
+
+                    if (messages.Count(x => x.CreatedAt > date) == 1 && num > 1)
+                    {
+                        var reply = await ReplyAsync("Sorry I can only delete messages that are less than 2 weeks old.");
+                        await Task.Delay(5000);
+                        await reply.DeleteAsync();
+                    }
+
                     await (Context.Channel as SocketTextChannel)?
-                        .DeleteMessagesAsync(messages);
+                        .DeleteMessagesAsync(messages.Where(x => x.CreatedAt > date));
                 }
             }
         }
