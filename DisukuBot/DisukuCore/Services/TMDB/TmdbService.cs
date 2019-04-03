@@ -1,13 +1,10 @@
 ﻿using DisukuBot.DisukuCore.Entities.TMDB;
 using DisukuData;
 using DisukuData.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using TMDbLib.Client;
 using System.Linq;
-using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
 
 namespace DisukuBot.DisukuCore.Services.TMDB
