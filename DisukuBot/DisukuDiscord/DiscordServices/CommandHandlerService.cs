@@ -80,9 +80,19 @@ namespace DisukuBot.DisukuDiscord.DiscordServices
                 return;
             var commandLog = DisukuEntityConverter.ConvertCommandLog(context.Guild as SocketGuild, context.Channel as SocketGuildChannel, context.User as SocketGuildUser, command.Value);
             if (result.IsSuccess)
+            {
                 await _logger.LogCommandAsync(commandLog);
+            }
             else
-                await _logger.LogCommandAsync(commandLog, result.ErrorReason); 
+            {
+                await _logger.LogCommandAsync(commandLog, result.ErrorReason);
+                var embed = new EmbedBuilder()
+                    .WithTitle("ERROR")
+                    .WithDescription(result.ErrorReason)
+                    .WithColor(Color.DarkRed);
+
+                await context.Channel.SendMessageAsync(embed: embed.Build());
+            }
         }
     }
 }
