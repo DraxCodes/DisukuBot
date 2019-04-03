@@ -16,6 +16,8 @@ namespace DisukuBot.DisukuDiscord
 {
     public class DisukuBotClient : IDisukuBotClient
     {
+        //TODO: Use DI Propperly.
+
         private readonly DiscordSocketClient _client;
         private readonly CommandService _commands;
         private IServiceProvider _services;
