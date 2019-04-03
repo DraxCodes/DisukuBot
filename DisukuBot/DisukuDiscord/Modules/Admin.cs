@@ -18,6 +18,7 @@ namespace DisukuBot.DisukuDiscord.Modules
             var banMsg = await ReplyAsync($"{user.Username} has been banned.");
             await Task.Delay(5000);
             await banMsg.DeleteAsync();
+            await Context.Message.DeleteAsync();
         }
 
         [Command("Kick", RunMode = RunMode.Async), Name("Kick Member"), RequireUserPermission(GuildPermission.KickMembers)]
@@ -28,6 +29,7 @@ namespace DisukuBot.DisukuDiscord.Modules
             var kickMsg = await ReplyAsync($"{user.Username} has been kicked.");
             await Task.Delay(5000);
             await kickMsg.DeleteAsync();
+            await Context.Message.DeleteAsync();
         }
 
         [Group("Purge"), RequireUserPermission(GuildPermission.ManageMessages)]
