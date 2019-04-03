@@ -7,6 +7,8 @@ namespace DisukuData
 {
     public class DisukuJsonDataService : IDisukuJsonDataService
     {
+        //TODO: Refactor
+
         /// <summary>
         /// Retreives data from a json file.
         /// </summary>
@@ -15,8 +17,7 @@ namespace DisukuData
         /// <returns></returns>
         public Task<T> Retreive<T>(string path)
         {
-            if (!FileExists(path))
-                throw new FileNotFoundException("Json path not found (Did you forget to create it)", path);
+            EnsureExists(path);
             var rawData = GetRawData(path);
             return Task.FromResult(JsonConvert.DeserializeObject<T>(rawData)); // eewww
         }
@@ -30,8 +31,7 @@ namespace DisukuData
         public async Task Save(object obj, string path)
         {
             var json = JsonConvert.SerializeObject(obj, Formatting.Indented);
-            if (!FileExists(path))
-                CreateFile(path);
+            EnsureExists(path);
             await File.WriteAllTextAsync(path, json);
         }
 
@@ -42,6 +42,12 @@ namespace DisukuData
         /// <returns></returns>
         public bool FileExists(string path)
             => File.Exists(path);
+
+        private void EnsureExists(string path)
+        {
+            if (!FileExists(path))
+                CreateFile(path);
+        }
 
         private void CreateFile(string path)
         {
