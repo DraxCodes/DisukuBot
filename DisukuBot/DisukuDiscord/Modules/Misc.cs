@@ -22,5 +22,15 @@ namespace DisukuBot.DisukuDiscord.Modules
             var randNum = rand.Next(0, options.Length);
             await ReplyAsync($"Hmm, I choose: `{options[randNum]}`");
         }
+
+        [Command("Roll"), Summary("Picks a number between two set values, default 0-100.")]
+        public async Task Roll(int num1 = 0, int num2 = 100)
+        {
+            var rand = new Random();
+            var randNum = rand.Next(num1, num2);
+            await ReplyAsync($"```diff\n" +
+                $"+ {Context.User.Username}: {randNum}\n" +
+                $"```");
+        }
     }
 }

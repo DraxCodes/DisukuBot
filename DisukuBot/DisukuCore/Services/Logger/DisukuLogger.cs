@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace DisukuBot.DisukuCore.Services.Logger
 {
     public class DisukuLogger : IDisukuLogger
-    {
+    {                                                                                                                                                                            
         public async Task LogAsync(DisukuLog logMessage)
         {
             await Append($"{ConvertSource(logMessage.Source)} ", ConsoleColor.DarkGray);

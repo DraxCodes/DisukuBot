@@ -32,6 +32,7 @@ namespace DisukuBot.DisukuDiscord
                 MessageCacheSize = 50
             });
 
+
             _commands = commands ?? new CommandService(new CommandServiceConfig
             {
                 DefaultRunMode = RunMode.Async,
