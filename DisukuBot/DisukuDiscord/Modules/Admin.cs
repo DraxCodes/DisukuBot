@@ -10,26 +10,30 @@ namespace DisukuBot.DisukuDiscord.Modules
 {
     public class Admin : ModuleBase<SocketCommandContext>
     {
-        [Command("Ban"), Name("Ban Member"), RequireUserPermission(GuildPermission.BanMembers)]
+        [Command("Ban", RunMode = RunMode.Async), Name("Ban Member"), RequireUserPermission(GuildPermission.BanMembers)]
         [Summary("Bans a users")]
         public async Task BaneMember(SocketGuildUser user)
         {
             await user.BanAsync();
-            await ReplyAsync($"{user.Username} has been banned.");
+            var banMsg = await ReplyAsync($"{user.Username} has been banned.");
+            await Task.Delay(5000);
+            await banMsg.DeleteAsync();
         }
 
-        [Command("Kick"), Name("Kick Member"), RequireUserPermission(GuildPermission.KickMembers)]
+        [Command("Kick", RunMode = RunMode.Async), Name("Kick Member"), RequireUserPermission(GuildPermission.KickMembers)]
         [Summary("Kicks a user.")]
         public async Task KickMember(SocketGuildUser user)
         {
             await user.KickAsync();
-            await ReplyAsync($"{user.Username} has been kicked.");
+            var kickMsg = await ReplyAsync($"{user.Username} has been kicked.");
+            await Task.Delay(5000);
+            await kickMsg.DeleteAsync();
         }
 
         [Group("Purge"), RequireUserPermission(GuildPermission.ManageMessages)]
         public class AdminPurge : ModuleBase<SocketCommandContext>
         {
-            [Command, Name("Purge Chat")] 
+            [Command(RunMode = RunMode.Async), Name("Purge Chat")] 
             [Summary("Purges messages from the channel")]
             public async Task PurgeChannel(int num)
             {
@@ -57,7 +61,7 @@ namespace DisukuBot.DisukuDiscord.Modules
                 }
             }
 
-            [Command("User"), Name("Purge User")]
+            [Command("User", RunMode = RunMode.Async), Name("Purge User")]
             [Summary("Purges messages in a channel for a specified user.")]
             public async Task PurgeUser(SocketGuildUser user, int num)
             {
