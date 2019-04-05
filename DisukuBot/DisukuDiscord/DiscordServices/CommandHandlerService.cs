@@ -4,9 +4,7 @@ using Discord.WebSocket;
 using DisukuBot.DisukuCore.Services.Logger;
 using DisukuBot.DisukuDiscord.Converters;
 using DisukuBot.DisukuDiscord.Extensions;
-using DisukuBot.DisukuDiscord.TypeReaders;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -36,11 +34,6 @@ namespace DisukuBot.DisukuDiscord.DiscordServices
             HookEvents();
         }
 
-        private void AddCustomTypeReaders()
-        {
-            _cmdService.AddTypeReader(typeof(List<SocketGuildUser>), new ListSocketGuildUserTR());
-        }
-
         private void HookEvents()
         {
             _client.MessageReceived += HandlerMessageAsync;
@@ -62,7 +55,7 @@ namespace DisukuBot.DisukuDiscord.DiscordServices
 
             var context = new SocketCommandContext(_client, message);
 
-            var result = await _cmdService.ExecuteAsync(
+            await _cmdService.ExecuteAsync(
                     context: context,
                     argPos: argPos,
                     services: _services);
