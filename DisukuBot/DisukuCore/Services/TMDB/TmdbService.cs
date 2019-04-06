@@ -51,7 +51,6 @@ namespace DisukuBot.DisukuCore.Services.TMDB
         {
             var search = await _client.SearchCollectionAsync(collectionName);
             var collection = await _client.GetCollectionAsync(search.Results.First().Id);
-            collection.
             return ConvertToDisukuMovie(collection.Parts);
         }
 
