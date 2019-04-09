@@ -52,7 +52,6 @@ namespace DisukuBot.DisukuDiscord.DiscordServices
             if (!(message.HasMentionPrefix(_client.CurrentUser, ref argPos)) ||
                 message.Author.IsBot)
                 return;
-
             var context = new SocketCommandContext(_client, message);
 
             await _cmdService.ExecuteAsync(
