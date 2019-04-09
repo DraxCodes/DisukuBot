@@ -8,7 +8,8 @@ namespace DisukuBot.DisukuDiscord.Modules
 {
     public class TMDB : ModuleBase<SocketCommandContext>
     {
-        private TmdbService _tmdbService;
+        //TODO: Use Interface instead of concrete
+        private ITmdbService _tmdbService;
         private string _logo = "https://www.themoviedb.org/assets/2/v4/logos/293x302-powered-by-square-green-3ee4814bb59d8260d51efdd7c124383540fc04ca27d23eaea3a8c87bfa0f388d.png";
 
         public TMDB(TmdbService tmdbService)
@@ -20,6 +21,7 @@ namespace DisukuBot.DisukuDiscord.Modules
         public async Task GetMovie([Remainder]string search)
         {
             var result = await _tmdbService.GetMovieAsync(search);
+
             var embed = new EmbedBuilder()
                 .WithTitle(result.Title)
                 .WithDescription(result.Description)
@@ -32,25 +34,33 @@ namespace DisukuBot.DisukuDiscord.Modules
             await ReplyAsync(embed: embed.Build());
         }
 
-        //TODO: Refactor the format of the embed.
         [Command("MCollection")]
         public async Task GetCollection([Remainder]string search)
         {
             var collection = await _tmdbService.GetMovieCollectionAsync(search);
-            var sb = new StringBuilder();
+
             var embed = new EmbedBuilder()
-                .WithTitle($"Collection For: {search.ToUpper()}")
-                .WithThumbnailUrl(_logo)
+                .WithTitle(collection.Title)
+                .WithDescription(collection.Description)
+                .WithThumbnailUrl(collection.BackdropUrl)
+                .WithImageUrl(collection.ImageUrl)
+                .WithUrl(collection.Url)
                 .WithColor(Color.Blue);
 
-            foreach (var movie in collection)
-            {
-                sb.Append($"[{movie.Title}]({movie.Url}) - ({movie.ReleaseDate.Year})\n");
-                //var description = movie.Description.Remove(40, movie.Description.Length - 40);
-                //sb.Append($"Description: {description}\n");
-            }
+            await ReplyAsync(embed: embed.Build());
+        }
 
-            embed.WithDescription(sb.ToString());
+        [Command("TvShow")]
+        public async Task GetTvShow([Remainder]string search)
+        {
+            var result = await _tmdbService.GetTvShowAsync(search);
+            var embed = new EmbedBuilder()
+                .WithTitle(result.Title)
+                .WithDescription(result.Description)
+                .WithColor(Color.Blue)
+                .WithUrl(result.Url)
+                .WithImageUrl(result.BackdropUrl)
+                .WithThumbnailUrl(result.ImageUrl);
 
             await ReplyAsync(embed: embed.Build());
         }

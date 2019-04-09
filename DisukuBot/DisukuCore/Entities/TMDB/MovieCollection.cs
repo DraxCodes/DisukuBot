@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DisukuBot.DisukuCore.Entities.TMDB
 {
-    public class MovieCollection
+    public class MovieCollection : Movie
     {
+        public List<Movie> Movies { get; set; }
 
     }
 }

@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 using TMDbLib.Client;
 using System.Linq;
 using TMDbLib.Objects.Search;
+using System;
+using DisukuBot.DisukuDiscord.Extensions;
+using DisukuBot.DisukuDiscord;
 
 namespace DisukuBot.DisukuCore.Services.TMDB
 {
-    public class TmdbService : ITmdbService
+    public class TmdbService : ITmdbService, IServiceExtention
     {
         private IDisukuJsonDataService _dataService;
         private TMDbClient _client;
         private TMDBConfig _config;
-
-
-        //TODO: MAKE COLLECTION ENTITY!!!!!!!!
-
 
         public TmdbService(IDisukuJsonDataService dataService)
         {
@@ -47,11 +46,34 @@ namespace DisukuBot.DisukuCore.Services.TMDB
             };
         }
 
-        public async Task<List<Movie>> GetMovieCollectionAsync(string collectionName)
+        public async Task<MovieCollection> GetMovieCollectionAsync(string collectionName)
         {
             var search = await _client.SearchCollectionAsync(collectionName);
             var collection = await _client.GetCollectionAsync(search.Results.First().Id);
-            return ConvertToDisukuMovie(collection.Parts);
+            var movies = ConvertToDisukuMovie(collection.Parts);
+            return new MovieCollection
+            {
+                Title = collection.Name,
+                Description = collection.Overview,
+                ImageUrl = $"http://image.tmdb.org/t/p/w500{collection.BackdropPath}",
+                BackdropUrl = $"http://image.tmdb.org/t/p/w500{collection.PosterPath}",
+                Movies = movies,
+                Url = $"https://www.themoviedb.org/collection/{collection.Id}",
+            };
+        }
+
+        public async Task<TVShow> GetTvShowAsync(string name)
+        {
+            var search = await _client.SearchTvShowAsync(name);
+            var result = search.Results.First();
+            return new TVShow
+            {
+                Title = result.Name,
+                Description = result.Overview,
+                Url = $"https://www.themoviedb.org/tv/{result.Id}",
+                ImageUrl = $"http://image.tmdb.org/t/p/w500{result.PosterPath}",
+                BackdropUrl = $"http://image.tmdb.org/t/p/w500{result.BackdropPath}"
+            };
         }
 
         private Task<TMDBConfig> GetConfig()

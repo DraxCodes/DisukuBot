@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace DisukuBot.DisukuCore.Services.TMDB
 {
-    public interface ITmdbService : IServiceExtention
+    public interface ITmdbService
     {
         Task<Movie> GetMovieAsync(string name);
-        Task<List<Movie>> GetMovieCollectionAsync(string collectionName);
+        Task<MovieCollection> GetMovieCollectionAsync(string collectionName);
+        Task<TVShow> GetTvShowAsync(string name);
     }
 }
