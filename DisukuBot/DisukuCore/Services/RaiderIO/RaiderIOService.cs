@@ -1,4 +1,5 @@
 ﻿using DisukuBot.DisukuCore.Entities.RaiderIO;
+using DisukuBot.DisukuDiscord.Extensions;
 using RaiderIO;
 using RaiderIO.Entities;
 using RaiderIO.Entities.Enums;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DisukuBot.DisukuCore.Services.RaiderIO
 {
-    public class RaiderIOService : IRaiderIOService
+    public class RaiderIOService : IRaiderIOService, IServiceExtention
     {
         public Task InitializeAsync()
         {

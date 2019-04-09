@@ -1,6 +1,8 @@
 ﻿using Discord.Commands;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +11,8 @@ namespace DisukuBot.DisukuDiscord.Modules
     [Name("Misc Commands")]
     public class Misc : ModuleBase<SocketCommandContext>
     {
+        // TODO Add choice of embed color or change based on "X" input
+
         [Command("Choose"), Summary("Selects between options given split by a comma.")]
         public async Task Choose([Remainder]string message)
         {

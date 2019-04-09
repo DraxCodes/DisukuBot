@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DisukuBot.DisukuCore.Services.RaiderIO
 {
-    public interface IRaiderIOService : IServiceExtention
+    public interface IRaiderIOService
     {
         Task<CharacterExtended> GetCharacterInfoAsync(string name, string realm, string region);
         Task<Affix> GetAffixesAsync();

@@ -11,13 +11,13 @@ using DisukuData.Entities;
 using DisukuBot.DisukuCore.Services.Logger;
 using DisukuBot.DisukuDiscord.Converters;
 using DisukuData.Interfaces;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace DisukuBot.DisukuDiscord
 {
     public class DisukuBotClient : IDisukuBotClient
     {
-        //TODO: Use DI Propperly.
-
         private readonly DiscordSocketClient _client;
         private readonly CommandService _commands;
         private IServiceProvider _services;
@@ -29,9 +29,9 @@ namespace DisukuBot.DisukuDiscord
         {
             _client = client ?? new DiscordSocketClient(new DiscordSocketConfig
             {
-                LogLevel = LogSeverity.Verbose,
+                LogLevel = LogSeverity.Debug,
                 AlwaysDownloadUsers = true,
-                MessageCacheSize = 50
+                MessageCacheSize = 100
             });
 
 
@@ -59,7 +59,6 @@ namespace DisukuBot.DisukuDiscord
         
         private async Task<BotConfig> InitializeConfigAsync()
         {
-            //Check if Config.Json exists (If not create one)
             if (!_dataServices.FileExists(Global.ConfigPath))
                 await _dataServices.Save(new BotConfig
                 {
@@ -83,6 +82,19 @@ namespace DisukuBot.DisukuDiscord
         {
             _client.Ready += OnReady;
             _client.Log += LogAsync;
+            _client.MessageDeleted += MessageDeleteEvent;
+        }
+
+        private async Task MessageDeleteEvent(Cacheable<IMessage, ulong> cacheableMessage, ISocketMessageChannel channel)
+        {
+            var embed = new EmbedBuilder()
+                .WithTitle($"{cacheableMessage.Value.Author}")
+                .AddField(cacheableMessage.Value.Content, "\u200b");
+
+            var guild = _client.GetGuild(513451922586468353);
+            var chan = guild.GetChannel(534539254861398027) as SocketTextChannel;
+
+            await chan.SendMessageAsync(embed: embed.Build());
         }
 
         private async Task LogAsync(LogMessage logMessage)
