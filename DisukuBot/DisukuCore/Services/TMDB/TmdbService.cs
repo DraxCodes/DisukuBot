@@ -1,6 +1,6 @@
 ﻿using DisukuBot.DisukuCore.Entities.TMDB;
-using DisukuData;
-using DisukuData.Interfaces;
+using DisukuJsonData;
+using DisukuJsonData.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMDbLib.Client;

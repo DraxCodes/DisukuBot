@@ -1,6 +1,4 @@
-﻿using DisukuData.Entities;
-
-namespace DisukuBot.DisukuDiscord
+﻿namespace DisukuBot.DisukuDiscord
 {
     public static class Global
     {

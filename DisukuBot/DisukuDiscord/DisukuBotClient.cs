@@ -4,17 +4,13 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using Discord.Rest;
 using DisukuBot.DisukuDiscord.DiscordServices;
 using DisukuBot.DisukuDiscord.Extensions;
-using DisukuData;
-using DisukuData.Entities;
+using DisukuJsonData;
+using DisukuJsonData.Entities;
 using DisukuBot.DisukuCore.Services.Logger;
 using DisukuBot.DisukuDiscord.Converters;
-using DisukuData.Interfaces;
-using System.IO;
-using Newtonsoft.Json;
-using System.Linq;
+using DisukuJsonData.Interfaces;
 
 namespace DisukuBot.DisukuDiscord
 {

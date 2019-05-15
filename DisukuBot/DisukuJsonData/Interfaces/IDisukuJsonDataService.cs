@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DisukuData.Interfaces
+namespace DisukuJsonData.Interfaces
 {
     public interface IDisukuJsonDataService
     {

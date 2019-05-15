@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DisukuData.Entities
+﻿namespace DisukuJsonData.Entities
 {
     public class BotConfig
     {
