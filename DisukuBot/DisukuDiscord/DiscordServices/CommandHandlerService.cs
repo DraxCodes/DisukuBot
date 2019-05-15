@@ -5,6 +5,8 @@ using DisukuBot.DisukuCore.Services.Logger;
 using DisukuBot.DisukuDiscord.Converters;
 using DisukuBot.DisukuDiscord.Extensions;
 using System;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -41,11 +43,8 @@ namespace DisukuBot.DisukuDiscord.DiscordServices
             _cmdService.Log += LogAsync;
         }
 
-
         private async Task HandlerMessageAsync(SocketMessage socketMessage)
         {
-            //TODO: Add Guild based prefixes.
-
             if (!(socketMessage is SocketUserMessage message)) return;
             var argPos = 0;
 

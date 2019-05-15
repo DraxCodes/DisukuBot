@@ -46,7 +46,7 @@ namespace DisukuBot.DisukuDiscord.Modules
                 else
                 {
                     var messages = await Context.Channel
-                        .GetMessagesAsync(num + 1)
+                        .GetMessagesAsync(num)
                         .FlattenAsync();
 
                     var date = DateTime.Now.AddDays(-7);

@@ -49,8 +49,11 @@ namespace DisukuBot.DisukuCore.Services.TMDB
         public async Task<MovieCollection> GetMovieCollectionAsync(string collectionName)
         {
             var search = await _client.SearchCollectionAsync(collectionName);
+            if (search.Results.Count < 1) { return new MovieCollection(); }
+
             var collection = await _client.GetCollectionAsync(search.Results.First().Id);
             var movies = ConvertToDisukuMovie(collection.Parts);
+
             return new MovieCollection
             {
                 Title = collection.Name,

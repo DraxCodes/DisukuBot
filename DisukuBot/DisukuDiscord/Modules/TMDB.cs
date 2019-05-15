@@ -38,7 +38,11 @@ namespace DisukuBot.DisukuDiscord.Modules
         public async Task GetCollection([Remainder]string search)
         {
             var collection = await _tmdbService.GetMovieCollectionAsync(search);
-
+            if (collection.Title == null)
+            {
+                await ReplyAsync($"Nothing found for: {search}");
+                return;
+            }
             var embed = new EmbedBuilder()
                 .WithTitle(collection.Title)
                 .WithDescription(collection.Description)

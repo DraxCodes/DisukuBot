@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
+using Discord.Rest;
 using DisukuBot.DisukuDiscord.DiscordServices;
 using DisukuBot.DisukuDiscord.Extensions;
 using DisukuData;
@@ -13,6 +14,7 @@ using DisukuBot.DisukuDiscord.Converters;
 using DisukuData.Interfaces;
 using System.IO;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace DisukuBot.DisukuDiscord
 {
@@ -34,7 +36,6 @@ namespace DisukuBot.DisukuDiscord
                 MessageCacheSize = 100
             });
 
-
             _commands = commands ?? new CommandService(new CommandServiceConfig
             {
                 DefaultRunMode = RunMode.Async,
@@ -44,6 +45,7 @@ namespace DisukuBot.DisukuDiscord
             _dataServices = dataService ?? new DisukuJsonDataService();
 
             _logger = logger ?? new DisukuLogger();
+
         }
 
         public async Task InitializeAsync()
@@ -51,8 +53,10 @@ namespace DisukuBot.DisukuDiscord
             _config = await InitializeConfigAsync();
             _services = ConfigureServices();
             await _services.InitializeServicesAsync();
+
             await _client.LoginAsync(TokenType.Bot, _config.Token);
             await _client.StartAsync();
+
             HookEvents();
             await Task.Delay(-1);
         }
@@ -82,19 +86,6 @@ namespace DisukuBot.DisukuDiscord
         {
             _client.Ready += OnReady;
             _client.Log += LogAsync;
-            _client.MessageDeleted += MessageDeleteEvent;
-        }
-
-        private async Task MessageDeleteEvent(Cacheable<IMessage, ulong> cacheableMessage, ISocketMessageChannel channel)
-        {
-            var embed = new EmbedBuilder()
-                .WithTitle($"{cacheableMessage.Value.Author}")
-                .AddField(cacheableMessage.Value.Content, "\u200b");
-
-            var guild = _client.GetGuild(513451922586468353);
-            var chan = guild.GetChannel(534539254861398027) as SocketTextChannel;
-
-            await chan.SendMessageAsync(embed: embed.Build());
         }
 
         private async Task LogAsync(LogMessage logMessage)
