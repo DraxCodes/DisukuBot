@@ -7,7 +7,7 @@ using TMDbLib.Client;
 using System.Linq;
 using TMDbLib.Objects.Search;
 using System;
-using DisukuBot.DisukuDiscord.Extensions;
+using Disuku.InversionOfControl;
 using DisukuBot.DisukuDiscord;
 
 namespace DisukuBot.DisukuCore.Services.TMDB

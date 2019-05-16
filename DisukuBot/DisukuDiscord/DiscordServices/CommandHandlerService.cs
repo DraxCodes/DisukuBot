@@ -3,10 +3,8 @@ using Discord.Commands;
 using Discord.WebSocket;
 using DisukuBot.DisukuCore.Services.Logger;
 using DisukuBot.DisukuDiscord.Converters;
-using DisukuBot.DisukuDiscord.Extensions;
+using Disuku.InversionOfControl;
 using System;
-using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 

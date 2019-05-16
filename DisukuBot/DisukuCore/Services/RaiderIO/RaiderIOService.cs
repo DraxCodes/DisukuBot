@@ -1,5 +1,5 @@
-﻿using DisukuBot.DisukuCore.Entities.RaiderIO;
-using DisukuBot.DisukuDiscord.Extensions;
+﻿using Disuku.InversionOfControl;
+using DisukuBot.DisukuCore.Entities.RaiderIO;
 using RaiderIO;
 using RaiderIO.Entities;
 using RaiderIO.Entities.Enums;

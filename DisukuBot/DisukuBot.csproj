@@ -14,4 +14,8 @@
     <PackageReference Include="TMDbLib" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Disuku.InversionOfControl\Disuku.InversionOfControl.csproj" />
+  </ItemGroup>
+
 </Project>

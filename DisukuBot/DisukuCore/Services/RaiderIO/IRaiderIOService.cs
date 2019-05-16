@@ -1,5 +1,4 @@
 ﻿using DisukuBot.DisukuCore.Entities.RaiderIO;
-using DisukuBot.DisukuDiscord.Extensions;
 using RaiderIO.Entities;
 using System.Threading.Tasks;
 

@@ -5,12 +5,12 @@ using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using DisukuBot.DisukuDiscord.DiscordServices;
-using DisukuBot.DisukuDiscord.Extensions;
 using DisukuJsonData;
 using DisukuJsonData.Entities;
 using DisukuBot.DisukuCore.Services.Logger;
 using DisukuBot.DisukuDiscord.Converters;
 using DisukuJsonData.Interfaces;
+using Disuku.InversionOfControl;
 
 namespace DisukuBot.DisukuDiscord
 {
@@ -107,6 +107,7 @@ namespace DisukuBot.DisukuDiscord
             .AddSingleton(_dataServices)
             .AddSingleton(_logger)
             .AddSingleton<CommandHandlerService>()
+            .AddDisukuTypes()
             .AutoAddServices()
             .BuildServiceProvider();
     }

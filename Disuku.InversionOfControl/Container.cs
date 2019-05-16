@@ -1,13 +1,17 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Disuku.MongoStorage;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace DisukuBot.DisukuDiscord.Extensions
+namespace Disuku.InversionOfControl
 {
-    public static class EServiceExtention
+    public static class Container
     {
+        public static IServiceCollection AddDisukuTypes(this IServiceCollection collection)
+            => collection.AddSingleton<IMongoDbStorage, MongoDbStorage>();
+
         public static IServiceCollection AutoAddServices(this IServiceCollection services)
         {
             foreach (var type in Assembly.GetExecutingAssembly().GetTypes()
@@ -26,5 +30,6 @@ namespace DisukuBot.DisukuDiscord.Extensions
                 await ((IServiceExtention)services.GetRequiredService(type)).InitializeAsync();
             }
         }
+
     }
 }
