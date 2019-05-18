@@ -5,7 +5,7 @@ using System;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DisukuBot.DisukuDiscord.Modules
+namespace Disuku.Discord.Modules
 {
     public class RaiderIO : ModuleBase<SocketCommandContext>
     {
