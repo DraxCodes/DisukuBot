@@ -3,7 +3,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using Disuku.Core.Entities.Logging;
 
-namespace DisukuBot.DisukuDiscord.Converters
+namespace Disuku.Discord.Converters
 {
     public static class DisukuEntityConverter
     {
