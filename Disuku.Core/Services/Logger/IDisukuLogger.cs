@@ -1,8 +1,8 @@
-﻿using DisukuBot.DisukuCore.Entities.Logging;
+﻿using Disuku.Core.Entities.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace DisukuBot.DisukuCore.Services.Logger
+namespace Disuku.Core.Services.Logger
 {
     public interface IDisukuLogger
     {
