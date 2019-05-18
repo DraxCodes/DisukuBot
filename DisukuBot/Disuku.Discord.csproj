@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Disuku.InversionOfControl\Disuku.InversionOfControl.csproj" />
+    <ProjectReference Include="..\Disuku.Core\Disuku.Core.csproj" />
   </ItemGroup>
 
 </Project>

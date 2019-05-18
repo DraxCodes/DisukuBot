@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Disuku.MongoStorage\Disuku.MongoStorage.csproj" />
+    <ProjectReference Include="..\DisukuBot\Disuku.Discord.csproj" />
   </ItemGroup>
 
 </Project>

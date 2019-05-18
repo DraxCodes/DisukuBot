@@ -7,10 +7,9 @@ using Discord.WebSocket;
 using DisukuBot.DisukuDiscord.DiscordServices;
 using DisukuJsonData;
 using DisukuJsonData.Entities;
-using DisukuBot.DisukuCore.Services.Logger;
 using DisukuBot.DisukuDiscord.Converters;
 using DisukuJsonData.Interfaces;
-using Disuku.InversionOfControl;
+using Disuku.Core.Services.Logger;
 
 namespace DisukuBot.DisukuDiscord
 {

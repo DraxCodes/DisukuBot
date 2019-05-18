@@ -1,4 +1,5 @@
-﻿using Disuku.MongoStorage;
+﻿using Disuku.Core.Services.Logger;
+using Disuku.MongoStorage;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
@@ -10,7 +11,9 @@ namespace Disuku.InversionOfControl
     public static class Container
     {
         public static IServiceCollection AddDisukuTypes(this IServiceCollection collection)
-            => collection.AddSingleton<IMongoDbStorage, MongoDbStorage>();
+            => collection
+            .AddSingleton<IMongoDbStorage, MongoDbStorage>()
+            .AddSingleton<IDisukuLogger, DisukuLogger>();
 
         public static IServiceCollection AutoAddServices(this IServiceCollection services)
         {

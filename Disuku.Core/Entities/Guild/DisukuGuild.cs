@@ -1,4 +1,4 @@
-﻿using DisukuBot.DisukuCore.Entities.Profile;
+﻿using Disuku.Core.Entities.Profile;
 using System;
 using System.Collections.Generic;
 
