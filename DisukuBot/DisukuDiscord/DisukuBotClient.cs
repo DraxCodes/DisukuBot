@@ -10,6 +10,7 @@ using DisukuJsonData.Entities;
 using DisukuBot.DisukuDiscord.Converters;
 using DisukuJsonData.Interfaces;
 using Disuku.Core.Services.Logger;
+using Disuku.Discord.DisukuDiscord.Extensions;
 
 namespace DisukuBot.DisukuDiscord
 {
