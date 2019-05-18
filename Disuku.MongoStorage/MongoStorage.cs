@@ -7,12 +7,12 @@ namespace Disuku.MongoStorage
 {
     public class MongoDbStorage : IMongoDbStorage
     {
-        private IMongoDatabase db;
+        private IMongoDatabase _dataBase;
 
         public void LoadDataBase(string database)
         {
             var client = new MongoClient();
-            db = client.GetDatabase(database);
+            _dataBase = client.GetDatabase(database);
         }
 
         public bool Exists()
