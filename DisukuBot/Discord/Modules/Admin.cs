@@ -2,11 +2,10 @@
 using Discord.Commands;
 using Discord.WebSocket;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DisukuBot.DisukuDiscord.Modules
+namespace Disuku.Discord.Modules
 {
     public class Admin : ModuleBase<SocketCommandContext>
     {
