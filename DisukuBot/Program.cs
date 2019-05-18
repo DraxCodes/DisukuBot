@@ -1,6 +1,4 @@
-﻿using DisukuBot.DisukuDiscord;
-using Microsoft.Extensions.DependencyInjection;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Disuku.Discord
 {

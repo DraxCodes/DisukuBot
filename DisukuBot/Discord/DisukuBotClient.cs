@@ -6,11 +6,12 @@ using Discord.Commands;
 using Discord.WebSocket;
 using DisukuJsonData;
 using DisukuJsonData.Entities;
-using DisukuBot.DisukuDiscord.Converters;
 using DisukuJsonData.Interfaces;
 using Disuku.Core.Services.Logger;
 using Disuku.Discord.DisukuDiscord.Extensions;
 using Disuku.Discord.DisordServices;
+using Disuku.Discord.Converters;
+using Disuku.Core.Services.TMDB;
 
 namespace Disuku.Discord
 {

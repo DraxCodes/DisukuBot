@@ -2,7 +2,7 @@
 
 namespace Disuku.Core
 {
-    public interface IServiceExtention
+    public interface IServiceInitialize
     {
         Task InitializeAsync();
     }

@@ -14,9 +14,9 @@ namespace Disuku.Core.Services.TMDB
         private TMDbClient _client;
         private TMDBConfig _config;
 
-        public async Task InitializeAsync()
+        public TmdbService()
         {
-            _config = await GetConfig();
+            _config = GetConfig();
             _client = new TMDbClient(_config.Token);
         }
 
@@ -70,9 +70,9 @@ namespace Disuku.Core.Services.TMDB
             };
         }
 
-        private async Task<TMDBConfig> GetConfig()
+        private TMDBConfig GetConfig()
         {
-            var rawJson = await File.ReadAllTextAsync(Global.TmdbConfigPath);
+            var rawJson = File.ReadAllText(Global.TmdbConfigPath);
             return JsonConvert.DeserializeObject<TMDBConfig>(rawJson);
         }
 
@@ -94,6 +94,5 @@ namespace Disuku.Core.Services.TMDB
 
             return result;
         }
-
     }
 }

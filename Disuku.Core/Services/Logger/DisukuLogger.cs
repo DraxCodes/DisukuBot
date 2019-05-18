@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Disuku.Core.Services.Logger
 {
-    public class DisukuLogger : IDisukuLogger, IServiceExtention
+    public class DisukuLogger : IDisukuLogger, IServiceInitialize
     {
 
         public Task InitializeAsync()
