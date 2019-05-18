@@ -9,11 +9,6 @@ namespace Disuku.Core.Services.RaiderIO
 {
     public class RaiderIOService : IRaiderIOService
     {
-        public Task InitializeAsync()
-        {
-            return Task.CompletedTask;
-        }
-
         public async Task<CharacterExtended> GetCharacterInfoAsync(string name, string realm, string region)
         {
             Region definedRegion;
