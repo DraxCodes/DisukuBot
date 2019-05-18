@@ -4,14 +4,8 @@ using System.Threading.Tasks;
 
 namespace Disuku.Core.Services.Logger
 {
-    public class DisukuLogger : IDisukuLogger, IServiceInitialize
+    public class DisukuLogger : IDisukuLogger
     {
-
-        public Task InitializeAsync()
-        {
-            return Task.CompletedTask;
-        }
-
         public async Task LogAsync(DisukuLog logMessage)
         {
             await Append($"{ConvertSource(logMessage.Source)} ", ConsoleColor.DarkGray);
