@@ -10,8 +10,6 @@
 
   <ItemGroup>
     <PackageReference Include="Discord.Net" Version="2.0.1" />
-    <PackageReference Include="RaiderIOSharp-V2" Version="2.0.3" />
-    <PackageReference Include="TMDbLib" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
