@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DisukuBot.DisukuCore.Entities.TMDB
+namespace Disuku.Core.Entities.TMDB
 {
     public class Movie
     {

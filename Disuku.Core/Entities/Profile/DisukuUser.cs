@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DisukuBot.DisukuCore.Entities.Profile
+namespace Disuku.Core.Entities.Profile
 {
     public class DisukuUser
     {

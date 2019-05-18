@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DisukuBot.DisukuCore.Entities.Embeds
+namespace Disuku.Core.Entities.Embeds
 {
     public class DisukuEmbed
     {

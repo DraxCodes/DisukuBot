@@ -1,4 +1,4 @@
-﻿namespace DisukuBot.DisukuCore.Entities.RaiderIO
+﻿namespace Disuku.Core.Entities.RaiderIO
 {
     public class RaiderIOInfo
     {

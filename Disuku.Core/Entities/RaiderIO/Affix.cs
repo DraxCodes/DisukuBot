@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace DisukuBot.DisukuCore.Entities.RaiderIO
+namespace Disuku.Core.Entities.RaiderIO
 {
     public class Affix
     {

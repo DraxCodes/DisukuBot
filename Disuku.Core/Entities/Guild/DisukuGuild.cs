@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DisukuBot.DisukuCore.Entities.Guild
+namespace Disuku.Core.Entities.Guild
 {
     public class DisukuGuild
     {
