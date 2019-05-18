@@ -3,10 +3,6 @@ using Disuku.Core.Services.RaiderIO;
 using Disuku.Core.Services.TMDB;
 using Disuku.MongoStorage;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Disuku.InversionOfControl
 {
@@ -18,5 +14,7 @@ namespace Disuku.InversionOfControl
             .AddSingleton<IDisukuLogger, DisukuLogger>()
             .AddSingleton<ITmdbService, TmdbService>()
             .AddSingleton<IRaiderIOService, RaiderIOService>();
+
+
     }
 }
