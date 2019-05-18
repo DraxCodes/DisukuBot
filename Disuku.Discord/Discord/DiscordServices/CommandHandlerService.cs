@@ -10,7 +10,7 @@ using Disuku.Discord.Converters;
 
 namespace Disuku.Discord.DisordServices
 {
-    public class CommandHandlerService : IServiceExtention
+    public class CommandHandlerService : IDiscordServiceInitialize
     {
         private readonly DiscordSocketClient _client;
         private readonly CommandService _cmdService;

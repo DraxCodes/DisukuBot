@@ -2,7 +2,7 @@
 
 namespace Disuku.Discord.DisukuDiscord.Extensions
 {
-    public interface IServiceExtention
+    public interface IDiscordServiceInitialize
     {
         Task InitializeAsync();
     }

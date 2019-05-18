@@ -11,9 +11,9 @@ namespace Disuku.Discord.DisukuDiscord.Extensions
         public static async Task InitializeServicesAsync(this IServiceProvider services)
         {
             foreach (var type in Assembly.GetExecutingAssembly().GetTypes()
-                .Where(x => typeof(IServiceExtention).IsAssignableFrom(x) && !x.IsInterface))
+                .Where(x => typeof(IDiscordServiceInitialize).IsAssignableFrom(x) && !x.IsInterface))
             {
-                await ((IServiceExtention)services.GetRequiredService(type)).InitializeAsync();
+                await ((IDiscordServiceInitialize)services.GetRequiredService(type)).InitializeAsync();
             }
         }
     }
