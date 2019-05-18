@@ -1,14 +1,13 @@
-﻿using Disuku.InversionOfControl;
-using DisukuBot.DisukuCore.Entities.RaiderIO;
+﻿using Disuku.Core.Entities.RaiderIO;
 using RaiderIO;
 using RaiderIO.Entities;
 using RaiderIO.Entities.Enums;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DisukuBot.DisukuCore.Services.RaiderIO
+namespace Disuku.Core.Services.RaiderIO
 {
-    public class RaiderIOService : IRaiderIOService, IServiceExtention
+    public class RaiderIOService : IRaiderIOService
     {
         public Task InitializeAsync()
         {

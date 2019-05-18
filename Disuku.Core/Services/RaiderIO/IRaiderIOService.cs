@@ -1,8 +1,8 @@
-﻿using DisukuBot.DisukuCore.Entities.RaiderIO;
+﻿using Disuku.Core.Entities.RaiderIO;
 using RaiderIO.Entities;
 using System.Threading.Tasks;
 
-namespace DisukuBot.DisukuCore.Services.RaiderIO
+namespace Disuku.Core.Services.RaiderIO
 {
     public interface IRaiderIOService
     {
