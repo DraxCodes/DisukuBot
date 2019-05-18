@@ -1,12 +1,8 @@
 ﻿using Discord.Commands;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace DisukuBot.DisukuDiscord.Modules
+namespace Disuku.Discord.Modules
 {
     [Name("Misc Commands")]
     public class Misc : ModuleBase<SocketCommandContext>
