@@ -1,4 +1,5 @@
 ﻿using Disuku.Core.Services.Logger;
+using Disuku.Core.Services.TMDB;
 using Disuku.MongoStorage;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -13,7 +14,8 @@ namespace Disuku.InversionOfControl
         public static IServiceCollection AddDisukuTypes(this IServiceCollection collection)
             => collection
             .AddSingleton<IMongoDbStorage, MongoDbStorage>()
-            .AddSingleton<IDisukuLogger, DisukuLogger>();
+            .AddSingleton<IDisukuLogger, DisukuLogger>()
+            .AddSingleton<ITmdbService, TmdbService>();
 
         public static IServiceCollection AutoAddServices(this IServiceCollection services)
         {

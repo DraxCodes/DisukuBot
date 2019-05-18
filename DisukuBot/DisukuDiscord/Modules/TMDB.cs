@@ -1,7 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
-using DisukuBot.DisukuCore.Services.TMDB;
-using System.Text;
+using Disuku.Core.Services.TMDB;
 using System.Threading.Tasks;
 
 namespace DisukuBot.DisukuDiscord.Modules
