@@ -3,7 +3,7 @@ using Discord.Commands;
 using Disuku.Core.Services.TMDB;
 using System.Threading.Tasks;
 
-namespace DisukuBot.DisukuDiscord.Modules
+namespace Disuku.Discord.Modules
 {
     public class TMDB : ModuleBase<SocketCommandContext>
     {
