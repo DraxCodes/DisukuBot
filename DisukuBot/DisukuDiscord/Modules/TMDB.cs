@@ -7,11 +7,10 @@ namespace DisukuBot.DisukuDiscord.Modules
 {
     public class TMDB : ModuleBase<SocketCommandContext>
     {
-        //TODO: Use Interface instead of concrete
         private ITmdbService _tmdbService;
         private string _logo = "https://www.themoviedb.org/assets/2/v4/logos/293x302-powered-by-square-green-3ee4814bb59d8260d51efdd7c124383540fc04ca27d23eaea3a8c87bfa0f388d.png";
 
-        public TMDB(TmdbService tmdbService)
+        public TMDB(ITmdbService tmdbService)
         {
             _tmdbService = tmdbService;
         }
