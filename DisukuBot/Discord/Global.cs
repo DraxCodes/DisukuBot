@@ -1,4 +1,4 @@
-﻿namespace DisukuBot.DisukuDiscord
+﻿namespace Disuku.Discord
 {
     public static class Global
     {

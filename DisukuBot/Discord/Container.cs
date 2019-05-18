@@ -4,7 +4,7 @@ using Disuku.Core.Services.TMDB;
 using Disuku.MongoStorage;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Disuku.InversionOfControl
+namespace Disuku.Discord
 {
     public static class Container
     {

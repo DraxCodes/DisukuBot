@@ -4,15 +4,15 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using DisukuBot.DisukuDiscord.DiscordServices;
 using DisukuJsonData;
 using DisukuJsonData.Entities;
 using DisukuBot.DisukuDiscord.Converters;
 using DisukuJsonData.Interfaces;
 using Disuku.Core.Services.Logger;
 using Disuku.Discord.DisukuDiscord.Extensions;
+using Disuku.Discord.DisordServices;
 
-namespace DisukuBot.DisukuDiscord
+namespace Disuku.Discord
 {
     public class DisukuBotClient : IDisukuBotClient
     {
@@ -56,7 +56,7 @@ namespace DisukuBot.DisukuDiscord
             HookEvents();
             await Task.Delay(-1);
         }
-        
+
         private async Task<BotConfig> InitializeConfigAsync()
         {
             if (!_dataServices.FileExists(Global.ConfigPath))
@@ -102,13 +102,12 @@ namespace DisukuBot.DisukuDiscord
 
         private IServiceProvider ConfigureServices()
             => new ServiceCollection()
-            .AddSingleton(_client)
-            .AddSingleton(_commands)
-            .AddSingleton(_dataServices)
-            .AddSingleton(_logger)
-            .AddSingleton<CommandHandlerService>()
-            .AddDisukuTypes()
-            .AutoAddServices()
-            .BuildServiceProvider();
+                .AddSingleton(_client)
+                .AddSingleton(_commands)
+                .AddSingleton(_dataServices)
+                .AddSingleton<CommandHandlerService>()
+                .AddDisukuTypes()
+                .BuildServiceProvider();
+
     }
 }

@@ -1,8 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using DisukuBot.DisukuCore.Entities.Embeds;
-using DisukuBot.DisukuCore.Entities.Logging;
+using Disuku.Core.Entities.Logging;
 
 namespace DisukuBot.DisukuDiscord.Converters
 {

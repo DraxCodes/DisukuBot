@@ -1,4 +1,4 @@
-﻿using DisukuBot.DisukuDiscord;
+﻿using Disuku.Discord;
 using DisukuJsonData.Interfaces;
 using Newtonsoft.Json;
 using System.IO;

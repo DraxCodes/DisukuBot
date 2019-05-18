@@ -1,14 +1,14 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using DisukuBot.DisukuCore.Services.Logger;
 using DisukuBot.DisukuDiscord.Converters;
-using Disuku.InversionOfControl;
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
+using Disuku.Core.Services.Logger;
+using Disuku.Discord.DisukuDiscord.Extensions;
 
-namespace DisukuBot.DisukuDiscord.DiscordServices
+namespace Disuku.Discord.DisordServices
 {
     public class CommandHandlerService : IServiceExtention
     {

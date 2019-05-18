@@ -4,8 +4,14 @@ using System.Threading.Tasks;
 
 namespace Disuku.Core.Services.Logger
 {
-    public class DisukuLogger : IDisukuLogger
-    {                                                                                                                                                                            
+    public class DisukuLogger : IDisukuLogger, IServiceExtention
+    {
+
+        public Task InitializeAsync()
+        {
+            return Task.CompletedTask;
+        }
+
         public async Task LogAsync(DisukuLog logMessage)
         {
             await Append($"{ConvertSource(logMessage.Source)} ", ConsoleColor.DarkGray);
@@ -77,6 +83,5 @@ namespace Disuku.Core.Services.Logger
                     return Task.FromResult(ConsoleColor.DarkGray);
             }
         }
-
     }
 }

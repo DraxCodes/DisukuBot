@@ -2,13 +2,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 
-namespace DisukuConsoleApp
+namespace Disuku.Discord
 {
     class Program
-    {        
+    {
         static async Task Main(string[] args)
-        {
-            await ActivatorUtilities.CreateInstance<DisukuBotClient>(InversionOfControl.Provider).InitializeAsync();
-        }
+            => await new DisukuBotClient().InitializeAsync();
     }
 }
