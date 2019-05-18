@@ -4,7 +4,7 @@ namespace Disuku.Discord
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static async Task Main()
             => await new DisukuBotClient().InitializeAsync();
     }
 }
