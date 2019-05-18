@@ -1,4 +1,5 @@
 ﻿using Disuku.Core.Services.Logger;
+using Disuku.Core.Services.RaiderIO;
 using Disuku.Core.Services.TMDB;
 using Disuku.MongoStorage;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +16,8 @@ namespace Disuku.InversionOfControl
             => collection
             .AddSingleton<IMongoDbStorage, MongoDbStorage>()
             .AddSingleton<IDisukuLogger, DisukuLogger>()
-            .AddSingleton<ITmdbService, TmdbService>();
+            .AddSingleton<ITmdbService, TmdbService>()
+            .AddSingleton<IRaiderIOService, RaiderIOService>();
 
         public static IServiceCollection AutoAddServices(this IServiceCollection services)
         {

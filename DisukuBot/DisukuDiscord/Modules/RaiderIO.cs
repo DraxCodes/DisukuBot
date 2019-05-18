@@ -1,6 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
-using DisukuBot.DisukuCore.Services.RaiderIO;
+using Disuku.Core.Services.RaiderIO;
 using System;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +9,9 @@ namespace DisukuBot.DisukuDiscord.Modules
 {
     public class RaiderIO : ModuleBase<SocketCommandContext>
     {
-        private RaiderIOService _raiderIOService;
+        private IRaiderIOService _raiderIOService;
 
-        public RaiderIO(RaiderIOService raiderIOService)
+        public RaiderIO(IRaiderIOService raiderIOService)
         {
             _raiderIOService = raiderIOService;
         }
