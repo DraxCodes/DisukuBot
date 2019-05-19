@@ -6,6 +6,8 @@ using TMDbLib.Objects.Search;
 using Disuku.Core.Entities.TMDB;
 using System.IO;
 using Newtonsoft.Json;
+using Disuku.Core.Discord;
+using Disuku.Core.Entities.Embeds;
 
 namespace Disuku.Core.Services.TMDB
 {
@@ -13,28 +15,32 @@ namespace Disuku.Core.Services.TMDB
     {
         private TMDbClient _client;
         private TMDBConfig _config;
+        private IDiscordMessage _discordMessage;
 
-        public TmdbService()
+        public TmdbService(IDiscordMessage discordMessage)
         {
+            _discordMessage = discordMessage;
             _config = GetConfig();
             _client = new TMDbClient(_config.Token);
         }
 
-        public async Task<Movie> GetMovieAsync(string name)
+        public async Task ReplyMovieAsync(ulong chanId, string name)
         {
             var search = await _client.SearchMovieAsync(name);
 
             var result = search?.Results.First();
 
-            return new Movie
+            var movieEmbed = new DisukuEmbed
             {
                 Title = result.Title,
                 Description = result.Overview,
-                ImageUrl = $"http://image.tmdb.org/t/p/w500{result.PosterPath}",
-                Url = $"https://www.themoviedb.org/movie/{result.Id}",
-                BackdropUrl = $"http://image.tmdb.org/t/p/w500{result.BackdropPath}",
-                ReleaseDate = result.ReleaseDate.Value
+                Thumbnail = $"http://image.tmdb.org/t/p/w500{result.PosterPath}",
+                URL = $"https://www.themoviedb.org/movie/{result.Id}",
+                ImageUrl = $"http://image.tmdb.org/t/p/w500{result.BackdropPath}",
+                Footer = $"Release: {result.ReleaseDate.Value.ToShortDateString()}"
             };
+
+            await _discordMessage.SendDiscordEmbedAsync(chanId, movieEmbed);
         }
 
         public async Task<MovieCollection> GetMovieCollectionAsync(string collectionName)
