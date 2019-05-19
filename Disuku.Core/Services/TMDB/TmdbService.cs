@@ -43,7 +43,7 @@ namespace Disuku.Core.Services.TMDB
             await _discordMessage.SendDiscordEmbedAsync(chanId, movieEmbed);
         }
 
-        public async Task<MovieCollection> GetMovieCollectionAsync(string collectionName)
+        public async Task GetMovieCollectionAsync(string collectionName)
         {
             var search = await _client.SearchCollectionAsync(collectionName);
             if (search.Results.Count < 1) { return new MovieCollection(); }
@@ -62,7 +62,7 @@ namespace Disuku.Core.Services.TMDB
             };
         }
 
-        public async Task<TVShow> GetTvShowAsync(string name)
+        public async Task GetTvShowAsync(string name)
         {
             var search = await _client.SearchTvShowAsync(name);
             var result = search.Results.First();
