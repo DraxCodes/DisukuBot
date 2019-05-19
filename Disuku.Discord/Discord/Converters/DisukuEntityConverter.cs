@@ -1,12 +1,36 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
+using Disuku.Core.Entities.Embeds;
 using Disuku.Core.Entities.Logging;
 
 namespace Disuku.Discord.Converters
 {
     public static class DisukuEntityConverter
     {
+
+        public static Embed ConvertEmbed(DisukuEmbed embed, bool inlineFields = false)
+        {
+            var discordEmbed = new EmbedBuilder()
+                .WithTitle(embed.Title)
+                .WithDescription(embed.Description);
+
+            if (!string.IsNullOrWhiteSpace(embed.URL)) { discordEmbed.WithUrl(embed.URL); }
+            if (!string.IsNullOrWhiteSpace(embed.Thumbnail)) { discordEmbed.WithThumbnailUrl(embed.Thumbnail); }
+            if (!string.IsNullOrWhiteSpace(embed.Footer)) { discordEmbed.WithFooter(embed.Footer); }
+            if (!string.IsNullOrWhiteSpace(embed.ImageUrl)) { discordEmbed.WithImageUrl(embed.ImageUrl); }
+
+            if (embed.Fields.Count != 0)
+            {
+                foreach (var field in embed.Fields)
+                {
+                    discordEmbed.AddField(field.Title, field.Description, inlineFields);
+                }
+            }
+
+            return discordEmbed.Build();
+        }
+
         public static DisukuLog CovertLog(LogMessage logMessage)
             => new DisukuLog
             {
