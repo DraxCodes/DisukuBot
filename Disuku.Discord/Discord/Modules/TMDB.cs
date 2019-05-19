@@ -8,7 +8,6 @@ namespace Disuku.Discord.Modules
     public class TMDB : ModuleBase<SocketCommandContext>
     {
         private ITmdbService _tmdbService;
-        private string _logo = "https://www.themoviedb.org/assets/2/v4/logos/293x302-powered-by-square-green-3ee4814bb59d8260d51efdd7c124383540fc04ca27d23eaea3a8c87bfa0f388d.png";
 
         public TMDB(ITmdbService tmdbService)
         {
@@ -17,20 +16,7 @@ namespace Disuku.Discord.Modules
 
         [Command("Movie")]
         public async Task GetMovie([Remainder]string search)
-        {
-            var result = await _tmdbService.GetMovieAsync(search);
-
-            var embed = new EmbedBuilder()
-                .WithTitle(result.Title)
-                .WithDescription(result.Description)
-                .WithColor(Color.Blue)
-                .WithUrl(result.Url)
-                .WithImageUrl(result.BackdropUrl)
-                .WithFooter($"Release Date: {result.ReleaseDate.ToShortDateString()}", _logo)
-                .WithThumbnailUrl(result.ImageUrl);
-
-            await ReplyAsync(embed: embed.Build());
-        }
+            => await _tmdbService.ReplyMovieAsync(Context.Channel.Id, search);
 
         [Command("MCollection")]
         public async Task GetCollection([Remainder]string search)
