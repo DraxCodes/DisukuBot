@@ -13,7 +13,9 @@ namespace Disuku.Discord.Converters
         {
             var discordEmbed = new EmbedBuilder()
                 .WithTitle(embed.Title)
-                .WithDescription(embed.Description);
+                .WithDescription(embed.Description)
+                .WithCurrentTimestamp()
+                .WithColor(Color.Blue);
 
             if (!string.IsNullOrWhiteSpace(embed.URL)) { discordEmbed.WithUrl(embed.URL); }
             if (!string.IsNullOrWhiteSpace(embed.Thumbnail)) { discordEmbed.WithThumbnailUrl(embed.Thumbnail); }

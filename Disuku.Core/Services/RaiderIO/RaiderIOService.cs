@@ -1,15 +1,21 @@
-﻿using Disuku.Core.Entities.RaiderIO;
+﻿using Disuku.Core.Discord;
+using Disuku.Core.Entities.Embeds;
 using RaiderIO;
-using RaiderIO.Entities;
 using RaiderIO.Entities.Enums;
-using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Disuku.Core.Services.RaiderIO
 {
     public class RaiderIOService : IRaiderIOService
     {
-        public async Task<CharacterExtended> GetCharacterInfoAsync(string name, string realm, string region)
+        private IDiscordMessage _discordMessage;
+        public RaiderIOService(IDiscordMessage discordMessage)
+        {
+            _discordMessage = discordMessage;
+        }
+
+        public async Task GetCharacterInfoAsync(ulong chanId, string name, string realm, string region)
         {
             Region definedRegion;
 
@@ -34,29 +40,44 @@ namespace Disuku.Core.Services.RaiderIO
 
             var client = new RaiderIOClient(definedRegion, realm, name);
             var characterData = await client.GetCharacterStatsAsync();
-            return characterData;
-        }
 
-        public async Task<Affix> GetAffixesAsync()
-        {
-            var affixes = await new RaiderIOClient(Region.EU).GetAffixesAsync(Region.EU);
-            var result = new Affix
+            var armoryURL = $"https://worldofwarcraft.com/en-gb/character/{realm}/{name}/";
+            var wowanalyzeURL = $"https://www.wowanalyzer.com/character/EU/{realm}/{name}/";
+
+            var embed = new DisukuEmbed
             {
-                Title = $"Region: {affixes.Region.ToUpper()} - {affixes.Title}",
-                Segments = new List<Segment>()
+                Title = $"{characterData.Name} {characterData.Realm} | Character Info",
+                Description = $"**Name**: {characterData.Name}\n" +
+                    $"**Links**: [Raider.IO]({characterData.Url}) | [Armory]({armoryURL}) | [WowAnalzyer]({wowanalyzeURL})\n" +
+                    $"**Class**: {characterData.Race}, {characterData.SpecName} {characterData.Class}\n" +
+                    $"**Item Level**: Equipped: {characterData.Gear.ItemLevelEquiped} | Overall: {characterData.Gear.ItemLevelAverage}\n" +
+                    $"**Raid Progression (Uldir)**: {characterData.GetRaidProgression.Uldir.Summary}\n" +
+                    $"**Mythic+**: {characterData.GetMythicPlusScores.Overall}",
+                Thumbnail = characterData.Thumbnail
             };
 
-            foreach (var item in affixes.CurrentAffixes)
-            {
-                result.Segments.Add(new Segment
-                {
-                    Title = item.Name,
-                    Description = item.Description,
-                    Url = item.Url
-                });
-            }
+            await _discordMessage.SendDiscordEmbedAsync(chanId, embed);
 
-            return result;
+        }
+
+        public async Task GetAffixesAsync(ulong chanId)
+        {
+            var affixes = await new RaiderIOClient(Region.EU).GetAffixesAsync(Region.EU);
+            var description = new StringBuilder();
+
+            foreach (var affix in affixes.CurrentAffixes)
+            {
+                description.Append($"**[{affix.Name}]({affix.Url})**\n{affix.Description}\n\n");
+            }
+            var embed = new DisukuEmbed
+            {
+                Title = affixes.Title,
+                Description = description.ToString(),
+                Footer = ("Powered by Raider.IO"),
+                Thumbnail = "https://media.forgecdn.net/avatars/117/23/636399071197048271.png"
+            };
+
+            await _discordMessage.SendDiscordEmbedAsync(chanId, embed);
         }
     }
 }
