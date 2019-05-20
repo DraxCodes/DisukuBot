@@ -18,9 +18,9 @@ namespace DisukuJsonData
         /// <returns></returns>
         public Task<T> Retreive<T>(string path)
         {
-            EnsureExists(path);
-            var rawData = GetRawData(path);
-            return Task.FromResult(JsonConvert.DeserializeObject<T>(rawData)); // eewww
+            EnsureFileExists(path);
+            var rawData = ReadFromFile(path);
+            return Task.FromResult(JsonConvert.DeserializeObject<T>(rawData));
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace DisukuJsonData
         public async Task Save(object obj, string path)
         {
             var json = JsonConvert.SerializeObject(obj, Formatting.Indented);
-            EnsureExists(path);
+            EnsureFileExists(path);
             await File.WriteAllTextAsync(path, json);
         }
 
@@ -44,7 +44,7 @@ namespace DisukuJsonData
         public bool FileExists(string path)
             => File.Exists(path);
 
-        private void EnsureExists(string path)
+        private void EnsureFileExists(string path)
         {
             if (!FileExists(path))
                 CreateFile(path);
@@ -58,7 +58,7 @@ namespace DisukuJsonData
                 File.Create(path);
         }
 
-        private string GetRawData(string path)
+        private string ReadFromFile(string path)
             => File.ReadAllText(path);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Disuku.Core.Discord;
-using Disuku.Core.Services;
 using Disuku.Core.Services.Logger;
 using Disuku.Core.Services.RaiderIO;
 using Disuku.Core.Services.TMDB;

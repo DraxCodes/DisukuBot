@@ -6,42 +6,38 @@ using Discord.Commands;
 using Discord.WebSocket;
 using DisukuJsonData;
 using DisukuJsonData.Entities;
-using DisukuJsonData.Interfaces;
 using Disuku.Core.Services.Logger;
 using Disuku.Discord.DisukuDiscord.Extensions;
 using Disuku.Discord.DisordServices;
 using Disuku.Discord.Converters;
-using Disuku.Core.Services.TMDB;
 using Disuku.Core.Entities.Logging;
 
 namespace Disuku.Discord
 {
     public class DisukuBotClient : IDisukuBotClient
     {
-        private readonly DiscordSocketClient _client;
-        private readonly CommandService _commands;
+        private DiscordSocketClient _client;
         private IServiceProvider _services;
-        private readonly IDisukuJsonDataService _dataServices;
+
+
         private readonly IDisukuLogger _logger;
         private BotConfig _config;
 
-        public DisukuBotClient(CommandService commands = null, DiscordSocketClient client = null, IDisukuJsonDataService dataService = null, IDisukuLogger logger = null)
+        private DiscordSocketConfig _discordConfigOptions = new DiscordSocketConfig
         {
-            _client = client ?? new DiscordSocketClient(new DiscordSocketConfig
-            {
-                LogLevel = LogSeverity.Info,
-                AlwaysDownloadUsers = true,
-                MessageCacheSize = 100
-            });
+            LogLevel = LogSeverity.Info,
+            AlwaysDownloadUsers = true,
+            MessageCacheSize = 50
+        };
 
-            _commands = commands ?? new CommandService(new CommandServiceConfig
-            {
-                DefaultRunMode = RunMode.Async,
-                CaseSensitiveCommands = false,
-            });
+        private CommandServiceConfig _commandServiceConfigOptions = new CommandServiceConfig
+        {
+            DefaultRunMode = RunMode.Async,
+            CaseSensitiveCommands = false,
+        };
 
-            _dataServices = dataService ?? new DisukuJsonDataService();
-
+        public DisukuBotClient(IDisukuLogger logger = null)
+        {
             _logger = logger ?? new DisukuLogger();
 
         }
@@ -52,6 +48,8 @@ namespace Disuku.Discord
             _services = ConfigureServices();
             await _services.InitializeServicesAsync();
 
+            _client = _services.GetRequiredService<DiscordSocketClient>();
+
             await _client.LoginAsync(TokenType.Bot, _config.Token);
             await _client.StartAsync();
 
@@ -61,21 +59,23 @@ namespace Disuku.Discord
 
         private async Task<BotConfig> InitializeConfigAsync()
         {
-            if (!_dataServices.FileExists(Global.ConfigPath))
-                await _dataServices.Save(new BotConfig
+            var jsonServices = new DisukuJsonDataService();
+
+            if (!jsonServices.FileExists(Global.ConfigPath))
+                await jsonServices.Save(new BotConfig
                 {
                     Token = "",
                     GameStatus = "Change Me",
                     Prefix = "bot!"
                 }, Global.ConfigPath);
 
-            var config = await _dataServices.Retreive<BotConfig>(Global.ConfigPath);
+            var config = await jsonServices.Retreive<BotConfig>(Global.ConfigPath);
 
             if (string.IsNullOrWhiteSpace(config.Token))
             {
                 Console.WriteLine("Please Enter Your Token: ");
                 config.Token = Console.ReadLine();
-                await _dataServices.Save(config, Global.ConfigPath);
+                await jsonServices.Save(config, Global.ConfigPath);
             }
             return config;
         }
@@ -114,9 +114,8 @@ namespace Disuku.Discord
 
         private IServiceProvider ConfigureServices()
             => new ServiceCollection()
-                .AddSingleton(_client)
-                .AddSingleton(_commands)
-                .AddSingleton(_dataServices)
+                .AddSingleton(new DiscordSocketClient(_discordConfigOptions))
+                .AddSingleton(new CommandService(_commandServiceConfigOptions))
                 .AddSingleton<CommandHandlerService>()
                 .AddDisukuTypes()
                 .BuildServiceProvider();
