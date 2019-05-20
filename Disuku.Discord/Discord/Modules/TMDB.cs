@@ -20,37 +20,10 @@ namespace Disuku.Discord.Modules
 
         [Command("MCollection")]
         public async Task GetCollection([Remainder]string search)
-        {
-            var collection = await _tmdbService.GetMovieCollectionAsync(search);
-            if (collection.Title == null)
-            {
-                await ReplyAsync($"Nothing found for: {search}");
-                return;
-            }
-            var embed = new EmbedBuilder()
-                .WithTitle(collection.Title)
-                .WithDescription(collection.Description)
-                .WithThumbnailUrl(collection.BackdropUrl)
-                .WithImageUrl(collection.ImageUrl)
-                .WithUrl(collection.Url)
-                .WithColor(Color.Blue);
-
-            await ReplyAsync(embed: embed.Build());
-        }
+            => await _tmdbService.ReplyMovieCollectionAsync(Context.Channel.Id, search);
 
         [Command("TvShow")]
         public async Task GetTvShow([Remainder]string search)
-        {
-            var result = await _tmdbService.GetTvShowAsync(search);
-            var embed = new EmbedBuilder()
-                .WithTitle(result.Title)
-                .WithDescription(result.Description)
-                .WithColor(Color.Blue)
-                .WithUrl(result.Url)
-                .WithImageUrl(result.BackdropUrl)
-                .WithThumbnailUrl(result.ImageUrl);
-
-            await ReplyAsync(embed: embed.Build());
-        }
+            => await _tmdbService.ReplyTvShowAsync(Context.Channel.Id, search);
     }
 }
