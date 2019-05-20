@@ -6,7 +6,7 @@ namespace Disuku.Core.Services.TMDB
     public interface ITmdbService
     {
         Task ReplyMovieAsync(ulong chanId, string name);
-        Task GetMovieCollectionAsync(string collectionName);
-        Task GetTvShowAsync(string name);
+        Task ReplyMovieCollectionAsync(ulong chanId, string collectionName);
+        Task ReplyTvShowAsync(ulong chanId, string name);
     }
 }
