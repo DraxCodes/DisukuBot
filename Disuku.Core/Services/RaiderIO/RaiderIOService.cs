@@ -1,9 +1,7 @@
 ﻿using Disuku.Core.Discord;
 using Disuku.Core.Entities.Embeds;
-using Disuku.Core.Entities.RaiderIO;
 using RaiderIO;
 using RaiderIO.Entities.Enums;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 

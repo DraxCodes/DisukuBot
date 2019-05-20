@@ -1,6 +1,4 @@
-﻿using Disuku.Core.Entities.RaiderIO;
-using RaiderIO.Entities;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Disuku.Core.Services.RaiderIO
 {
