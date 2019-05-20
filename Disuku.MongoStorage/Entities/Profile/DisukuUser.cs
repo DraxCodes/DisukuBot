@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Disuku.Core.Entities.Profile
+namespace Disuku.MongoStorage.Entities
 {
     public class DisukuUser
     {

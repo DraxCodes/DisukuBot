@@ -8,8 +8,11 @@ namespace Disuku.MongoStorage
     {
         private IMongoDatabase _dataBase;
 
-        public void LoadDataBase(string database)
+        //TODO: https://www.codementor.io/pmbanugo/working-with-mongodb-in-net-1-basics-g4frivcvz
+
+        public void InitializeDataBase(string database)
         {
+            //Loadthe DisukuDB
             var client = new MongoClient();
             _dataBase = client.GetDatabase(database);
         }

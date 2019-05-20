@@ -6,7 +6,7 @@ namespace Disuku.MongoStorage
 {
     public interface IMongoDbStorage
     {
-        void LoadDataBase(string database);
+        void InitializeDataBase(string database);
         bool Exists();
         void Store<T>(T Item);
         T RestoreSingle<T>(T Item);

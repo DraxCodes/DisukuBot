@@ -1,8 +1,7 @@
-﻿using Disuku.Core.Entities.Profile;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace Disuku.Core.Entities.Guild
+namespace Disuku.MongoStorage.Entities
 {
     public class DisukuGuild
     {
