@@ -1,8 +1,5 @@
-﻿using Discord;
-using Discord.Commands;
+﻿using Discord.Commands;
 using Disuku.Core.Services.RaiderIO;
-using System;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Disuku.Discord.Modules
