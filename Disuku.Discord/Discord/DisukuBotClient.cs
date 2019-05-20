@@ -12,6 +12,7 @@ using Disuku.Discord.DisukuDiscord.Extensions;
 using Disuku.Discord.DisordServices;
 using Disuku.Discord.Converters;
 using Disuku.Core.Services.TMDB;
+using Disuku.Core.Entities.Logging;
 
 namespace Disuku.Discord
 {
@@ -28,7 +29,7 @@ namespace Disuku.Discord
         {
             _client = client ?? new DiscordSocketClient(new DiscordSocketConfig
             {
-                LogLevel = LogSeverity.Debug,
+                LogLevel = LogSeverity.Info,
                 AlwaysDownloadUsers = true,
                 MessageCacheSize = 100
             });
@@ -99,6 +100,16 @@ namespace Disuku.Discord
         private async Task OnReady()
         {
             await _client.SetGameAsync(_config.GameStatus);
+            foreach (var guild in _client.Guilds)
+            {
+                var log = new DisukuLog
+                {
+                    Message = $"Active in: {guild.Name}",
+                    Severity = DisukuLogSeverity.Info,
+                    Source = "Discord"
+                };
+                await _logger.LogAsync(log);
+            }
         }
 
         private IServiceProvider ConfigureServices()
