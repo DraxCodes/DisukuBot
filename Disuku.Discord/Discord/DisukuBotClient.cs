@@ -27,7 +27,7 @@ namespace Disuku.Discord
         {
             LogLevel = LogSeverity.Info,
             AlwaysDownloadUsers = true,
-            MessageCacheSize = 100
+            MessageCacheSize = 50
         };
 
         private CommandServiceConfig _commandServiceConfigOptions = new CommandServiceConfig
