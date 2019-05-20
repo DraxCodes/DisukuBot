@@ -4,6 +4,7 @@ using Disuku.Core.Entities.RaiderIO;
 using RaiderIO;
 using RaiderIO.Entities.Enums;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Disuku.Core.Services.RaiderIO
@@ -64,21 +65,21 @@ namespace Disuku.Core.Services.RaiderIO
         public async Task GetAffixesAsync(ulong chanId)
         {
             var affixes = await new RaiderIOClient(Region.EU).GetAffixesAsync(Region.EU);
-            var result = new Affix
+            var description = new StringBuilder();
+
+            foreach (var affix in affixes.CurrentAffixes)
             {
-                Title = $"Region: {affixes.Region.ToUpper()} - {affixes.Title}",
-                Segments = new List<Segment>()
+                description.Append($"**[{affix.Name}]({affix.Url})**\n{affix.Description}\n\n");
+            }
+            var embed = new DisukuEmbed
+            {
+                Title = affixes.Title,
+                Description = description.ToString(),
+                Footer = ("Powered by Raider.IO"),
+                Thumbnail = "https://media.forgecdn.net/avatars/117/23/636399071197048271.png"
             };
 
-            foreach (var item in affixes.CurrentAffixes)
-            {
-                result.Segments.Add(new Segment
-                {
-                    Title = item.Name,
-                    Description = item.Description,
-                    Url = item.Url
-                });
-            }
+            await _discordMessage.SendDiscordEmbedAsync(chanId, embed);
         }
     }
 }
