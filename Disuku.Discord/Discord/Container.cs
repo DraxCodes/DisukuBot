@@ -1,7 +1,10 @@
 ﻿using Disuku.Core.Discord;
+using Disuku.Core.Providers.Profile;
+using Disuku.Core.Services.DisukuProfiles;
 using Disuku.Core.Services.Logger;
 using Disuku.Core.Services.RaiderIO;
 using Disuku.Core.Services.TMDB;
+using Disuku.Core.Storage;
 using Disuku.Discord.Discord.Adapters;
 using Disuku.MongoStorage;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +19,8 @@ namespace Disuku.Discord
             .AddSingleton<IDisukuLogger, DisukuLogger>()
             .AddSingleton<ITmdbService, TmdbService>()
             .AddSingleton<IRaiderIOService, RaiderIOService>()
-            .AddTransient<IDiscordMessage, DiscordMessage>();
+            .AddTransient<IDiscordMessage, DiscordMessage>()
+            .AddSingleton<UserProfileService>()
+            .AddSingleton<DisukuUserProvider>();
     }
 }

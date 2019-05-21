@@ -1,4 +1,4 @@
-﻿namespace Disuku.Core.Entities.Profile
+﻿namespace Disuku.Core.Entities
 {
     public class DisukuRole
     {

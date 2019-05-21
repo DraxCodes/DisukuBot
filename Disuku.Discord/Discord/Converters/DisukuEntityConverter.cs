@@ -1,8 +1,10 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
+using Disuku.Core.Entities;
 using Disuku.Core.Entities.Embeds;
 using Disuku.Core.Entities.Logging;
+using System.Collections.Generic;
 
 namespace Disuku.Discord.Converters
 {
@@ -66,6 +68,34 @@ namespace Disuku.Discord.Converters
                 Guild = guild.Name,
                 CommandName = command.Name
             };
+
+        public static DisukuUser ConvertToDisukuUser(SocketGuildUser discordUser)
+        {
+            return new DisukuUser
+            {
+                UserId = discordUser.Id,
+                GuildId = discordUser.Guild.Id,
+                Username = discordUser.Nickname ?? discordUser.Username,
+                Roles = ConvertToDisukuRoles(discordUser.Roles),
+                AvatarUrl = discordUser.GetAvatarUrl(),
+                CreatedAt = discordUser.CreatedAt.UtcDateTime,
+                JoinedAt = discordUser.JoinedAt.Value.UtcDateTime
+            };
+        }
+
+        private static IEnumerable<DisukuRole> ConvertToDisukuRoles(IReadOnlyCollection<SocketRole> roles)
+        {
+            var disukuRoles = new List<DisukuRole>();
+            foreach (var role in roles)
+            {
+                disukuRoles.Add(new DisukuRole
+                {
+                    Id = role.Id,
+                    Name = role.Name
+                });
+            }
+            return disukuRoles;
+        }
 
     }
 }

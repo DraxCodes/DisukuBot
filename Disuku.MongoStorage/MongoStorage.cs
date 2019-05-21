@@ -1,6 +1,11 @@
-﻿using MongoDB.Driver;
+﻿using Disuku.Core.Entities;
+using Disuku.Core.Storage;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Disuku.MongoStorage
 {
@@ -8,31 +13,30 @@ namespace Disuku.MongoStorage
     {
         private IMongoDatabase _dataBase;
 
-        public void LoadDataBase(string database)
+        public Task InitializeDbAsync(string databaseName)
         {
             var client = new MongoClient();
-            _dataBase = client.GetDatabase(database);
+            _dataBase = client.GetDatabase(databaseName);
+            return Task.CompletedTask;
         }
 
-        public bool Exists()
+        public async Task UpsertSingleRecordAsync<T>(string tableName, Guid id, T record)
         {
-            throw new NotImplementedException();
+            var collection = _dataBase.GetCollection<T>(tableName);
+            await collection.ReplaceOneAsync(
+                new BsonDocument("_id", id),
+                record,
+                new UpdateOptions
+                {
+                    IsUpsert = true
+                });
         }
 
-
-        public IEnumerable<T> RestoreMany<T>(T item)
+        public async Task<List<T>> LoadRecordsAsync<T>(string table, Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
-        }
-
-        public T RestoreSingle<T>(T Item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Store<T>(T Item)
-        {
-            throw new NotImplementedException();
+            var collection = _dataBase.GetCollection<T>(table);
+            var result = await collection.FindAsync(predicate);
+            return result.ToList();
         }
     }
 }
