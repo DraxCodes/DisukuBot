@@ -14,7 +14,7 @@ using Disuku.Core.Entities.Logging;
 
 namespace Disuku.Discord
 {
-    public class DisukuBotClient : IDisukuBotClient
+    public class DisukuBotClient
     {
         private DiscordSocketClient _client;
         private IServiceProvider _services;
@@ -90,7 +90,7 @@ namespace Disuku.Discord
         {
             var disukuLog = DisukuEntityConverter.CovertLog(logMessage);
 
-            if (logMessage.Exception == null)
+            if (logMessage.Exception is null)
                 await _logger.LogAsync(disukuLog);
             else
                 await _logger.LogCriticalAsync(disukuLog, logMessage.Exception);
