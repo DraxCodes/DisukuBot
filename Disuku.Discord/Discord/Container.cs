@@ -21,6 +21,8 @@ namespace Disuku.Discord
             .AddSingleton<IRaiderIOService, RaiderIOService>()
             .AddTransient<IDiscordMessage, DiscordMessage>()
             .AddSingleton<UserProfileService>()
-            .AddSingleton<DisukuUserProvider>();
+            .AddSingleton<DisukuUserProvider>()
+            .AddSingleton<DisukuGuildProvider>()
+            .AddSingleton<GuildProfileService>();
     }
 }

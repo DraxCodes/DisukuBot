@@ -50,6 +50,23 @@ namespace Disuku.Discord.Discord.Adapters
             await SendDiscordEmbedAsync(chanId, embed);
         }
 
+        public async Task SendDiscordMessageAsync(ulong chanId, DisukuGuild guild)
+        {
+            var embed = new DisukuEmbed
+            {
+                Title = $"Guild Profile: {guild.Name}",
+                Thumbnail = guild.GuildAvatar,
+                Description = 
+                $"**ID:** {guild.GuildId}\n" +
+                $"**Channel Count:** \n" +
+                $"⠀⠀▷ Text: {guild.TextChannelCount}, Voice: {guild.VoiceChannelCount}\n" +
+                $"**Creation Date:** {guild.CreationDate}\n" +
+                $"**Members:** {guild.MemberCount}"
+            };
+
+            await SendDiscordEmbedAsync(chanId, embed);
+        }
+
         public async Task SendDiscordEmbedAsync(ulong chanId, DisukuEmbed embed)
         {
             var channel = GetSocketTextChannel(chanId);
