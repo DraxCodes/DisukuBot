@@ -61,7 +61,7 @@ namespace Disuku.Discord.Discord.Adapters
                 $"**Channel Count:** \n" +
                 $"⠀⠀▷ Text: {guild.TextChannelCount}, Voice: {guild.VoiceChannelCount}\n" +
                 $"**Creation Date:** {guild.CreationDate}\n" +
-                $"**Memebers:** {guild.MemberCount}"
+                $"**Members:** {guild.MemberCount}"
             };
 
             await SendDiscordEmbedAsync(chanId, embed);
