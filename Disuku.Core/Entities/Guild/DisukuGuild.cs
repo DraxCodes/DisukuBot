@@ -1,18 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Disuku.Core.Entities
 {
     public class DisukuGuild
     {
-        public ulong Id { get; set; }
+        public Guid Id
+        {
+            get
+            {
+                return GenerateSeededGuid();
+            }
+        }
+        public ulong GuildId { get; set; }
         public string Name { get; set; }
-        public IEnumerable<string> TextChannels { get; set; }
-        public IEnumerable<string> VoiceChannels { get; set; }
         public DateTime CreationDate { get; set; }
         public int TextChannelCount { get; set; }
         public int VoiceChannelCount { get; set; }
         public int MemberCount { get; set; }
-        public IEnumerable<DisukuUser> Users { get; set; }
+        public string GuildAvatar { get; set; }
+
+        private Guid GenerateSeededGuid()
+        {
+            var guildId = BitConverter.GetBytes(GuildId);
+            var bytes = guildId.Concat(guildId).ToArray();
+            return new Guid(bytes);
+        }
     }
 }
