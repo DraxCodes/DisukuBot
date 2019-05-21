@@ -83,6 +83,20 @@ namespace Disuku.Discord.Converters
             };
         }
 
+        public static DisukuGuild ConvertToDisukuGuild(SocketGuild guild)
+        {
+            return new DisukuGuild
+            {
+                GuildId = guild.Id,
+                Name = guild.Name,
+                TextChannelCount = guild.TextChannels.Count,
+                VoiceChannelCount = guild.VoiceChannels.Count,
+                CreationDate = guild.CreatedAt.UtcDateTime,
+                MemberCount = guild.Users.Count,
+                GuildAvatar = guild.IconUrl
+            };
+        }
+
         private static IEnumerable<DisukuRole> ConvertToDisukuRoles(IReadOnlyCollection<SocketRole> roles)
         {
             var disukuRoles = new List<DisukuRole>();
