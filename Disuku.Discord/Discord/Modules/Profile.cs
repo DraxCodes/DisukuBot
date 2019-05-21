@@ -6,20 +6,30 @@ using System.Threading.Tasks;
 
 namespace Disuku.Discord.Discord.Modules
 {
+    [Group("Profile")]
     public class Profile : ModuleBase<SocketCommandContext>
     {
         private UserProfileService _userProfileService;
-        public Profile(UserProfileService userProfileService)
+        private GuildProfileService _guildProfileService;
+        public Profile(UserProfileService userProfileService, GuildProfileService guildProfileService)
         {
             _userProfileService = userProfileService;
+            _guildProfileService = guildProfileService;
         }
 
-        [Command("Profile")]
-        public async Task DislayProfile(SocketGuildUser discordUser = null)
+        [Command]
+        public async Task DislayUserProfile(SocketGuildUser discordUser = null)
         {
             if (discordUser is null) { discordUser = Context.User as SocketGuildUser; }
             var disukuUser = DisukuEntityConverter.ConvertToDisukuUser(discordUser);
             await _userProfileService.ReplyUserAsync(Context.Channel.Id, disukuUser);
+        }
+
+        [Command("Guild")]
+        public async Task DisplayGuildProfile()
+        {
+            var guild = DisukuEntityConverter.ConvertToDisukuGuild(Context.Guild);
+            await _guildProfileService.ReplyGuildAsync(Context.Channel.Id, guild);
         }
     }
 }
