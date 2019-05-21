@@ -1,4 +1,4 @@
-﻿namespace Disuku.MongoStorage.Entities
+﻿namespace Disuku.Core.Entities
 {
     public class DisukuRole
     {

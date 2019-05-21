@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Disuku.MongoStorage.Entities
+namespace Disuku.Core.Entities
 {
     public class DisukuGuild
     {
