@@ -18,7 +18,7 @@ namespace Disuku.Core.Services.DisukuProfiles
         public async Task ReplyUserAsync(ulong chanId, DisukuUser user)
         {
             var disukuUser = await _userProvider.GetUser(user);
-            await _discordMessage.SendDiscordMessageAsync(chanId, disukuUser.Id.ToString());
+            await _discordMessage.SendDiscordMessageAsync(chanId, user);
         }
     }
 }
