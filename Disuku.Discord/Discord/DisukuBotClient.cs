@@ -11,6 +11,7 @@ using Disuku.Discord.DisukuDiscord.Extensions;
 using Disuku.Discord.DisordServices;
 using Disuku.Discord.Converters;
 using Disuku.Core.Entities.Logging;
+using Disuku.Core.Services;
 
 namespace Disuku.Discord
 {
@@ -49,6 +50,7 @@ namespace Disuku.Discord
             await _services.InitializeServicesAsync();
 
             _client = _services.GetRequiredService<DiscordSocketClient>();
+            _services.GetRequiredService<RandomService>().Initialize();
 
             await _client.LoginAsync(TokenType.Bot, _config.Token);
             await _client.StartAsync();

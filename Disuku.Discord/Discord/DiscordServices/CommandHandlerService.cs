@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Disuku.Core.Services.Logger;
 using Disuku.Discord.DisukuDiscord.Extensions;
 using Disuku.Discord.Converters;
+using Disuku.Core.Discord;
 
 namespace Disuku.Discord.DisordServices
 {
@@ -16,8 +17,9 @@ namespace Disuku.Discord.DisordServices
         private readonly CommandService _cmdService;
         private readonly IServiceProvider _services;
         private readonly IDisukuLogger _logger;
+        private readonly IDiscordEvents _discordEvents;
 
-        public CommandHandlerService(IServiceProvider services, DiscordSocketClient client, CommandService cmdService, IDisukuLogger logger)
+        public CommandHandlerService(IServiceProvider services, DiscordSocketClient client, CommandService cmdService, IDisukuLogger logger, IDiscordEvents discordEvents)
         {
             _client = client;
             _cmdService = cmdService;
