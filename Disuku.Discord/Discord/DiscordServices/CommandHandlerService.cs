@@ -8,6 +8,7 @@ using Disuku.Core.Services.Logger;
 using Disuku.Discord.DisukuDiscord.Extensions;
 using Disuku.Discord.Converters;
 using Disuku.Core.Discord;
+using System.Linq;
 
 namespace Disuku.Discord.DisordServices
 {

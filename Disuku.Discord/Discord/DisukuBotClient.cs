@@ -21,7 +21,7 @@ namespace Disuku.Discord
         private IServiceProvider _services;
 
 
-        private readonly IDisukuLogger _logger;
+        private IDisukuLogger _logger;
         private BotConfig _config;
 
         private DiscordSocketConfig _discordConfigOptions = new DiscordSocketConfig
@@ -37,12 +37,6 @@ namespace Disuku.Discord
             CaseSensitiveCommands = false,
         };
 
-        public DisukuBotClient(IDisukuLogger logger = null)
-        {
-            _logger = logger ?? new DisukuLogger();
-
-        }
-
         public async Task InitializeAsync()
         {
             _config = await InitializeConfigAsync();
@@ -50,6 +44,7 @@ namespace Disuku.Discord
             await _services.InitializeServicesAsync();
 
             _client = _services.GetRequiredService<DiscordSocketClient>();
+            _logger = _services.GetRequiredService<IDisukuLogger>();
             _services.GetRequiredService<RandomService>().Initialize();
 
             await _client.LoginAsync(TokenType.Bot, _config.Token);
