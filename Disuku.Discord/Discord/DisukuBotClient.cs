@@ -11,7 +11,10 @@ using Disuku.Discord.DisukuDiscord.Extensions;
 using Disuku.Discord.DisordServices;
 using Disuku.Discord.Converters;
 using Disuku.Core.Entities.Logging;
-using Disuku.Core.Services;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using Console = Colorful.Console;
+using Color = System.Drawing.Color;
 
 namespace Disuku.Discord
 {
@@ -45,13 +48,32 @@ namespace Disuku.Discord
 
             _client = _services.GetRequiredService<DiscordSocketClient>();
             _logger = _services.GetRequiredService<IDisukuLogger>();
-            _services.GetRequiredService<RandomService>().Initialize();
 
             await _client.LoginAsync(TokenType.Bot, _config.Token);
             await _client.StartAsync();
-
+            InitializeConsoleHeader();
             HookEvents();
             await Task.Delay(-1);
+        }
+
+        private void InitializeConsoleHeader()
+        {
+            const string header = @"
+            █▀▀▄ ░▀░ █▀▀ █░░█ █░█ █░░█ █▀▀▄ █▀▀█ ▀▀█▀▀
+            █░░█ ▀█▀ ▀▀█ █░░█ █▀▄ █░░█ █▀▀▄ █░░█ ░░█░░
+            ▀▀▀░ ▀▀▀ ▀▀▀ ░▀▀▀ ▀░▀ ░▀▀▀ ▀▀▀░ ▀▀▀▀ ░░▀░░";
+            var lineBreak = $"\n{new string('-', 90)}\n";
+            var process = Process.GetCurrentProcess();
+
+            Console.WriteLine(header, Color.Teal);
+            Console.WriteLine(lineBreak, Color.LightCoral);
+            Console.Write("     Runtime: ", Color.Plum);
+            Console.Write($"{RuntimeInformation.FrameworkDescription}\n");
+            Console.Write("     Process: ", Color.Plum);
+            Console.Write($"{process.Id} ID | {process.Threads.Count} Threads\n");
+            Console.Write("          OS: ", Color.Plum);
+            Console.Write($"{RuntimeInformation.OSDescription} | {RuntimeInformation.ProcessArchitecture}\n");
+            Console.WriteLine(lineBreak, Color.LightCoral);
         }
 
         private async Task<BotConfig> InitializeConfigAsync()

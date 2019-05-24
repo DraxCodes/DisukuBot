@@ -1,6 +1,8 @@
 ﻿using Disuku.Core.Entities.Logging;
 using System;
 using System.Threading.Tasks;
+using System.Drawing;
+using Console = Colorful.Console;
 
 namespace Disuku.Core.Services.Logger
 {
@@ -8,40 +10,67 @@ namespace Disuku.Core.Services.Logger
     {
         public async Task LogAsync(DisukuLog logMessage)
         {
-            await Append($"{ConvertSource(logMessage.Source)} ", ConsoleColor.DarkGray);
-            await Append($"[{logMessage.Severity}] ", await SeverityColor(logMessage.Severity));
-            await Append($"{logMessage.Message}\n", ConsoleColor.White);
+            var date = $"[{DateTimeOffset.Now:MMM d - hh:mm:ss tt}]";
+            Append($"{date} ", Color.DarkGray);
+            Append($"[{logMessage.Severity}] ", await SeverityColor(logMessage.Severity));
+            Append($"{ConvertSource(logMessage.Source)} ", Color.DarkGray);
+            Append($"{logMessage.Message}\n", Color.White);
         }
 
         public async Task LogCriticalAsync(DisukuLog logMessage, Exception exception)
         {
-            await Append($"{ConvertSource(logMessage.Source)} ", ConsoleColor.DarkGray);
-            await Append($"[{logMessage.Severity}] ", await SeverityColor(logMessage.Severity));
-            await Append($"{logMessage.Message}\n", ConsoleColor.White);
-            await Append($"{exception.Message}", ConsoleColor.DarkGray);
+            var date = $"[{DateTimeOffset.Now:MMM d - hh:mm:ss tt}]";
+            Append($"{date} ", Color.DarkGray);
+            Append($"{ConvertSource(logMessage.Source)} ", Color.DarkGray);
+            Append($"[{logMessage.Severity}] ", await SeverityColor(logMessage.Severity));
+            Append($"{logMessage.Message}", Color.White);
+            Append($"{exception.Message}\n", Color.DarkGray);
         }
 
-        public async Task LogCommandAsync(DisukuCommandLog log)
+        public Task LogCommandAsync(DisukuCommandLog log)
         {
-            await Append("DISC ", ConsoleColor.DarkGray);
-            await Append("[CMND] ", ConsoleColor.Magenta);
-            await Append($"Command {log.CommandName} Executed For {log.User} in {log.Guild}/#{log.Channel}\n", ConsoleColor.White);
+            var date = $"[{DateTimeOffset.Now:MMM d - hh:mm:ss tt}]";
+            Append($"{date} ", Color.DarkGray);
+            Append("[Info] ", Color.LightGreen);
+            Append("Command ", Color.LightGray);
+            Append($"{log.CommandName} Executed For {log.User} in {log.Guild}/#{log.Channel}\n", Color.White);
+            return Task.CompletedTask;
         }
 
-        public async Task LogCommandAsync(DisukuCommandLog log, string error)
+        public Task LogCommandAsync(DisukuCommandLog log, string error)
         {
-            await Append("DISC ", ConsoleColor.DarkGray);
-            await Append("[CMND] ", ConsoleColor.Magenta);
-            await Append($"Command ERROR: {error} For {log.User} in {log.Guild}/#{log.Channel}\n", ConsoleColor.White);
+            var date = $"[{DateTimeOffset.Now:MMM d - hh:mm:ss tt}]";
+            Append($"{date} ", Color.DarkGray);
+            Append("[CMND] ", Color.LightCyan);
+            Append("Discord", Color.LightGray);
+            Append($"Command ERROR: {error} For {log.User} in {log.Guild}/#{log.Channel}\n", Color.White);
+            return Task.CompletedTask;
         }
 
-        private async Task Append(string message, ConsoleColor color)
+        private void Append(string message, Color color)
         {
-            await Task.Run(() => {
-                Console.ForegroundColor = color;
-                Console.Write(message);
-                return Task.CompletedTask;
-            });
+            if (Console.CursorTop > 25)
+            {
+                ClearLowerConsoleLines();
+            }
+            Console.Write($"{message}", color);
+        }
+
+        private void ClearLowerConsoleLines()
+        {
+            for (int i = 12; i < 26; i++)
+            {
+                Console.SetCursorPosition(0, i);
+                ResetConsoleLine(i);
+            }
+            Console.SetCursorPosition(0, 12);
+        }
+
+        private void ResetConsoleLine(int pos)
+        {
+            for (int i = 0; i < Console.WindowWidth; i++)
+                Console.Write(" ");
+            Console.SetCursorPosition(0, pos);
         }
 
         private string ConvertSource(string source)
@@ -49,32 +78,32 @@ namespace Disuku.Core.Services.Logger
             switch (source.ToLower())
             {
                 case "discord":
-                    return "DISC";
+                    return "Discord";
                 case "gateway":
-                    return "GTWY";
+                    return "Gateway";
                 case "command":
-                    return "COMD";
+                    return "Command";
                 case "rest":
-                    return "REST";
+                    return "RestSer";
                 default:
                     return source;
             }
         }
 
-        private Task<ConsoleColor> SeverityColor(DisukuLogSeverity severity)
+        private Task<Color> SeverityColor(DisukuLogSeverity severity)
         {
             switch (severity)
             {
                 case DisukuLogSeverity.Critical:
-                    return Task.FromResult(ConsoleColor.Red);
+                    return Task.FromResult(Color.Red);
                 case DisukuLogSeverity.Error:
-                    return Task.FromResult(ConsoleColor.DarkRed);
+                    return Task.FromResult(Color.DarkRed);
                 case DisukuLogSeverity.Warning:
-                    return Task.FromResult(ConsoleColor.Yellow);
+                    return Task.FromResult(Color.Yellow);
                 case DisukuLogSeverity.Info:
-                    return Task.FromResult(ConsoleColor.Green);
+                    return Task.FromResult(Color.LightGreen);
                 default:
-                    return Task.FromResult(ConsoleColor.DarkGray);
+                    return Task.FromResult(Color.Lime);
             }
         }
     }

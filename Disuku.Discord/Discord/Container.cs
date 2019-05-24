@@ -1,6 +1,5 @@
 ﻿using Disuku.Core.Discord;
 using Disuku.Core.Providers.Profile;
-using Disuku.Core.Services;
 using Disuku.Core.Services.DisukuProfiles;
 using Disuku.Core.Services.Logger;
 using Disuku.Core.Services.RaiderIO;
@@ -26,7 +25,6 @@ namespace Disuku.Discord
             .AddSingleton<UserProfileService>()
             .AddSingleton<DisukuUserProvider>()
             .AddSingleton<DisukuGuildProvider>()
-            .AddSingleton<GuildProfileService>()
-            .AddSingleton<RandomService>();
+            .AddSingleton<GuildProfileService>();
     }
 }
