@@ -1,4 +1,4 @@
-﻿namespace DisukuJsonData.Entities
+﻿namespace Disuku.Discord.JsonData.Entities
 {
     public class BotConfig
     {

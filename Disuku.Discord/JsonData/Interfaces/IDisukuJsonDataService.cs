@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace DisukuJsonData.Interfaces
+namespace Disuku.Discord.JsonData.Interfaces
 {
     public interface IDisukuJsonDataService
     {
