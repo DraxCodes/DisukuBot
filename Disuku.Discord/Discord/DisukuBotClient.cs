@@ -4,10 +4,11 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using DisukuJsonData;
-using DisukuJsonData.Entities;
-using Disuku.Core.Services.Logger;
+using Disuku.Core.Discord;
+using Disuku.Discord.JsonData;
+using Disuku.Discord.JsonData.Entities;
 using Disuku.Discord.DisukuDiscord.Extensions;
+using Disuku.Core.Services.Logger;
 using Disuku.Discord.DisordServices;
 using Disuku.Discord.Converters;
 using Disuku.Core.Entities.Logging;
@@ -18,7 +19,7 @@ using Color = System.Drawing.Color;
 
 namespace Disuku.Discord
 {
-    public class DisukuBotClient
+    public class DisukuBotClient : IDisukuBotClient
     {
         private DiscordSocketClient _client;
         private IServiceProvider _services;
