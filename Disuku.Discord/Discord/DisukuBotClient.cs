@@ -4,21 +4,18 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using DisukuJsonData;
-using DisukuJsonData.Entities;
-using Disuku.Core.Services.Logger;
+using Disuku.Core.Discord;
+using Disuku.Discord.JsonData;
+using Disuku.Discord.JsonData.Entities;
 using Disuku.Discord.DisukuDiscord.Extensions;
+using Disuku.Core.Services.Logger;
 using Disuku.Discord.DisordServices;
 using Disuku.Discord.Converters;
 using Disuku.Core.Entities.Logging;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
-using Console = Colorful.Console;
-using Color = System.Drawing.Color;
 
 namespace Disuku.Discord
 {
-    public class DisukuBotClient
+    public class DisukuBotClient : IDisukuBotClient
     {
         private DiscordSocketClient _client;
         private IServiceProvider _services;
@@ -49,31 +46,11 @@ namespace Disuku.Discord
             _client = _services.GetRequiredService<DiscordSocketClient>();
             _logger = _services.GetRequiredService<IDisukuLogger>();
 
+            await _logger.InitializeConsoleHeaderAsync();
             await _client.LoginAsync(TokenType.Bot, _config.Token);
             await _client.StartAsync();
-            InitializeConsoleHeader();
             HookEvents();
             await Task.Delay(-1);
-        }
-
-        private void InitializeConsoleHeader()
-        {
-            const string header = @"
-            █▀▀▄ ░▀░ █▀▀ █░░█ █░█ █░░█ █▀▀▄ █▀▀█ ▀▀█▀▀
-            █░░█ ▀█▀ ▀▀█ █░░█ █▀▄ █░░█ █▀▀▄ █░░█ ░░█░░
-            ▀▀▀░ ▀▀▀ ▀▀▀ ░▀▀▀ ▀░▀ ░▀▀▀ ▀▀▀░ ▀▀▀▀ ░░▀░░";
-            var lineBreak = $"\n{new string('-', 90)}\n";
-            var process = Process.GetCurrentProcess();
-
-            Console.WriteLine(header, Color.Teal);
-            Console.WriteLine(lineBreak, Color.LightCoral);
-            Console.Write("     Runtime: ", Color.Plum);
-            Console.Write($"{RuntimeInformation.FrameworkDescription}\n");
-            Console.Write("     Process: ", Color.Plum);
-            Console.Write($"{process.Id} ID | {process.Threads.Count} Threads\n");
-            Console.Write("          OS: ", Color.Plum);
-            Console.Write($"{RuntimeInformation.OSDescription} | {RuntimeInformation.ProcessArchitecture}\n");
-            Console.WriteLine(lineBreak, Color.LightCoral);
         }
 
         private async Task<BotConfig> InitializeConfigAsync()

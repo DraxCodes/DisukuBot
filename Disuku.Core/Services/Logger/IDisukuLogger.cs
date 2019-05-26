@@ -6,6 +6,7 @@ namespace Disuku.Core.Services.Logger
 {
     public interface IDisukuLogger
     {
+        Task InitializeConsoleHeaderAsync();
         Task LogAsync(DisukuLog logMessage);
         Task LogCriticalAsync(DisukuLog logMessage, Exception exception);
         Task LogCommandAsync(DisukuCommandLog log);
