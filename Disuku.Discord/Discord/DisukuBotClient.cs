@@ -46,7 +46,7 @@ namespace Disuku.Discord
             _client = _services.GetRequiredService<DiscordSocketClient>();
             _logger = _services.GetRequiredService<IDisukuLogger>();
 
-            await _logger.InitializeHeaderAsync();
+            await _logger.InitializeConsoleHeaderAsync();
             await _client.LoginAsync(TokenType.Bot, _config.Token);
             await _client.StartAsync();
             HookEvents();

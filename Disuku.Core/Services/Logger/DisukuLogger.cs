@@ -10,7 +10,7 @@ namespace Disuku.Core.Services.Logger
 {
     public class DisukuLogger : IDisukuLogger
     {
-        public Task InitializeHeaderAsync()
+        public Task InitializeConsoleHeaderAsync()
         {
             const string header = @"
             █▀▀▄ ░▀░ █▀▀ █░░█ █░█ █░░█ █▀▀▄ █▀▀█ ▀▀█▀▀
