@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Disuku.Core\Disuku.Core.csproj" />
+    <ProjectReference Include="..\Disuku.InversionOfControl\Disuku.InversionOfControl.csproj" />
     <ProjectReference Include="..\Disuku.MongoStorage\Disuku.MongoStorage.csproj" />
   </ItemGroup>
 
