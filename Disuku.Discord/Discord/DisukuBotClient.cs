@@ -12,6 +12,9 @@ using Disuku.Core.Services.Logger;
 using Disuku.Discord.DisordServices;
 using Disuku.Discord.Converters;
 using Disuku.Core.Entities.Logging;
+using Disuku.InversionOfControl;
+using Disuku.Discord.Discord.Adapters;
+using Disuku.Discord.Discord.Events;
 
 namespace Disuku.Discord
 {
@@ -113,6 +116,8 @@ namespace Disuku.Discord
                 .AddSingleton(new DiscordSocketClient(_discordConfigOptions))
                 .AddSingleton(new CommandService(_commandServiceConfigOptions))
                 .AddSingleton<CommandHandlerService>()
+                .AddTransient<IDiscordMessage, DiscordMessage>()
+                .AddSingleton<IDiscordEvents, DiscordEvents>()
                 .AddDisukuTypes()
                 .BuildServiceProvider();
 
