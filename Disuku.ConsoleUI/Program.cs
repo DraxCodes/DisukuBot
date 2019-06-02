@@ -7,7 +7,10 @@ namespace Disuku.ConsoleUI
     {
         static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            await Task.Run(() =>
+            {
+                Console.WriteLine("Hello World!");
+            });
         }
     }
 }
