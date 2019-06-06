@@ -14,7 +14,7 @@ namespace Disuku.InversionOfControl
     {
         public static IServiceCollection AddDisukuTypes(this IServiceCollection collection)
             => collection
-            .AddSingleton<IMongoDbStorage, MongoDbStorage>()
+            .AddTransient<IDbStorage, MongoDbStorage>()
             .AddSingleton<IDisukuLogger, DisukuLogger>()
             .AddSingleton<ITmdbService, TmdbService>()
             .AddSingleton<IRaiderIOService, RaiderIOService>()

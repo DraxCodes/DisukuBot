@@ -7,9 +7,9 @@ namespace Disuku.Core.Providers.Profile
 {
     public class DisukuUserProvider
     {
-        private IMongoDbStorage _mongoDbStorage;
+        private IDbStorage _mongoDbStorage;
 
-        public DisukuUserProvider(IMongoDbStorage mongoDbStorage)
+        public DisukuUserProvider(IDbStorage mongoDbStorage)
         {
             _mongoDbStorage = mongoDbStorage;
             _mongoDbStorage.InitializeDbAsync("DisukuBot");
