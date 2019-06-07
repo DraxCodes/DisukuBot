@@ -7,11 +7,9 @@ namespace Disuku.Core.Services.DisukuProfiles
 {
     public class UserProfileService
     {
-        private readonly DisukuUserProvider _userProvider;
         private readonly IDiscordMessage _discordMessage;
         public UserProfileService(DisukuUserProvider userProvider, IDiscordMessage discordMessage)
         {
-            _userProvider = userProvider;
             _discordMessage = discordMessage;
         }
 

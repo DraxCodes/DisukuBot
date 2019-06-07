@@ -50,7 +50,8 @@ namespace Disuku.Discord.Modules
 
                     var date = DateTime.Now.AddDays(-7);
 
-                    if (messages.Count(x => x.CreatedAt > date) == 1 && num > 1)
+                    var enumerableMessages = messages as IMessage[] ?? messages.ToArray();
+                    if (enumerableMessages.Count(x => x.CreatedAt > date) == 1 && num > 1)
                     {
                         var reply = await ReplyAsync("Sorry I can only delete messages that are less than 2 weeks old.");
                         await Task.Delay(5000);
@@ -58,7 +59,7 @@ namespace Disuku.Discord.Modules
                     }
 
                     await (Context.Channel as SocketTextChannel)?
-                        .DeleteMessagesAsync(messages.Where(x => x.CreatedAt > date));
+                        .DeleteMessagesAsync(enumerableMessages.Where(x => x.CreatedAt > date));
                 }
             }
 
