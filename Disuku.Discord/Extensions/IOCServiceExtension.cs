@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Disuku.Discord.DisukuDiscord.Extensions
 {
-    public static class IOCServiceExtension
+    public static class IocServiceExtension
     {
         public static async Task InitializeServicesAsync(this IServiceProvider services)
         {

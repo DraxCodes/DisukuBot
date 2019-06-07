@@ -35,7 +35,7 @@ namespace Disuku.Core.Services.TMDB
                 Thumbnail = $"http://image.tmdb.org/t/p/w500{result.PosterPath}",
                 Url = $"https://www.themoviedb.org/movie/{result.Id}",
                 ImageUrl = $"http://image.tmdb.org/t/p/w500{result.BackdropPath}",
-                Footer = $"Release: {result.ReleaseDate.Value.ToShortDateString()}"
+                Footer = $"Release: {result.ReleaseDate?.ToShortDateString()}"
             };
 
             await _discordMessage.SendDiscordEmbedAsync(chanId, movieEmbed);
