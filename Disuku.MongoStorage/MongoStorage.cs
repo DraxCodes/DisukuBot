@@ -31,7 +31,7 @@ namespace Disuku.MongoStorage
         public async Task Update<T>(string tableName, Guid id, T item)
         {
             var collection = _dataBase.GetCollection<T>(tableName);
-            if (await Exists(collection, id))
+            if (await Exists<T>(tableName, id))
             {
                 await collection.ReplaceOneAsync(
                        new BsonDocument("_id", id),
@@ -39,13 +39,12 @@ namespace Disuku.MongoStorage
             }
         }
 
-        private async Task<bool> Exists<T>(IMongoCollection<T> collection, Guid id)
+        public async Task<bool> Exists<T>(string tableName, Guid id)
         {
+            var collection = _dataBase.GetCollection<T>(tableName);
             var item = await collection.FindAsync(new BsonDocument("_id", id));
-            if (item.Any()) { return true; }
-            return false;
+            return item.Any();
         }
-
 
         public async Task UpsertSingleRecordAsync<T>(string tableName, Guid id, T record)
         {
