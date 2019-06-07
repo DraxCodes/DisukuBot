@@ -7,8 +7,8 @@ namespace Disuku.Core.Services.DisukuProfiles
 {
     public class UserProfileService
     {
-        private DisukuUserProvider _userProvider;
-        private IDiscordMessage _discordMessage;
+        private readonly DisukuUserProvider _userProvider;
+        private readonly IDiscordMessage _discordMessage;
         public UserProfileService(DisukuUserProvider userProvider, IDiscordMessage discordMessage)
         {
             _userProvider = userProvider;
@@ -17,7 +17,6 @@ namespace Disuku.Core.Services.DisukuProfiles
 
         public async Task ReplyUserAsync(ulong chanId, DisukuUser user)
         {
-            var disukuUser = await _userProvider.GetUser(user);
             await _discordMessage.SendDiscordMessageAsync(chanId, user);
         }
     }

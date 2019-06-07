@@ -27,14 +27,14 @@ namespace Disuku.Discord
         private IDisukuLogger _logger;
         private BotConfig _config;
 
-        private DiscordSocketConfig _discordConfigOptions = new DiscordSocketConfig
+        private readonly DiscordSocketConfig _discordConfigOptions = new DiscordSocketConfig
         {
             LogLevel = LogSeverity.Info,
             AlwaysDownloadUsers = true,
             MessageCacheSize = 50
         };
 
-        private CommandServiceConfig _commandServiceConfigOptions = new CommandServiceConfig
+        private readonly CommandServiceConfig _commandServiceConfigOptions = new CommandServiceConfig
         {
             DefaultRunMode = RunMode.Async,
             CaseSensitiveCommands = false,

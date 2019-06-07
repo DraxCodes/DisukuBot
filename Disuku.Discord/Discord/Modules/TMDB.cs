@@ -6,7 +6,7 @@ namespace Disuku.Discord.Modules
 {
     public class TMDB : ModuleBase<SocketCommandContext>
     {
-        private ITmdbService _tmdbService;
+        private readonly ITmdbService _tmdbService;
 
         public TMDB(ITmdbService tmdbService)
         {

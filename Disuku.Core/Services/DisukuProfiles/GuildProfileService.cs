@@ -7,8 +7,8 @@ namespace Disuku.Core.Services.DisukuProfiles
 {
     public class GuildProfileService
     {
-        private DisukuGuildProvider _guildProvider;
-        private IDiscordMessage _discordMessage;
+        private readonly DisukuGuildProvider _guildProvider;
+        private readonly IDiscordMessage _discordMessage;
         public GuildProfileService(DisukuGuildProvider guildProvider, IDiscordMessage discordMessage)
         {
             _guildProvider = guildProvider;

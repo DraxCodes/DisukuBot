@@ -9,8 +9,8 @@ namespace Disuku.Discord.Discord.Modules
     [Group("Profile")]
     public class Profile : ModuleBase<SocketCommandContext>
     {
-        private UserProfileService _userProfileService;
-        private GuildProfileService _guildProfileService;
+        private readonly UserProfileService _userProfileService;
+        private readonly GuildProfileService _guildProfileService;
         public Profile(UserProfileService userProfileService, GuildProfileService guildProfileService)
         {
             _userProfileService = userProfileService;

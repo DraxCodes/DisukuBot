@@ -11,9 +11,9 @@ namespace Disuku.Core.Services.TMDB
 {
     public class TmdbService : ITmdbService
     {
-        private TMDbClient _client;
-        private TMDBConfig _config;
-        private IDiscordMessage _discordMessage;
+        private readonly TMDbClient _client;
+        private readonly TMDBConfig _config;
+        private readonly IDiscordMessage _discordMessage;
 
         public TmdbService(IDiscordMessage discordMessage)
         {

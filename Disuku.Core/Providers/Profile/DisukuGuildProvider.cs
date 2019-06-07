@@ -7,7 +7,7 @@ namespace Disuku.Core.Providers.Profile
 {
     public class DisukuGuildProvider
     {
-        private IDbStorage _mongoDbStorage;
+        private readonly IDbStorage _mongoDbStorage;
 
         public DisukuGuildProvider(IDbStorage mongoDbStorage)
         {

@@ -6,7 +6,7 @@ namespace Disuku.Discord.Modules
 {
     public class RaiderIO : ModuleBase<SocketCommandContext>
     {
-        private IRaiderIOService _raiderIOService;
+        private readonly IRaiderIOService _raiderIOService;
 
         public RaiderIO(IRaiderIOService raiderIOService)
         {

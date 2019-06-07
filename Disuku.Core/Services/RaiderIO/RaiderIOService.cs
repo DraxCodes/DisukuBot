@@ -9,7 +9,7 @@ namespace Disuku.Core.Services.RaiderIO
 {
     public class RaiderIOService : IRaiderIOService
     {
-        private IDiscordMessage _discordMessage;
+        private readonly IDiscordMessage _discordMessage;
         public RaiderIOService(IDiscordMessage discordMessage)
         {
             _discordMessage = discordMessage;

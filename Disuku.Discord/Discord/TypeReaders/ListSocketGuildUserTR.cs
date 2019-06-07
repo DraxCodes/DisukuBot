@@ -44,10 +44,7 @@ namespace Disuku.Discord.TypeReaders
                     result.Add(user);
             }
 
-            if (result != null)
-                return TypeReaderResult.FromSuccess(result);
-            else
-                return TypeReaderResult.FromError(CommandError.ParseFailed, $"Input could not be parsed. [ListSocketGuildUserTR].");
+            return result != null ? TypeReaderResult.FromSuccess(result) : TypeReaderResult.FromError(CommandError.ParseFailed, $"Input could not be parsed. [ListSocketGuildUserTR].");
         }
     }
 }

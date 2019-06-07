@@ -11,7 +11,7 @@ namespace Disuku.Discord.Discord.Adapters
 {
     public class DiscordMessage : IDiscordMessage
     {
-        private DiscordSocketClient _client;
+        private readonly DiscordSocketClient _client;
 
         public DiscordMessage(DiscordSocketClient client)
         {

@@ -7,7 +7,7 @@ namespace Disuku.Discord.Discord.Events
 {
     public class DiscordEvents : IDiscordEvents
     {
-        private DiscordSocketClient _client;
+        private readonly DiscordSocketClient _client;
         public event EventHandler ClientReady;
 
         public DiscordEvents(DiscordSocketClient client)

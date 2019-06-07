@@ -6,13 +6,7 @@ namespace Disuku.Core.Entities
 {
     public class DisukuUser
     {
-        public Guid Id
-        {
-            get
-            {
-                return GenerateSeededGuid();
-            }
-        }
+        public Guid Id => GenerateSeededGuid();
         public ulong UserId { get; set; }
         public ulong GuildId { get; set; }
         public DateTime JoinedAt { get; set; }

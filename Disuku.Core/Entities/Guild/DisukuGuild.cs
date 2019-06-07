@@ -5,13 +5,7 @@ namespace Disuku.Core.Entities
 {
     public class DisukuGuild
     {
-        public Guid Id
-        {
-            get
-            {
-                return GenerateSeededGuid();
-            }
-        }
+        public Guid Id => GenerateSeededGuid();
         public ulong GuildId { get; set; }
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }
