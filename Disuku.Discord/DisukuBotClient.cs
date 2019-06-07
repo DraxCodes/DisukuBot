@@ -42,8 +42,8 @@ namespace Disuku.Discord
 
         public async Task InitializeAsync()
         {
+            _services = ConfigureDiscordServices();
             _config = await InitializeConfigAsync();
-            _services = ConfigureServices();
             await _services.InitializeServicesAsync();
 
             _client = _services.GetRequiredService<DiscordSocketClient>();
@@ -111,7 +111,7 @@ namespace Disuku.Discord
             }
         }
 
-        private IServiceProvider ConfigureServices()
+        private IServiceProvider ConfigureDiscordServices()
             => new ServiceCollection()
                 .AddSingleton(new DiscordSocketClient(_discordConfigOptions))
                 .AddSingleton(new CommandService(_commandServiceConfigOptions))

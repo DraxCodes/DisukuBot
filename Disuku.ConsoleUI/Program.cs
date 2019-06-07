@@ -1,16 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Disuku.Discord;
 
 namespace Disuku.ConsoleUI
 {
     internal class Program
     {
         private static async Task Main(string[] args)
-        {
-            await Task.Run(() =>
-            {
-                Console.WriteLine("Hello World!");
-            });
-        }
+            => await new DisukuBotClient().InitializeAsync();
     }
 }
