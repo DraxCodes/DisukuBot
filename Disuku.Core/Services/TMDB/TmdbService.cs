@@ -12,7 +12,7 @@ namespace Disuku.Core.Services.TMDB
     public class TmdbService : ITmdbService
     {
         private readonly TMDbClient _client;
-        private readonly TMDBConfig _config;
+        private readonly TmdbConfig _config;
         private readonly IDiscordMessage _discordMessage;
 
         public TmdbService(IDiscordMessage discordMessage)
@@ -82,10 +82,10 @@ namespace Disuku.Core.Services.TMDB
             await _discordMessage.SendDiscordEmbedAsync(chanId, embed);
         }
 
-        private TMDBConfig GetConfig()
+        private TmdbConfig GetConfig()
         {
             var rawJson = File.ReadAllText(Global.TmdbConfigPath);
-            return JsonConvert.DeserializeObject<TMDBConfig>(rawJson);
+            return JsonConvert.DeserializeObject<TmdbConfig>(rawJson);
         }
     }
 }

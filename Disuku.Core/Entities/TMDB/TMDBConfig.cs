@@ -1,6 +1,6 @@
 ﻿namespace Disuku.Core.Entities.TMDB
 {
-    public class TMDBConfig
+    public class TmdbConfig
     {
         public string Token { get; set; }
     }
