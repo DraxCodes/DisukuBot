@@ -20,7 +20,6 @@ namespace Disuku.InversionOfControl
             .AddSingleton<IRaiderIOService, RaiderIOService>()
             .AddSingleton<ITodoService, TodoService>()
             .AddSingleton<UserProfileService>()
-            .AddSingleton<DisukuUserProvider>()
             .AddSingleton<DisukuGuildProvider>()
             .AddSingleton<GuildProfileService>();
     }

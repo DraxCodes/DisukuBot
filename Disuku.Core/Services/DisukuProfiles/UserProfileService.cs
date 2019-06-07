@@ -1,6 +1,5 @@
 ﻿using Disuku.Core.Discord;
 using Disuku.Core.Entities;
-using Disuku.Core.Providers.Profile;
 using System.Threading.Tasks;
 
 namespace Disuku.Core.Services.DisukuProfiles
@@ -8,7 +7,7 @@ namespace Disuku.Core.Services.DisukuProfiles
     public class UserProfileService
     {
         private readonly IDiscordMessage _discordMessage;
-        public UserProfileService(DisukuUserProvider userProvider, IDiscordMessage discordMessage)
+        public UserProfileService(IDiscordMessage discordMessage)
         {
             _discordMessage = discordMessage;
         }
