@@ -28,9 +28,9 @@ namespace Disuku.Discord.Modules
         {
             var rand = new Random();
             var randNum = rand.Next(num1, num2);
-            await ReplyAsync($"```diff\n" +
+            await ReplyAsync("```diff\n" +
                 $"+ {Context.User.Username}: {randNum}\n" +
-                $"```");
+                "```");
         }
     }
 }

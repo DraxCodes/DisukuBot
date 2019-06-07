@@ -11,7 +11,7 @@ namespace Disuku.MongoStorage
     public class MongoDbStorage : IDbStorage
     {
         //private Conf Config = ConfigService.GetConfig();
-        private string ConnectionString;
+        //private string ConnectionString;
         private IMongoDatabase _dataBase;
 
         public Task InitializeDbAsync(string databaseName)

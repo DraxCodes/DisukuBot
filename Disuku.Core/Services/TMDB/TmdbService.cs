@@ -33,7 +33,7 @@ namespace Disuku.Core.Services.TMDB
                 Title = result.Title,
                 Description = result.Overview,
                 Thumbnail = $"http://image.tmdb.org/t/p/w500{result.PosterPath}",
-                URL = $"https://www.themoviedb.org/movie/{result.Id}",
+                Url = $"https://www.themoviedb.org/movie/{result.Id}",
                 ImageUrl = $"http://image.tmdb.org/t/p/w500{result.BackdropPath}",
                 Footer = $"Release: {result.ReleaseDate.Value.ToShortDateString()}"
             };
@@ -58,7 +58,7 @@ namespace Disuku.Core.Services.TMDB
                 Description = collection.Overview,
                 ImageUrl = $"http://image.tmdb.org/t/p/w500{collection.BackdropPath}",
                 Thumbnail = $"http://image.tmdb.org/t/p/w500{collection.PosterPath}",
-                URL = $"https://www.themoviedb.org/collection/{collection.Id}",
+                Url = $"https://www.themoviedb.org/collection/{collection.Id}",
                 Footer = $"Collection Size: {collection.Parts.Count}"
             };
 
@@ -74,7 +74,7 @@ namespace Disuku.Core.Services.TMDB
             {
                 Title = result.Name,
                 Description = result.Overview,
-                URL = $"https://www.themoviedb.org/tv/{result.Id}",
+                Url = $"https://www.themoviedb.org/tv/{result.Id}",
                 Thumbnail = $"http://image.tmdb.org/t/p/w500{result.PosterPath}",
                 ImageUrl = $"http://image.tmdb.org/t/p/w500{result.BackdropPath}"
             };

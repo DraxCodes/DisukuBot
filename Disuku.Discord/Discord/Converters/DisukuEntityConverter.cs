@@ -19,7 +19,7 @@ namespace Disuku.Discord.Converters
                 .WithCurrentTimestamp()
                 .WithColor(Color.Blue);
 
-            if (!string.IsNullOrWhiteSpace(embed.URL)) { discordEmbed.WithUrl(embed.URL); }
+            if (!string.IsNullOrWhiteSpace(embed.Url)) { discordEmbed.WithUrl(embed.Url); }
             if (!string.IsNullOrWhiteSpace(embed.Thumbnail)) { discordEmbed.WithThumbnailUrl(embed.Thumbnail); }
             if (!string.IsNullOrWhiteSpace(embed.Footer)) { discordEmbed.WithFooter(embed.Footer); }
             if (!string.IsNullOrWhiteSpace(embed.ImageUrl)) { discordEmbed.WithImageUrl(embed.ImageUrl); }
@@ -40,10 +40,10 @@ namespace Disuku.Discord.Converters
             {
                 Message = logMessage.Message,
                 Source = logMessage.Source,
-                Severity = ConvertSevrity(logMessage.Severity)
+                Severity = ConvertSeverity(logMessage.Severity)
             };
 
-        private static DisukuLogSeverity ConvertSevrity(LogSeverity severity)
+        private static DisukuLogSeverity ConvertSeverity(LogSeverity severity)
         {
             switch (severity)
             {

@@ -23,9 +23,8 @@ namespace Disuku.Discord.TypeReaders
             foreach (var baseUser in users)
             {
                 SocketGuildUser user = null;
-                var id = 0UL;
 
-                if (MentionUtils.TryParseUser(baseUser, out id))
+                if (MentionUtils.TryParseUser(baseUser, out var id))
                     user = await context.Channel.GetUserAsync(id) as SocketGuildUser;
 
                 else if (ulong.TryParse(baseUser, out id))

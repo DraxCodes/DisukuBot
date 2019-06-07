@@ -41,7 +41,7 @@ namespace Disuku.Discord.Discord.Adapters
                 $"**Guild ID:** {user.GuildId}\n" +
                 $"**Account Created:** {user.CreatedAt}\n" +
                 $"**Joined Server:** {user.JoinedAt}\n" +
-                $"**Roles:**\n" +
+                "**Roles:**\n" +
                 $"{formattedRoles}",
                 Thumbnail = user.AvatarUrl
             };
@@ -57,7 +57,7 @@ namespace Disuku.Discord.Discord.Adapters
                 Thumbnail = guild.GuildAvatar,
                 Description =
                 $"**ID:** {guild.GuildId}\n" +
-                $"**Channel Count:** \n" +
+                "**Channel Count:** \n" +
                 $"⠀⠀▷ Text: {guild.TextChannelCount}, Voice: {guild.VoiceChannelCount}\n" +
                 $"**Creation Date:** {guild.CreationDate}\n" +
                 $"**Members:** {guild.MemberCount}"
