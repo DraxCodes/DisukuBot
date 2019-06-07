@@ -14,7 +14,7 @@ namespace Disuku.MongoStorage
         //private string ConnectionString;
         private IMongoDatabase _dataBase;
 
-        public Task InitializeDbAsync(string databaseName)
+        public Task InitializeDbAsync(string databaseName = null)
         {
             //ConnectionString = $"mongodb://{Config.Username}:{Config.Password}@{Config.Ip}:{Config.Port}";
             var client = new MongoClient();
@@ -22,16 +22,16 @@ namespace Disuku.MongoStorage
             return Task.CompletedTask;
         }
 
-        public async Task Insert<T>(string tableName, T item)
+        public async Task Insert<T>(T item, string tableName = null)
         {
             var collection = _dataBase.GetCollection<T>(tableName);
             await collection.InsertOneAsync(item);
         }
 
-        public async Task Update<T>(string tableName, Guid id, T item)
+        public async Task Update<T>(Guid id, T item, string tableName = null)
         {
             var collection = _dataBase.GetCollection<T>(tableName);
-            if (await Exists<T>(tableName, id))
+            if (await Exists<T>(id, tableName))
             {
                 await collection.ReplaceOneAsync(
                        new BsonDocument("_id", id),
@@ -39,29 +39,16 @@ namespace Disuku.MongoStorage
             }
         }
 
-        public async Task<bool> Exists<T>(string tableName, Guid id)
+        public async Task<bool> Exists<T>(Guid id, string tableName = null)
         {
             var collection = _dataBase.GetCollection<T>(tableName);
             var item = await collection.FindAsync(new BsonDocument("_id", id));
             return item.Any();
         }
 
-        public async Task UpsertSingleRecordAsync<T>(string tableName, Guid id, T record)
+        public async Task<List<T>> LoadRecordsAsync<T>(Expression<Func<T, bool>> predicate, string tableName = null)
         {
             var collection = _dataBase.GetCollection<T>(tableName);
-
-            await collection.ReplaceOneAsync(
-                new BsonDocument("_id", id),
-                record,
-                new UpdateOptions
-                {
-                    IsUpsert = true
-                });
-        }
-
-        public async Task<List<T>> LoadRecordsAsync<T>(string table, Expression<Func<T, bool>> predicate)
-        {
-            var collection = _dataBase.GetCollection<T>(table);
             var result = await collection.FindAsync(predicate);
             return result.ToList();
         }

@@ -7,11 +7,10 @@ namespace Disuku.Core.Storage
 {
     public interface IDbStorage
     {
-        Task InitializeDbAsync(string databaseName);
-        Task UpsertSingleRecordAsync<T>(string tableName, Guid id, T item);
-        Task<List<T>> LoadRecordsAsync<T>(string table, Expression<Func<T, bool>> predicate);
-        Task Insert<T>(string tableName, T item);
-        Task Update<T>(string tableName, Guid id, T item);
-        Task<bool> Exists<T>(string tableName, Guid id);
+        Task InitializeDbAsync(string databaseName = null);
+        Task<List<T>> LoadRecordsAsync<T>(Expression<Func<T, bool>> predicate, string table = null);
+        Task Insert<T>(T item, string tableName = null);
+        Task Update<T>(Guid id, T item, string tableName = null);
+        Task<bool> Exists<T>(Guid id, string tableName = null);
     }
 }

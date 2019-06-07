@@ -20,7 +20,7 @@ namespace Disuku.Core.Providers.Profile
             //TODO: FIX THIS, shouldn't be upserting before getting the info.
 
             //await _mongoDbStorage.UpsertSingleRecordAsync("Guilds", guild.Id, guild);
-            var results = await _mongoDbStorage.LoadRecordsAsync<DisukuGuild>("Guilds", u => u.GuildId == guild.GuildId);
+            var results = await _mongoDbStorage.LoadRecordsAsync<DisukuGuild>(u => u.GuildId == guild.GuildId, "Guilds");
             return results.FirstOrDefault();
         }
     }
