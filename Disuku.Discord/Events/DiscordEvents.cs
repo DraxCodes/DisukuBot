@@ -1,9 +1,9 @@
-﻿using Discord.WebSocket;
-using Disuku.Core.Discord;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using Discord.WebSocket;
+using Disuku.Core.Discord;
 
-namespace Disuku.Discord.Discord.Events
+namespace Disuku.Discord.Events
 {
     public class DiscordEvents : IDiscordEvents
     {

@@ -1,14 +1,14 @@
-﻿using Discord;
+﻿using System;
+using System.Reflection;
+using System.Threading.Tasks;
+using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using Disuku.Core.Services.Logger;
 using Disuku.Discord.Converters;
 using Disuku.Discord.DisukuDiscord.Extensions;
-using System;
-using System.Reflection;
-using System.Threading.Tasks;
 
-namespace Disuku.Discord.DisordServices
+namespace Disuku.Discord.DiscordServices
 {
     public class CommandHandlerService : IDiscordServiceInitialize
     {

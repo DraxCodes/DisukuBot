@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Disuku.Discord.TypeReaders
 {
-    public class ListSocketGuildUserTR : TypeReader
+    public class ListSocketGuildUserTr : TypeReader
     {
         public override async Task<TypeReaderResult> ReadAsync(ICommandContext context, string input, IServiceProvider services)
         {
@@ -22,7 +22,7 @@ namespace Disuku.Discord.TypeReaders
 
             foreach (var baseUser in users)
             {
-                SocketGuildUser user = null;
+                SocketGuildUser user;
 
                 if (MentionUtils.TryParseUser(baseUser, out var id))
                     user = await context.Channel.GetUserAsync(id) as SocketGuildUser;
@@ -43,7 +43,7 @@ namespace Disuku.Discord.TypeReaders
                     result.Add(user);
             }
 
-            return result != null ? TypeReaderResult.FromSuccess(result) : TypeReaderResult.FromError(CommandError.ParseFailed, $"Input could not be parsed. [ListSocketGuildUserTR].");
+            return result.Any() ? TypeReaderResult.FromSuccess(result) : TypeReaderResult.FromError(CommandError.ParseFailed, $"Input could not be parsed. [ListSocketGuildUserTR].");
         }
     }
 }

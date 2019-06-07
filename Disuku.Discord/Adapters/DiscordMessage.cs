@@ -1,13 +1,13 @@
-﻿using Discord.WebSocket;
+﻿using System;
+using System.Text;
+using System.Threading.Tasks;
+using Discord.WebSocket;
 using Disuku.Core.Discord;
 using Disuku.Core.Entities;
 using Disuku.Core.Entities.Embeds;
 using Disuku.Discord.Converters;
-using System;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Disuku.Discord.Discord.Adapters
+namespace Disuku.Discord.Adapters
 {
     public class DiscordMessage : IDiscordMessage
     {
