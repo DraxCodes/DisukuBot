@@ -1,11 +1,11 @@
-﻿using System;
-using System.Text;
-using System.Threading.Tasks;
-using Discord.WebSocket;
+﻿using Discord.WebSocket;
 using Disuku.Core.Discord;
 using Disuku.Core.Entities;
 using Disuku.Core.Entities.Embeds;
 using Disuku.Discord.Converters;
+using System;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Disuku.Discord.Discord.Adapters
 {
@@ -36,7 +36,7 @@ namespace Disuku.Discord.Discord.Adapters
             var embed = new DisukuEmbed
             {
                 Title = $"Profile: {user.Username}",
-                Description = 
+                Description =
                 $"**User ID:** {user.UserId}\n" +
                 $"**Guild ID:** {user.GuildId}\n" +
                 $"**Account Created:** {user.CreatedAt}\n" +
@@ -55,7 +55,7 @@ namespace Disuku.Discord.Discord.Adapters
             {
                 Title = $"Guild Profile: {guild.Name}",
                 Thumbnail = guild.GuildAvatar,
-                Description = 
+                Description =
                 $"**ID:** {guild.GuildId}\n" +
                 $"**Channel Count:** \n" +
                 $"⠀⠀▷ Text: {guild.TextChannelCount}, Voice: {guild.VoiceChannelCount}\n" +

@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Disuku.Core.Entities;
+﻿using Disuku.Core.Entities;
 using Disuku.Core.Storage;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Disuku.Core.Providers.Profile
 {

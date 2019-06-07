@@ -1,7 +1,6 @@
 ﻿using Discord.Commands;
 using System;
 using System.Threading.Tasks;
-using System.Linq;
 
 namespace Disuku.Discord.Modules
 {

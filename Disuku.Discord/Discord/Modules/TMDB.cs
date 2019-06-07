@@ -1,5 +1,4 @@
-﻿using Discord;
-using Discord.Commands;
+﻿using Discord.Commands;
 using Disuku.Core.Services.TMDB;
 using System.Threading.Tasks;
 

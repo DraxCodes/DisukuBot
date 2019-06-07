@@ -34,7 +34,7 @@ namespace Disuku.Discord.Modules
         [Group("Purge"), RequireUserPermission(GuildPermission.ManageMessages)]
         public class AdminPurge : ModuleBase<SocketCommandContext>
         {
-            [Command(RunMode = RunMode.Async), Name("Purge Chat")] 
+            [Command(RunMode = RunMode.Async), Name("Purge Chat")]
             [Summary("Purges messages from the channel")]
             public async Task PurgeChannel(int num)
             {

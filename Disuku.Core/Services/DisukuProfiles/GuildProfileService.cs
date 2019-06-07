@@ -1,7 +1,6 @@
 ﻿using Disuku.Core.Discord;
 using Disuku.Core.Entities;
 using Disuku.Core.Providers.Profile;
-using System;
 using System.Threading.Tasks;
 
 namespace Disuku.Core.Services.DisukuProfiles

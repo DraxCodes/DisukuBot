@@ -1,20 +1,20 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Threading.Tasks;
-using Discord;
+﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using Disuku.Core.Discord;
-using Disuku.Discord.JsonData;
-using Disuku.Discord.JsonData.Entities;
-using Disuku.Discord.DisukuDiscord.Extensions;
-using Disuku.Core.Services.Logger;
-using Disuku.Discord.DisordServices;
-using Disuku.Discord.Converters;
 using Disuku.Core.Entities.Logging;
-using Disuku.InversionOfControl;
+using Disuku.Core.Services.Logger;
+using Disuku.Discord.Converters;
 using Disuku.Discord.Discord.Adapters;
 using Disuku.Discord.Discord.Events;
+using Disuku.Discord.DisordServices;
+using Disuku.Discord.DisukuDiscord.Extensions;
+using Disuku.Discord.JsonData;
+using Disuku.Discord.JsonData.Entities;
+using Disuku.InversionOfControl;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Threading.Tasks;
 
 namespace Disuku.Discord
 {

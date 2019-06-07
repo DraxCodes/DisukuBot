@@ -1,10 +1,10 @@
 ﻿using Disuku.Core.Entities.Logging;
 using System;
-using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Console = Colorful.Console;
+using System.Threading.Tasks;
 using Color = System.Drawing.Color;
+using Console = Colorful.Console;
 
 namespace Disuku.Core.Services.Logger
 {

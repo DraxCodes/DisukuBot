@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Disuku.Core.Discord;
+using Disuku.Core.Entities.Embeds;
+using Disuku.Core.Entities.TMDB;
+using Newtonsoft.Json;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using TMDbLib.Client;
-using System.Linq;
-using TMDbLib.Objects.Search;
-using Disuku.Core.Entities.TMDB;
-using System.IO;
-using Newtonsoft.Json;
-using Disuku.Core.Discord;
-using Disuku.Core.Entities.Embeds;
 
 namespace Disuku.Core.Services.TMDB
 {

@@ -1,5 +1,4 @@
-﻿using Disuku.Core.Entities.TMDB;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Disuku.Core.Services.TMDB
 {
