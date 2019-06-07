@@ -5,10 +5,10 @@ namespace Disuku.MongoStorage
 {
     public static class ConfigService
     {
-        public const string configPath = "Resources/MongoConfig.json";
+        public const string ConfigPath = "Resources/MongoConfig.json";
         public static Conf GetConfig()
         {
-            var json = File.ReadAllText(configPath);
+            var json = File.ReadAllText(ConfigPath);
             return JsonConvert.DeserializeObject<Conf>(json);
         }
     }
