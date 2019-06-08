@@ -1,6 +1,9 @@
 ﻿using Discord.Commands;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
+using Discord;
+using Discord.WebSocket;
 
 namespace Disuku.Discord.Modules
 {
@@ -32,5 +35,6 @@ namespace Disuku.Discord.Modules
                 $"+ {Context.User.Username}: {randNum}\n" +
                 "```");
         }
+
     }
 }
