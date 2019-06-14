@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 namespace Disuku.Core.Storage
 {
-    // TODO: Refactor name to IDataStore
     public interface IPersistentStorage
     {
         Task InitializeDbAsync(string databaseName = null);
