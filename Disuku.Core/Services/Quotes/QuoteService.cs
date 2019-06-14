@@ -12,11 +12,11 @@ namespace Disuku.Core.Services.Quotes
 {
     public class QuoteService : IQuoteService
     {
-        private readonly IDbStorage _dbStorage;
+        private readonly IPersistentStorage _dbStorage;
         private readonly IDiscordMessage _discordMessage;
         private const string TableName = "Quotes";
 
-        public QuoteService(IDbStorage dbStorage, IDiscordMessage discordMessage)
+        public QuoteService(IPersistentStorage dbStorage, IDiscordMessage discordMessage)
         {
             _dbStorage = dbStorage;
             _discordMessage = discordMessage;

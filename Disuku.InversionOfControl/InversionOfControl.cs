@@ -1,5 +1,4 @@
-﻿using Disuku.Core.Discord;
-using Disuku.Core.Providers.Profile;
+﻿using Disuku.Core.Providers.Profile;
 using Disuku.Core.Services.DisukuProfiles;
 using Disuku.Core.Services.Logger;
 using Disuku.Core.Services.Quotes;
@@ -16,7 +15,7 @@ namespace Disuku.InversionOfControl
     {
         public static IServiceCollection AddDisukuTypes(this IServiceCollection collection)
             => collection
-            .AddTransient<IDbStorage, MongoDbStorage>()
+            .AddTransient<IPersistentStorage, MongoDbStorage>()
             .AddSingleton<IDisukuLogger, DisukuLogger>()
             .AddSingleton<ITmdbService, TmdbService>()
             .AddSingleton<IRaiderIOService, RaiderIOService>()
