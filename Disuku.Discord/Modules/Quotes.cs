@@ -23,13 +23,13 @@ namespace Disuku.Discord.Modules
         }
 
         [Command]
-        public async Task QuoteDisplay(string quoteName)
+        public async Task QuoteDisplay([Remainder] string quoteName)
         {
              await _quoteService.Find(Context.Channel.Id, quoteName);
         }
 
         [Command("Add")]
-        public async Task QuoteAdd(ulong quoteId, string quoteName)
+        public async Task QuoteAdd(ulong quoteId, [Remainder] string quoteName)
         {
             var message = await Context.Channel.GetMessageAsync(quoteId);
             if (message is null)
@@ -40,10 +40,14 @@ namespace Disuku.Discord.Modules
 
             var quote = new Quote
             {
-                Id = quoteId,
+                MessageId = quoteId,
+                ChanId = Context.Channel.Id,
+                ServerId = Context.Guild.Id,
                 Name = quoteName,
                 Message = message.Content,
-                QuotedUserId = message.Author.Username
+                Author = message.Author.Username,
+                AuthorId = message.Author.Id,
+                ThumbnailUrl = message.Author.GetAvatarUrl()
             };
 
             await _quoteService.Add(Context.Channel.Id, quote);
