@@ -1,5 +1,4 @@
-﻿using Disuku.Core.Discord;
-using Disuku.Core.Providers.Profile;
+﻿using Disuku.Core.Providers.Profile;
 using Disuku.Core.Services.DisukuProfiles;
 using Disuku.Core.Services.Logger;
 using Disuku.Core.Services.RaiderIO;
