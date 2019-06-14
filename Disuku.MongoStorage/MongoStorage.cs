@@ -46,7 +46,7 @@ namespace Disuku.MongoStorage
             return item.Any();
         }
 
-        public async Task<List<T>> LoadRecordsAsync<T>(Expression<Func<T, bool>> predicate, string tableName = null)
+        public async Task<List<T>> LoadRecordsAsync<T>(Expression<Func<T, bool>> predicate, string tableName)
         {
             var collection = _dataBase.GetCollection<T>(tableName);
             var result = await collection.FindAsync(predicate);

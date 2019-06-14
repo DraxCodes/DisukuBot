@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 
 namespace Disuku.Core.Storage
 {
-    public interface IDbStorage
+    // TODO: Refactor name to IDataStore
+    public interface IPersistentStorage
     {
         Task InitializeDbAsync(string databaseName = null);
-        Task<List<T>> LoadRecordsAsync<T>(Expression<Func<T, bool>> predicate, string table = null);
-        Task Insert<T>(T item, string tableName = null);
-        Task Update<T>(Guid id, T item, string tableName = null);
-        Task<bool> Exists<T>(Guid id, string tableName = null);
+        Task<List<T>> LoadRecordsAsync<T>(Expression<Func<T, bool>> predicate, string table);
+        Task Insert<T>(T item, string tableName);
+        Task Update<T>(Guid id, T item, string tableName);
+        Task<bool> Exists<T>(Guid id, string tableName);
     }
 }
