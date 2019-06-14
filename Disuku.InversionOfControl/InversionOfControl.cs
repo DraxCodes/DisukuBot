@@ -1,6 +1,7 @@
 ﻿using Disuku.Core.Providers.Profile;
 using Disuku.Core.Services.DisukuProfiles;
 using Disuku.Core.Services.Logger;
+using Disuku.Core.Services.Quotes;
 using Disuku.Core.Services.RaiderIO;
 using Disuku.Core.Services.TMDB;
 using Disuku.Core.Services.Todo;
@@ -19,6 +20,7 @@ namespace Disuku.InversionOfControl
             .AddSingleton<ITmdbService, TmdbService>()
             .AddSingleton<IRaiderIOService, RaiderIOService>()
             .AddSingleton<ITodoService, TodoService>()
+            .AddTransient<IQuoteService, QuoteService>()
             .AddSingleton<UserProfileService>()
             .AddSingleton<DisukuGuildProvider>()
             .AddSingleton<GuildProfileService>();
