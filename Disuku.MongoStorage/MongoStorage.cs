@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Disuku.MongoStorage
 {
-    public class MongoDbStorage : IPersistentStorage
+    public class MongoDbStorage : IDataStore
     {
         //private Conf Config = ConfigService.GetConfig();
         //private string ConnectionString;

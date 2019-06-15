@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Disuku.Core.Storage
 {
-    public interface IPersistentStorage
+    public interface IDataStore
     {
         Task InitializeDbAsync(string databaseName = null);
         Task<List<T>> LoadRecordsAsync<T>(Expression<Func<T, bool>> predicate, string table);

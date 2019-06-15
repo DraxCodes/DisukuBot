@@ -7,17 +7,17 @@ namespace Disuku.Core.Providers.Profile
 {
     public class DisukuGuildProvider
     {
-        private readonly IPersistentStorage _mongoPersistentStorage;
+        private readonly IDataStore _mongoDataStore;
 
-        public DisukuGuildProvider(IPersistentStorage mongoPersistentStorage)
+        public DisukuGuildProvider(IDataStore mongoDataStore)
         {
-            _mongoPersistentStorage = mongoPersistentStorage;
-            _mongoPersistentStorage.InitializeDbAsync("DisukuBot");
+            _mongoDataStore = mongoDataStore;
+            _mongoDataStore.InitializeDbAsync("DisukuBot");
         }
 
         public async Task<DisukuGuild> GetGuild(DisukuGuild guild)
         {
-            var results = await _mongoPersistentStorage.LoadRecordsAsync<DisukuGuild>(u => u.GuildId == guild.GuildId, "Guilds");
+            var results = await _mongoDataStore.LoadRecordsAsync<DisukuGuild>(u => u.GuildId == guild.GuildId, "Guilds");
             return results.FirstOrDefault();
         }
     }
