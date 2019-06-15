@@ -12,26 +12,26 @@ namespace Disuku.Core.Services.Quotes
 {
     public class QuoteService : IQuoteService
     {
-        private readonly IPersistentStorage _dbStorage;
+        private readonly IDataStore _dataStore;
         private readonly IDiscordMessage _discordMessage;
         private const string TableName = "Quotes";
 
-        public QuoteService(IPersistentStorage dbStorage, IDiscordMessage discordMessage)
+        public QuoteService(IDataStore dataStore, IDiscordMessage discordMessage)
         {
-            _dbStorage = dbStorage;
+            _dataStore = dataStore;
             _discordMessage = discordMessage;
-            _dbStorage.InitializeDbAsync("DisukuBot");
+            _dataStore.InitializeDbAsync("DisukuBot");
         }
 
         public async Task Add(ulong chanId, Quote quote)
         {
-            await _dbStorage.Insert(quote, TableName);
+            await _dataStore.Insert(quote, TableName);
             await _discordMessage.SendDiscordMessageAsync(chanId, "Quote should be added.");
         }
 
         public async Task Find(ulong chanId, ulong quoteId)
         {
-            var quotes = await _dbStorage.LoadRecordsAsync<Quote>(x => x.MessageId == quoteId, TableName);
+            var quotes = await _dataStore.LoadRecordsAsync<Quote>(x => x.MessageId == quoteId, TableName);
             var selectedQuote = quotes.FirstOrDefault();
             var quoteUrl = $"https://discordapp.com/channels/{selectedQuote.ServerId}/{selectedQuote.ChanId}/{selectedQuote.MessageId}";
             var embed = new DisukuEmbed
@@ -47,7 +47,7 @@ namespace Disuku.Core.Services.Quotes
 
         public async Task Find(ulong chanId, string quoteName)
         {
-            var quotes = await _dbStorage.LoadRecordsAsync<Quote>(x => x.Name == quoteName, TableName);
+            var quotes = await _dataStore.LoadRecordsAsync<Quote>(x => x.Name == quoteName, TableName);
             var selectedQuote = quotes.FirstOrDefault();
             var quoteUrl = $"https://discordapp.com/channels/{selectedQuote.ServerId}/{selectedQuote.ChanId}/{selectedQuote.MessageId}";
 
@@ -76,7 +76,7 @@ namespace Disuku.Core.Services.Quotes
         public async Task List(ulong chanId, DisukuUser user)
         {
             var sb = new StringBuilder();
-            var quotes = await _dbStorage.LoadRecordsAsync<Quote>(x => x.AuthorId == user.UserId, TableName);
+            var quotes = await _dataStore.LoadRecordsAsync<Quote>(x => x.AuthorId == user.UserId, TableName);
             foreach (var quote in quotes)
             {
                 sb.Append($"Author: {quote.Author}\n" +

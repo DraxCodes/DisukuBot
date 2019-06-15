@@ -3,12 +3,13 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Disuku.MongoStorage
 {
-    public class MongoDbStorage : IPersistentStorage
+    public class MongoDbStorage : IDataStore
     {
         //private Conf Config = ConfigService.GetConfig();
         //private string ConnectionString;
@@ -20,6 +21,12 @@ namespace Disuku.MongoStorage
             var client = new MongoClient();
             _dataBase = client.GetDatabase(databaseName);
             return Task.CompletedTask;
+        }
+
+        public async Task<T> LoadRecordAsync<T>(Expression<Func<T, bool>> predicate, string table)
+        {
+            var result = await LoadRecordsAsync(predicate, table);
+            return result.FirstOrDefault();
         }
 
         public async Task Insert<T>(T item, string tableName = null)
