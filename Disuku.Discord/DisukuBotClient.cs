@@ -98,7 +98,7 @@ namespace Disuku.Discord
 
         private async Task OnReady()
         {
-            await _client.SetGameAsync(_config.GameStatus);
+            await _client.SetGameAsync(_config.GameStatus, "", ActivityType.Watching);
             foreach (var guild in _client.Guilds)
             {
                 var log = new DisukuLog
