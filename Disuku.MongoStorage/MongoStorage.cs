@@ -22,6 +22,11 @@ namespace Disuku.MongoStorage
             return Task.CompletedTask;
         }
 
+        public Task<T> LoadRecordAsync<T>(Expression<Func<T, bool>> predicate, string table)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task Insert<T>(T item, string tableName = null)
         {
             var collection = _dataBase.GetCollection<T>(tableName);
