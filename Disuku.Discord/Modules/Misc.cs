@@ -10,8 +10,6 @@ namespace Disuku.Discord.Modules
     [Name("Misc Commands")]
     public class Misc : ModuleBase<SocketCommandContext>
     {
-        // TODO Add choice of embed color or change based on "X" input
-
         [Command("Choose"), Summary("Selects between options given split by a comma.")]
         public async Task Choose([Remainder]string message)
         {
