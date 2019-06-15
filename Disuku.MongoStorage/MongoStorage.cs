@@ -3,6 +3,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -22,9 +23,10 @@ namespace Disuku.MongoStorage
             return Task.CompletedTask;
         }
 
-        public Task<T> LoadRecordAsync<T>(Expression<Func<T, bool>> predicate, string table)
+        public async Task<T> LoadRecordAsync<T>(Expression<Func<T, bool>> predicate, string table)
         {
-            throw new NotImplementedException();
+            var result = await LoadRecordsAsync(predicate, table);
+            return result.FirstOrDefault();
         }
 
         public async Task Insert<T>(T item, string tableName = null)
