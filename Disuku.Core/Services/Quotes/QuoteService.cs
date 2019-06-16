@@ -34,15 +34,19 @@ namespace Disuku.Core.Services.Quotes
             var quotes = await _dataStore.LoadRecordsAsync<Quote>(x => x.MessageId == quoteId, TableName);
             var selectedQuote = quotes.FirstOrDefault();
             var quoteUrl = $"https://discordapp.com/channels/{selectedQuote.ServerId}/{selectedQuote.ChanId}/{selectedQuote.MessageId}";
-            var embed = new DisukuEmbed
-            {
-                Title = $"{selectedQuote.Author} : Id <{selectedQuote.MessageId}>",
-                Description = $"\n**Quote:** {selectedQuote.Message}\n\n" +
-                              $"Jump: [Click Here]({quoteUrl})",
-                Thumbnail = selectedQuote.ThumbnailUrl
-            };
 
-            await _discordMessage.SendDiscordEmbedAsync(chanId, embed);
+            if (!IsCodeblock(selectedQuote.Message))
+            {
+                var embed = new DisukuEmbed
+                {
+                    Title = $"{selectedQuote.Author} : Id <{selectedQuote.MessageId}.",
+                    Description = $"\n**Quote:** {selectedQuote.Message}\n\n" +
+                              $"Jump: [Click Here]({quoteUrl})",
+                    Thumbnail = selectedQuote.ThumbnailUrl
+                };
+
+                await _discordMessage.SendDiscordEmbedAsync(chanId, embed);
+            }
         }
 
         public async Task Find(ulong chanId, string quoteName)
