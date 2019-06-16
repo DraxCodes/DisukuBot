@@ -11,14 +11,14 @@ namespace Disuku.MongoStorage
 {
     public class MongoDbStorage : IDataStore
     {
-        //private Conf Config = ConfigService.GetConfig();
-        //private string ConnectionString;
+        private Conf Config = ConfigService.GetConfig();
+        private string ConnectionString;
         private IMongoDatabase _dataBase;
 
         public Task InitializeDbAsync(string databaseName = null)
         {
-            //ConnectionString = $"mongodb://{Config.Username}:{Config.Password}@{Config.Ip}:{Config.Port}";
-            var client = new MongoClient();
+            ConnectionString = $"mongodb://{Config.Username}:{Config.Password}@{Config.Ip}:{Config.Port}";
+            var client = new MongoClient(ConnectionString);
             _dataBase = client.GetDatabase(databaseName);
             return Task.CompletedTask;
         }
