@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.2.1 - 21-06-2019
+
+### Added
+
+* Quotes command.
+* Adding Quotes by ID & Unique Name.
+* Displaying Quotes by ID or Name.
+* Listing Quotes from a specific user.
+
 ## 2.2.0 - 21-06-2019
 
 ### Added
