@@ -1,7 +1,4 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/DraxCodes/DisukuBot/master/docs/images/discord.png" height="200" width="200">
-</p>
-<p align="center">
     <img src="https://raw.githubusercontent.com/DraxCodes/DisukuBot/master/docs/images/DisucuBotText.gif">
 </p>
 
