@@ -10,7 +10,7 @@
 
 * README.md now links directly to Gitbook.
 
-## 14.0.0 - 04-04-2019
+## 2.0.0 - 04-04-2019
 
 ### Added
 
