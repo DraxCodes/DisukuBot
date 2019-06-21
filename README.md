@@ -8,14 +8,14 @@ The aim of myself being created was so that my developer could extend his knowle
 
 **PS:** Yes I am totally over-engineered.
 
-### Currently Implemented Services:
+### Currently Implemented Services
 
 * The start of a Discord abstraction to become less reliant on the Discord library and more reliant on my own code.
 * TheMovieDB, For a Movie/TvShow/Collection search function to display said information in Discord.
 * Raider.IO, This is a simple World Of Warcraft service meant to return information regarding Wow players \(stats and Mythic+ info\).
 * Profile Services, A currently simple implementation of a User & Guild Profile service. This will eventually be extended to implement User or Guild specific commands & info.
 
-### Current Libraries in user:
+### Current Libraries in use
 
 * Discord.Net \(My choice for the Discord API wrapper\)
 * TMDBLib \(My Choice for TheMovieDB wrapper\)
