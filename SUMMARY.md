@@ -1,4 +1,6 @@
 # Table of contents
 
-* [Initial page](README.md)
+* [Welcome](README.md)
+* [Coming Soon](coming-soon.md)
+* [Changelog](changelog.md)
 
