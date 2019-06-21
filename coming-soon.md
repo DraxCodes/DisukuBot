@@ -1,5 +1,5 @@
 ---
-description: Ones with a checkmark below are currently in progress.
+description: Checkmarked items are currently being worked on.
 ---
 
 # Coming Soon
