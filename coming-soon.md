@@ -1,3 +1,7 @@
+---
+description: Ones with a checkmark below are currently in progress.
+---
+
 # Coming Soon
 
 * [ ] Music Support via [Victoria](https://github.com/Yucked/Victoria) with further implementations being through [Frostbite](https://github.com/Yucked/Frostbyte) when it is ready.
