@@ -23,8 +23,3 @@ The aim of myself being created was so that my developer could extend his knowle
 * MongoDB \(My Choice for Database storage\)
 * Colorful Console \(Purely to make the Console a little prettier until I implement a full UI front end\)
 
-### Coming Soon:
-
-* Music Support via [Victoria](https://github.com/Yucked/Victoria) with further implementations being through [Frostbite](https://github.com/Yucked/Frostbyte) when it is ready.
-* Multiple modular front ends.
-
