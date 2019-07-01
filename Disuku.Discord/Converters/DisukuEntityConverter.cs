@@ -19,7 +19,8 @@ namespace Disuku.Discord.Converters
                 .WithCurrentTimestamp()
                 .WithColor(Color.Blue);
 
-            if (embed.Author != null) { discordEmbed.WithAuthor(embed.Author.Username, embed.Author.AvatarUrl); }
+            if (embed.Author != null && !string.IsNullOrWhiteSpace(embed.Author.Description)) { discordEmbed.WithAuthor($"{embed.Author.Username} <{embed.Author.Description}>", embed.Author.AvatarUrl); }
+            if (embed.Author != null && string.IsNullOrWhiteSpace(embed.Author.Description)) { discordEmbed.WithAuthor(embed.Author.Username, embed.Author.AvatarUrl); }
             if (!string.IsNullOrWhiteSpace(embed.Url)) { discordEmbed.WithUrl(embed.Url); }
             if (!string.IsNullOrWhiteSpace(embed.Thumbnail)) { discordEmbed.WithThumbnailUrl(embed.Thumbnail); }
             if (!string.IsNullOrWhiteSpace(embed.Footer)) { discordEmbed.WithFooter(embed.Footer); }
