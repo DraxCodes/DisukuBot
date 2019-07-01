@@ -11,11 +11,6 @@ namespace Disuku.Core.Entities.Embeds
         public string ImageUrl { get; set; }
         public string Footer { get; set; }
         public List<Field> Fields { get; set; } = new List<Field>();
-    }
-
-    public class Field
-    {
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public Author Author { get; set; }
     }
 }
