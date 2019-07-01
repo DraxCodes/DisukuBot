@@ -32,37 +32,18 @@ namespace Disuku.Core.Services.Quotes
         public async Task Find(ulong chanId, ulong quoteId)
         {
             var quotes = await _dataStore.LoadRecordsAsync<Quote>(x => x.MessageId == quoteId, TableName);
+            if (!quotes.Any()) { await _discordMessage.SendDiscordMessageAsync(chanId, "Quote with that ID was not found.");  return; }
+            
             var selectedQuote = quotes.FirstOrDefault();
-            var quoteUrl = $"https://discordapp.com/channels/{selectedQuote.ServerId}/{selectedQuote.ChanId}/{selectedQuote.MessageId}";
+            var quoteUrl = $"https://discordapp.com/channels/{selectedQuote?.ServerId}/{selectedQuote?.ChanId}/{selectedQuote?.MessageId}";
 
-            if (!IsCodeblock(selectedQuote.Message))
+            if (!IsCodeblock(selectedQuote?.Message))
             {
                 var embed = new DisukuEmbed
                 {
-                    Title = $"{selectedQuote.Author} : Id <{selectedQuote.MessageId}.",
-                    Description = $"\n**Quote:** {selectedQuote.Message}\n\n" +
+                    Description = $"\n**Quote:** {selectedQuote?.Message}\n\n" +
                               $"Jump: [Click Here]({quoteUrl})",
-                    Thumbnail = selectedQuote.ThumbnailUrl
-                };
-
-                await _discordMessage.SendDiscordEmbedAsync(chanId, embed);
-            }
-        }
-
-        public async Task Find(ulong chanId, string quoteName)
-        {
-            var quotes = await _dataStore.LoadRecordsAsync<Quote>(x => x.Name == quoteName, TableName);
-            var selectedQuote = quotes.FirstOrDefault();
-            var quoteUrl = $"https://discordapp.com/channels/{selectedQuote.ServerId}/{selectedQuote.ChanId}/{selectedQuote.MessageId}";
-
-            if (!IsCodeblock(selectedQuote.Message))
-            {
-                var embed = new DisukuEmbed
-                {
-                    Title = $"{selectedQuote.Author} : Id <{selectedQuote.MessageId}.",
-                    Description = $"\n**Quote:** {selectedQuote.Message}\n\n" +
-                              $"Jump: [Click Here]({quoteUrl})",
-                    Thumbnail = selectedQuote.ThumbnailUrl
+                    Author = new Author(selectedQuote?.AuthorUsername, selectedQuote?.AuthorAvatarUrl, $"Id {selectedQuote?.MessageId}")
                 };
 
                 await _discordMessage.SendDiscordEmbedAsync(chanId, embed);
@@ -70,7 +51,35 @@ namespace Disuku.Core.Services.Quotes
             else
             {
                 var sb = new StringBuilder();
-                sb.Append($"{selectedQuote.Author} : Id: <{selectedQuote.MessageId}>");
+                sb.Append($"{selectedQuote.AuthorUsername} : Id: <{selectedQuote.MessageId}>");
+                sb.Append($"{selectedQuote.Message}");
+                await _discordMessage.SendDiscordMessageAsync(chanId, $"{sb}");
+            }
+        }
+
+        public async Task Find(ulong chanId, string quoteName)
+        {
+            var quotes = await _dataStore.LoadRecordsAsync<Quote>(x => x.Name == quoteName, TableName);
+            if (!quotes.Any()) { await _discordMessage.SendDiscordMessageAsync(chanId, "Quote with that Name was not found."); return; }
+
+            var selectedQuote = quotes.FirstOrDefault();
+            var quoteUrl = $"https://discordapp.com/channels/{selectedQuote.ServerId}/{selectedQuote.ChanId}/{selectedQuote.MessageId}";
+
+            if (!IsCodeblock(selectedQuote.Message))
+            {
+                var embed = new DisukuEmbed
+                {
+                    Description = $"\n**Quote:** {selectedQuote.Message}\n\n" +
+                              $"Jump: [Click Here]({quoteUrl})",
+                    Author = new Author(selectedQuote.AuthorUsername, selectedQuote.AuthorAvatarUrl, $"Id {selectedQuote.MessageId}")
+                };
+
+                await _discordMessage.SendDiscordEmbedAsync(chanId, embed);
+            }
+            else
+            {
+                var sb = new StringBuilder();
+                sb.Append($"{selectedQuote.AuthorUsername} : Id: <{selectedQuote.MessageId}>");
                 sb.Append($"{selectedQuote.Message}");
                 await _discordMessage.SendDiscordMessageAsync(chanId, $"{sb}");
             }
@@ -83,7 +92,7 @@ namespace Disuku.Core.Services.Quotes
             var quotes = await _dataStore.LoadRecordsAsync<Quote>(x => x.AuthorId == user.UserId, TableName);
             foreach (var quote in quotes)
             {
-                sb.Append($"Author: {quote.Author}\n" +
+                sb.Append($"AuthorUsername: {quote.AuthorUsername}\n" +
                           $"Quote: {quote.Name}\n" +
                           $"Id: {quote.MessageId}\n\n");
             }

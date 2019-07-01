@@ -12,8 +12,8 @@ namespace Disuku.Core.Entities
         public ulong ChanId { get; set; }
         public string Name { get; set; }
         public string Message { get; set; }
-        public string Author { get; set; }
+        public string AuthorUsername { get; set; }
         public ulong AuthorId { get; set; }
-        public string ThumbnailUrl { get; set; }
+        public string AuthorAvatarUrl { get; set; }
     }
 }

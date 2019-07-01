@@ -45,9 +45,9 @@ namespace Disuku.Discord.Modules
                 ServerId = Context.Guild.Id,
                 Name = quoteName,
                 Message = message.Content,
-                Author = message.Author.Username,
+                AuthorUsername = message.Author.Username,
                 AuthorId = message.Author.Id,
-                ThumbnailUrl = message.Author.GetAvatarUrl()
+                AuthorAvatarUrl = message.Author.GetAvatarUrl()
             };
 
             await _quoteService.Add(Context.Channel.Id, quote);
