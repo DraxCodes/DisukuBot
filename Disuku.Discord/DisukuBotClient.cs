@@ -83,6 +83,12 @@ namespace Disuku.Discord
         {
             _client.Ready += OnReady;
             _client.Log += LogAsync;
+            _client.ReactionAdded += _client_ReactionAdded;
+        }
+
+        private async Task _client_ReactionAdded(Cacheable<IUserMessage, ulong> arg1, ISocketMessageChannel arg2, SocketReaction arg3)
+        {
+            await arg1.GetOrDownloadAsync();
         }
 
         private async Task LogAsync(LogMessage logMessage)
