@@ -7,6 +7,12 @@ namespace Disuku.Discord.Modules
     [Name("Misc Commands")]
     public class Misc : ModuleBase<SocketCommandContext>
     {
+        private readonly CommandService _cmdService;
+        public Misc(CommandService cmdService)
+        {
+            _cmdService = cmdService;
+        }
+
         [Command("Choose"), Summary("Selects between options given split by a comma.")]
         public async Task Choose([Remainder]string message)
         {
@@ -30,6 +36,5 @@ namespace Disuku.Discord.Modules
                 $"+ {Context.User.Username}: {randNum}\n" +
                 "```");
         }
-
     }
 }
