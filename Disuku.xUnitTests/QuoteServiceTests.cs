@@ -7,6 +7,7 @@ using Disuku.Core.Discord;
 using Disuku.Core.Entities;
 using Disuku.Core.Services.Quotes;
 using Disuku.Core.Storage;
+using Disuku.xUnitTests.MockedData;
 using Moq;
 using Xunit;
 using Xunit.Sdk;
@@ -19,12 +20,14 @@ namespace Disuku.xUnitTests
         private readonly Mock<IDataStore> _dataStoreMock;
         private readonly Mock<IDiscordMessage> _discordMessageMock;
         private readonly Mock<QuoteService> _quoteService;
+        private readonly DummyQuotes _dummyQuotes;
 
         public QuoteServiceTests()
         {
             _dataStoreMock = new Mock<IDataStore>();
             _discordMessageMock = new Mock<IDiscordMessage>();
             _quoteService = new Mock<QuoteService>(_dataStoreMock.Object, _discordMessageMock.Object);
+            _dummyQuotes = new DummyQuotes();
         }
 
         [Fact]
@@ -76,5 +79,24 @@ namespace Disuku.xUnitTests
                 x.LoadRecordsAsync(It.IsAny<Expression<Func<Quote, bool>>>(), It.IsAny<string>()),
                 Times.Once());
         }
+
+        [Fact]
+        public async Task FindQuoteById_ShouldSendOneDiscordMessageIfQuoteNotFound()
+        {
+            const ulong messageId = 0;
+            var quotes = new List<Quote>();
+
+            _dataStoreMock.Setup(x => 
+                x.LoadRecordsAsync<Quote>(x => x.MessageId == messageId, It.IsAny<string>()))
+                .Returns(Task.FromResult(quotes));
+
+            await _quoteService.Object.Find(It.IsAny<ulong>(), messageId);
+
+            _discordMessageMock.Verify(x =>
+                x.SendDiscordMessageAsync(It.IsAny<ulong>(), It.IsAny<string>()),
+                Times.Once);
+        }
+
+
     }
 }
