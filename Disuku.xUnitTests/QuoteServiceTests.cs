@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using Disuku.Core.Discord;
 using Disuku.Core.Entities;
+using Disuku.Core.Entities.Embeds;
 using Disuku.Core.Services.Quotes;
 using Disuku.Core.Storage;
 using Disuku.xUnitTests.MockedData;
 using Moq;
 using Xunit;
-using Xunit.Sdk;
-using Expression = Castle.DynamicProxy.Generators.Emitters.SimpleAST.Expression;
 
 namespace Disuku.xUnitTests
 {
@@ -96,7 +95,5 @@ namespace Disuku.xUnitTests
                 x.SendDiscordMessageAsync(It.IsAny<ulong>(), It.IsAny<string>()),
                 Times.Once);
         }
-
-
     }
 }
