@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
@@ -15,7 +14,6 @@ using Expression = Castle.DynamicProxy.Generators.Emitters.SimpleAST.Expression;
 
 namespace Disuku.xUnitTests
 {
-    class QuoteServiceTests
     public class QuoteServiceTests
     {
         private readonly Mock<IDataStore> _dataStoreMock;
@@ -47,6 +45,16 @@ namespace Disuku.xUnitTests
             _discordMessageMock.Verify(x => 
                 x.SendDiscordMessageAsync(It.IsAny<ulong>(), It.IsAny<string>()),
                 Times.Once);
+        }
+
+        [Fact]
+        public async Task ListQuotes_ShouldCallLoadRecordsOnce()
+        {
+            await _quoteService.Object.List(It.IsAny<ulong>(), It.IsAny<DisukuUser>());
+
+            _dataStoreMock.Verify(x =>
+                x.LoadRecordsAsync(It.IsAny<Expression<Func<Quote, bool>>>(), It.IsAny<string>()),
+                    Times.Once());
         }
     }
 }
