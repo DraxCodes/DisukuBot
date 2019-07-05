@@ -87,7 +87,7 @@ namespace Disuku.xUnitTests
             var quotes = new List<Quote>();
 
             _dataStoreMock.Setup(x => 
-                x.LoadRecordsAsync<Quote>(x => x.MessageId == messageId, It.IsAny<string>()))
+                x.LoadRecordsAsync<Quote>(q => q.MessageId == messageId, It.IsAny<string>()))
                 .Returns(Task.FromResult(quotes));
 
             await _quoteService.Object.Find(It.IsAny<ulong>(), messageId);
