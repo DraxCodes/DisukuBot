@@ -38,5 +38,15 @@ namespace Disuku.xUnitTests
                 x.Insert(It.IsAny<Quote>(), It.IsAny<string>()),
                 Times.Once);
         }
+
+        [Fact]
+        public async Task AddNewQuote_ShouldSendOneDiscordMessage()
+        {
+           await _quoteService.Object.Add(It.IsAny<ulong>(), It.IsAny<Quote>());
+
+            _discordMessageMock.Verify(x => 
+                x.SendDiscordMessageAsync(It.IsAny<ulong>(), It.IsAny<string>()),
+                Times.Once);
+        }
     }
 }
