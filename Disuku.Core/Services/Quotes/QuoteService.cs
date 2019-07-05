@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Disuku.Core.Discord;
@@ -32,7 +30,7 @@ namespace Disuku.Core.Services.Quotes
         public async Task Find(ulong chanId, ulong quoteId)
         {
             var quotes = await _dataStore.LoadRecordsAsync<Quote>(x => x.MessageId == quoteId, TableName);
-            if (!quotes.Any()) { await _discordMessage.SendDiscordMessageAsync(chanId, "Quote with that ID was not found.");  return; }
+            if (quotes is null || !quotes.Any()) { await _discordMessage.SendDiscordMessageAsync(chanId, "Quote with that ID was not found.");  return; }
             
             var selectedQuote = quotes.FirstOrDefault();
             var quoteUrl = $"https://discordapp.com/channels/{selectedQuote?.ServerId}/{selectedQuote?.ChanId}/{selectedQuote?.MessageId}";
@@ -90,6 +88,13 @@ namespace Disuku.Core.Services.Quotes
         {
             var sb = new StringBuilder();
             var quotes = await _dataStore.LoadRecordsAsync<Quote>(x => x.AuthorId == user.UserId, TableName);
+
+            if (quotes is null || !quotes.Any())
+            {
+                await _discordMessage.SendDiscordMessageAsync(chanId, "No results found.");
+                return;
+            }
+
             foreach (var quote in quotes)
             {
                 sb.Append($"AuthorUsername: {quote.AuthorUsername}\n" +
