@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Disuku.Core.Discord;
 using Disuku.Core.Entities;
-using Disuku.Core.Entities.Embeds;
 using Disuku.Core.Services.Quotes;
 using Disuku.Core.Storage;
 using Disuku.xUnitTests.MockedData;
