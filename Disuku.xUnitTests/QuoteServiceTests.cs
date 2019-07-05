@@ -66,5 +66,15 @@ namespace Disuku.xUnitTests
                 x.SendDiscordMessageAsync(It.IsAny<ulong>(), It.IsAny<string>()),
                 Times.Once);
         }
+
+        [Fact]
+        public async Task FindQuoteById_ShouldCallLoadRecordsOnce()
+        {
+            await _quoteService.Object.Find(It.IsAny<ulong>(), It.IsAny<ulong>());
+
+            _dataStoreMock.Verify(x => 
+                x.LoadRecordsAsync(It.IsAny<Expression<Func<Quote, bool>>>(), It.IsAny<string>()),
+                Times.Once());
+        }
     }
 }
