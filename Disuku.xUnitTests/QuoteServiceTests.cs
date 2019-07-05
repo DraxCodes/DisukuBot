@@ -56,5 +56,15 @@ namespace Disuku.xUnitTests
                 x.LoadRecordsAsync(It.IsAny<Expression<Func<Quote, bool>>>(), It.IsAny<string>()),
                     Times.Once());
         }
+
+        [Fact]
+        public async Task ListQuotes_ShouldSendOneDiscordMessageRegardlessOfQuoteBeingFound()
+        {
+            await _quoteService.Object.List(It.IsAny<ulong>(), It.IsAny<DisukuUser>());
+            
+            _discordMessageMock.Verify(x =>
+                x.SendDiscordMessageAsync(It.IsAny<ulong>(), It.IsAny<string>()),
+                Times.Once);
+        }
     }
 }
