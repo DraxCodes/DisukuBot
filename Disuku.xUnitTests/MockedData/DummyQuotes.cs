@@ -8,11 +8,10 @@ namespace Disuku.xUnitTests.MockedData
         private const ulong ExampleServerId = 2134124124UL;
         private const ulong ExampleChanId = 3134124124UL;
 
-        public const ulong DraxId = 0UL;
+        public static ulong DraxId = 0UL;
         public const ulong PeterId = 1UL;
         public const string DraxUsername = "Draxis";
         public const string PeterUsername = "Peter";
-        public const ulong EmbedId = 12345;
 
         public readonly Quote DraxQuoteOne = new Quote
         {
@@ -55,11 +54,8 @@ namespace Disuku.xUnitTests.MockedData
 
         public readonly Quote EmbedQuote = new Quote
         {
-            Message = 
-@"```cs
-var test = await ReplyAsync(Message)
-```",
-            MessageId = EmbedId,
+            Message = "```\nsome random stuff\n```",
+            MessageId = 12345UL,
             Id = new Guid(),
             Name = "Embed Example",
             ServerId = ExampleServerId,
