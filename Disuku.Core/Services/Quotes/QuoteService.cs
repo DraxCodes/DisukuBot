@@ -88,6 +88,13 @@ namespace Disuku.Core.Services.Quotes
         {
             var sb = new StringBuilder();
             var quotes = await _dataStore.LoadRecordsAsync<Quote>(x => x.AuthorId == user.UserId, TableName);
+
+            if (quotes is null)
+            {
+                await _discordMessage.SendDiscordMessageAsync(chanId, "No results found.");
+                return;
+            }
+
             foreach (var quote in quotes)
             {
                 sb.Append($"AuthorUsername: {quote.AuthorUsername}\n" +
