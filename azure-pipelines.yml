@@ -12,3 +12,8 @@ pool:
 steps:
 - script: dotnet build
   displayName: 'dotnet build $(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: test
+    projects: '*xUnitTests.csproj'
+arguments: '--configuration $(buildConfiguration)'
