@@ -89,7 +89,7 @@ namespace Disuku.Core.Services.Quotes
             var sb = new StringBuilder();
             var quotes = await _dataStore.LoadRecordsAsync<Quote>(x => x.AuthorId == user.UserId, TableName);
 
-            if (quotes is null)
+            if (quotes is null || !quotes.Any())
             {
                 await _discordMessage.SendDiscordMessageAsync(chanId, "No results found.");
                 return;
