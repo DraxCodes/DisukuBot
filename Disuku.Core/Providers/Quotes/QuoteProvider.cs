@@ -13,3 +13,16 @@ namespace Disuku.Core.Providers.Quotes
             _dataStore = dataStore;
             _dataStore.InitializeDbAsync("DisukuBot");
         }
+
+
+        public IEnumerable<Quote> GetQuotes(ulong messageId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Quote GetQuote(ulong userId)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+}
