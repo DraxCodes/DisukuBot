@@ -30,7 +30,7 @@ namespace Disuku.Discord
         private readonly DiscordSocketConfig _discordConfigOptions = new DiscordSocketConfig
         {
             LogLevel = LogSeverity.Info,
-            AlwaysDownloadUsers = true,
+            AlwaysDownloadUsers = false,
             MessageCacheSize = 50
         };
 

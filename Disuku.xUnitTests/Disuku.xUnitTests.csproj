@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Disuku.Core\Disuku.Core.csproj" />
+    <ProjectReference Include="..\Disuku.ConsoleUI\Disuku.ConsoleUI.csproj" />
   </ItemGroup>
 
 </Project>
