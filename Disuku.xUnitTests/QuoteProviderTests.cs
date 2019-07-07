@@ -17,11 +17,5 @@ namespace Disuku.xUnitTests
             _mockedDataStore = new Mock<IDataStore>();
             _mockedQuoteProvider = new Mock<IQuoteProvider>();
         }
-
-        [Fact]
-        public async Task GetQuotes_ShouldReturnCollectionOfQuotes()
-        {
-            
-        }
     }
 }
