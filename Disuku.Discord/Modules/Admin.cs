@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Disuku.Discord.Modules
 {
+    [Name("Admin Commands")]
     public class Admin : ModuleBase<SocketCommandContext>
     {
         [Command("Ban", RunMode = RunMode.Async), Name("Ban Member"), RequireUserPermission(GuildPermission.BanMembers)]

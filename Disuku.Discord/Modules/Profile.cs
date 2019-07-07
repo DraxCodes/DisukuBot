@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Disuku.Discord.Discord.Modules
 {
+    [Name("Profile Commands")]
     [Group("Profile")]
     public class Profile : ModuleBase<SocketCommandContext>
     {

@@ -7,6 +7,7 @@ using Disuku.Discord.Converters;
 
 namespace Disuku.Discord.Modules
 {
+    [Name("Quote Commands")]
     [Group("Quote")]
     public class Quotes : ModuleBase<SocketCommandContext>
     {

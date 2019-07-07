@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 namespace Disuku.Discord.Modules
 {
+    [Name("RaiderIO Commands")]
     public class RaiderIO : ModuleBase<SocketCommandContext>
     {
         private readonly IRaiderIOService _raiderIOService;
