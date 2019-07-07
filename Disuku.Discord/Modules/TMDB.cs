@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 namespace Disuku.Discord.Modules
 {
+    [Name("Tmdb Commands")]
     public class TMDB : ModuleBase<SocketCommandContext>
     {
         private readonly ITmdbService _tmdbService;
