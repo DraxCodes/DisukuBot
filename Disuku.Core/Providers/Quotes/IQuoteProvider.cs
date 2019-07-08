@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Disuku.Core.Entities;
 
 namespace Disuku.Core.Providers.Quotes
 {
     public interface IQuoteProvider
     {
-        IEnumerable<Quote> GetQuotes(ulong messageId);
-        Quote GetQuote(ulong userId);
+        Task<IEnumerable<Quote>> GetQuotes(ulong userId);
+        Task<Quote> GetQuote(ulong messageId);
     }
 }

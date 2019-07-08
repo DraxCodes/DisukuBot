@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Disuku.Core.Entities;
 using Disuku.Core.Storage;
 
@@ -15,14 +17,15 @@ namespace Disuku.Core.Providers.Quotes
         }
 
 
-        public IEnumerable<Quote> GetQuotes(ulong messageId)
+        public async Task<IEnumerable<Quote>> GetQuotes(ulong userId)
         {
-            throw new System.NotImplementedException();
+            return await _dataStore.LoadRecordsAsync<Quote>(x => x.AuthorId == userId, TableName);
         }
 
-        public Quote GetQuote(ulong userId)
+        public async Task<Quote> GetQuote(ulong messageId)
         {
-            throw new System.NotImplementedException();
+            var quotes = await _dataStore.LoadRecordsAsync<Quote>(x => x.MessageId == messageId, TableName);
+            return quotes.FirstOrDefault();
         }
     }
 }
